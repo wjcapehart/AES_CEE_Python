@@ -30,6 +30,9 @@ github_username:  wjcapehart
 
 # Build settings
 remote_theme: rundocs/jekyll-rtd-theme
+
+theme_color: #002554;
+
 plugins:
   - jekyll-feed
 
