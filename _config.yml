@@ -29,7 +29,7 @@ github_username:  wjcapehart
 
 
 # Build settings
-theme: minima
+remote_theme: rundocs/jekyll-rtd-theme
 plugins:
   - jekyll-feed
 
