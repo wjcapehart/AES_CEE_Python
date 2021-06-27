@@ -1,4 +1,4 @@
-# Deep Dives
+# "Rage-Quit" 'splainers and Deep Dives
 
 ## About This Section
 
