@@ -31,7 +31,7 @@ Comming Soon
 A lot of these these examples are still being modified to make them more navigable.  Contact me if you ahve any questions there in.
 ```
 
-## Forward in Time Modeling and ODE Equation Solving (the infamous Disease Modeling Case from the CEE 284 MATLAB days)
+### Forward in Time Modeling and ODE Equation Solving (the infamous Disease Modeling Case from the CEE 284 MATLAB days)
 
 * [Web Page of Jupyter Notebook for ODE Equation Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_ODE_Functions_in_Python.html)
   * [Kickstarter Jupyter Notebook for ODE Equation Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_ODE_Functions_in_Python%20Starter-Pack.ipynb)
@@ -40,12 +40,12 @@ A lot of these these examples are still being modified to make them more navigab
   * [Kickstarter Jupyter Notebook for Finite-Difference Euler's Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_Eulers_Method_in_Python%20Starter-Pack.ipynb)
 
 
-## Modeling Transport in both Time and Space (features animations)
+### Modeling Transport in both Time and Space (features animations)
 
 * [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_02_FIT-BIS/Fluids_Modeling_Upstream_Advection.html)
-* [Animated Gif](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_02_FIT-BIS/FIT-BIS/Upwind_FTBS_Advection.gif)
+* [Animated Gif](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_02_FIT-BIS/Upwind_FTBS_Advection.gif)
 
-## Displaying Satellite Imagery (features animations)
+### Displaying Satellite Imagery (features animations)
 
 * [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_04_Satellites/GOES_Image_Ingesting_Demonstrator.html)
 * [Animated Gif](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_04_Satellites/GOES-16_Dorian_CH-03.gif)
