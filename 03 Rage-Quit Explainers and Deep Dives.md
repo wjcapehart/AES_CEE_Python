@@ -15,15 +15,21 @@ Well, I was there, too!  In some cases, I haven't even left.  Hopefully some of 
 
 ### Working with fancier elements of MatplotLib
 
-Coming Soon
+This deep dive tries to work through the confusion that can emege when a plot requires the "Axes" atribute.  This was probably my first major point of confusion when working with plotting in Python.
 
+*  [Plotting_201_Fancy_Plots_in_Python](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_01_Rage_Quit_Support/03_01_01_Axes_and_Axises/Plotting_201_Fancy_Plots_in_Python.html)
+
+### Projecting (Maps not Psychological) in Python (and trolling Flat Earthers!)
+
+
+*   Comming Soon
 ### Projecting Meteo Data in MetPy
 
-Coming Soon
+*  Coming Soon
 
 ### Time, Funky Calendars, and other Date Time Headaches
 
-Comming Soon
+*  Coming Soon
 
 ## Getting Fancy With Examples
 
