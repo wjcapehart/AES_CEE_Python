@@ -4,7 +4,7 @@
 
 This section is dedicated to those who have looked at online documentation and examples and have come out even more confused than they were when they started.  They also cover aspects of Python that I normally don't explicitly cover in classes.   
 
-Also at the bottom are some deep dives into some applications where I've tried to get fancy with Python which hopefully will, in turn, help you. 
+Also at the bottom are some deep dives into some applications where I've tried to get fancy with Python which hopefully will, in turn, help you.
 
 
 ## The Rage-Quit Zone
@@ -34,7 +34,7 @@ This deep dive tries to work through the confusion that can emege when a plot re
 ## Getting Fancy With Examples
 
 ```warning
-A lot of these these examples are still being modified to make them more navigable.  Contact me if you ahve any questions there in.
+A lot of these these examples are still being modified to make them more navigable.  Contact me if you have any questions therein.
 ```
 
 ### Forward in Time Modeling and ODE Equation Solving (the infamous Disease Modeling Case from the CEE 284 MATLAB days)

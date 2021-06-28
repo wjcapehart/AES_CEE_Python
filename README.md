@@ -6,6 +6,8 @@
 
 This page is a collection of "deep dives" that slowly work through basic issues on spinning up Python for beginners.  It covers the basics of getting started with python in a Jupyter Notebook and puts emphasis on things that made me want to rage-quit in my own transition to Python.  Consequently a lot of the material here is slightly cheeky (and sometimes not-so cheeky).
 
+This differs from a number of tutorial sites and "example" pages out there as my demos presented here slooowwwwwllllyy build the activity step-by-step adding small modifications one element at time.  (In my experience being flooded with everything at once as lead to me having to close my door for the benefit of my neighboring colleagues.)
+
 
 ## "Where would Dr Capehart go?"  
 
