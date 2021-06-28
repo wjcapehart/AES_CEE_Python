@@ -7,15 +7,15 @@ Warning: Typos are Legion
 ```
 
 ```note
-{{mono-font}}
+{{ site.mono-font }}
 ```
 
 ```note
-{{body-font}}
+{{ site.body-font }}
 ```
 
 ```note
-{{$head-font}}
+{{ site.head-font }}
 ```
 
 ## About this Site
