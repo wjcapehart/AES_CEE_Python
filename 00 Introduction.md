@@ -20,3 +20,11 @@ If you want to see where I went for my Python training it's this site right here
 However, the PDSH does not include things like mapping, working with XArray, MetPy or other specialized applications.
 
 For those, I tend to mostly JFGIing it or holding my breath and diving into Stack Overflow.  
+
+## Contact Information
+
+[Dr. Bill Capehart](https://www.sdsmt.edu/Directories/Personnel/Profile/Capehart,-William/), Director, Atmospheric and Environmental Sciences
+Civil & Environmental Engineering
+South Dakota Mines
+501 E. Saint Joseph St., Rapid City, SD 57701
+605.394.2439 | [Email Me]({{ site.email | encode_email }})

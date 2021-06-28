@@ -1,6 +1,8 @@
 ---
 ---
-
+.page-header {
+    background: #002554;
+}
 @import "{{ site.url }}/_sass/_font-faces.scss";
 @import "{{ site.url }}/_sass/_variables.scss";
 @import "{{ site.url }}/_sass/_variables.scss";
