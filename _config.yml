@@ -20,7 +20,6 @@
 
 # Build settings
 remote_theme: rundocs/jekyll-rtd-theme
-theme: jekyll-rtd-theme
 title: Dr C's Python Support Pages
 email: William.Capehart@sdsmt.edu
 description: Dr Capehart's Support Page for Python @ SD Mines
@@ -32,8 +31,8 @@ sdmines_developer_homepage: https://www.sdsmt.edu/Directories/Personnel/Profile/
 site.email: William.Capehart@sdsmt.edu
 url: https://wjcapehart.github.io/AES_CEE_Python/
 
-sass:
-  sass_dir: _sass
+## sass:
+##   sass_dir: _sass
 
 
 
