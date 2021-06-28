@@ -32,7 +32,7 @@ sdmines_developer_homepage: https://www.sdsmt.edu/Directories/Personnel/Profile/
 site.email: William.Capehart@sdsmt.edu
 
 sass:
-  sass_dir: ./_sass
+  sass_dir: _sass
 
 
 
