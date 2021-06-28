@@ -31,9 +31,9 @@ github_username:  wjcapehart
 sdmines_developer_homepage: https://www.sdsmt.edu/Directories/Personnel/Profile/Capehart,-William/
 site.email: William.Capehart@sdsmt.edu
 
-sass:
-  sass_dir: _sass
-  style: compressed
+load_paths:
+  - _sass
+  - node_modules
 
 
 
