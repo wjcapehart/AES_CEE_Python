@@ -23,8 +23,8 @@ For those, I tend to mostly JFGIing it or holding my breath and diving into Stac
 
 ## Contact Information
 
-[Dr. Bill Capehart](https://www.sdsmt.edu/Directories/Personnel/Profile/Capehart,-William/), Director, Atmospheric and Environmental Sciences
-Civil & Environmental Engineering
-South Dakota Mines
-501 E. Saint Joseph St., Rapid City, SD 57701
-605.394.2439 | [Email Me]({{ site.email | encode_email }})
+[Dr. Bill Capehart](https://www.sdsmt.edu/Directories/Personnel/Profile/Capehart,-William/), Director, Atmospheric and Environmental Sciences<br>
+Civil & Environmental Engineering<br>
+South Dakota Mines<br>
+501 E. Saint Joseph St.<br> Rapid City, SD 57701<br>
+605.394.2439 | <a href="mailto:{{ site.email | encode_email }}" title="Contact me">Email me</a>
