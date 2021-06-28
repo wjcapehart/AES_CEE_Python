@@ -36,9 +36,9 @@ sass:
 
 
 # fonts
-body-font: "Open Sans", BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif
-head-font: "Matrix II OT", "Amiri", "Times New Roman", serif
-mono-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace
+# body-font: "Open Sans", BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif
+# head-font: "Matrix II OT", "Amiri", "Times New Roman", serif
+# mono-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace
 
 # theme color
 theme-blue: "#2980b9"
