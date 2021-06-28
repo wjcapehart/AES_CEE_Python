@@ -20,7 +20,7 @@
 
 # Build settings
 remote_theme: rundocs/jekyll-rtd-theme
-
+theme: jekyll-rtd-theme
 title: Dr C's Python Support Pages
 email: William.Capehart@sdsmt.edu
 description: Dr Capehart's Support Page for Python @ SD Mines
