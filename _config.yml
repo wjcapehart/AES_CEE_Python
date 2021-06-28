@@ -35,6 +35,28 @@ sass:
 # Build settings
 remote_theme: rundocs/jekyll-rtd-theme
 
+# fonts
+body-font: "Open Sans", BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif
+head-font: 'Matrix II OT', "Amiri", "Times New Roman", serif
+mono-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace
+
+# theme color
+theme-blue: "#2980b9"
+theme-red: "#e74c3c"
+theme-green: "#1abc9c"
+theme-orange: "#e67e22"
+
+$theme-mines-navy: "#002554"
+$theme-mines-gold: "#B3A369"
+$theme-mines-blue: "#385E9D"
+$theme-mines-green: "#CEDC00"
+$theme-mines-black: "#101820"
+$theme-mines-gray9: "#75787B"
+$theme-mines-gray4: "#BBBCBC"
+$theme-mines-gray1: "#D9D9D9"
+$theme-mines-gray0: "#EDEDED"
+
+
 theme_color: "#002554"
 background_color: "#002554"
 
