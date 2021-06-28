@@ -18,12 +18,14 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+# Build settings
+remote_theme: rundocs/jekyll-rtd-theme
+
 title: Dr C's Python Support Pages
 email: William.Capehart@sdsmt.edu
-description: >- # this means to ignore newlines until "baseurl:"
-  Dr Capehart's Support Page for Python @ SD Mines
-# baseurl: "" # the subpath of your site, e.g. /blog
-# url: "" # the base hostname & protocol for your site, e.g. http://example.com
+description: Dr Capehart's Support Page for Python @ SD Mines
+
+
 twitter_username: Bill_Capehart
 github_username:  wjcapehart
 sdmines_developer_homepage: https://www.sdsmt.edu/Directories/Personnel/Profile/Capehart,-William/
@@ -32,12 +34,10 @@ site.email: William.Capehart@sdsmt.edu
 sass:
   sass_dir: ./_sass
 
-# Build settings
-remote_theme: rundocs/jekyll-rtd-theme
 
 # fonts
 body-font: "Open Sans", BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif
-head-font: 'Matrix II OT', "Amiri", "Times New Roman", serif
+head-font: "Matrix II OT", "Amiri", "Times New Roman", serif
 mono-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace
 
 # theme color
