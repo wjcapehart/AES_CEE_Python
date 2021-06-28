@@ -28,7 +28,7 @@ twitter_username: Bill_Capehart
 github_username:  wjcapehart
 
 sass:
-  sass_dir: {{ site.url }}/_sass
+  sass_dir: "{{ site.url }}/_sass"
 
 # Build settings
 remote_theme: rundocs/jekyll-rtd-theme
