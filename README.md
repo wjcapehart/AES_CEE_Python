@@ -2,22 +2,6 @@
 ![Dr C Is Having a Bad Day](images/rage_crying.jpeg)
 
 
-```warning
-Warning: Typos are Legion
-```
-
-```note
-{{ site.mono-font }}
-```
-
-```note
-{{ site.body-font }}
-```
-
-```note
-{{ site.head-font }}
-```
-
 ## About this Site
 
 This page is a collection of "deep dives" that slowly work through basic issues on spinning up Python for beginners.  It covers the basics of getting started with python in a Jupyter Notebook and puts emphasis on things that made me want to rage-quit in my own transition to Python.  Consequently a lot of the material here is slightly cheeky (and sometimes not-so cheeky).
