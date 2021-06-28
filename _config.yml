@@ -33,6 +33,7 @@ site.email: William.Capehart@sdsmt.edu
 
 sass:
   sass_dir: _sass
+  style: compressed
 
 
 
