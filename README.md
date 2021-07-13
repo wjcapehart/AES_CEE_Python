@@ -11,7 +11,7 @@ This differs from a number of tutorial sites and "example" pages out there as my
 
 ## "Where would Dr Capehart go?"  
 
-If you want to see where I went for my Python training it's this site right here.  This presumes a strong comfort in programming in general and some basic python literacy.
+If you want to see where I went for my general Python training, it's this site right here.  This presumes a strong comfort in programming in general and some basic python literacy.
 
 *  [Jake VanderPlas's Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)
 
