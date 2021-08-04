@@ -41,7 +41,7 @@ First you will need the Jupyter Resource packages to get the juphter notebooks r
 
 * [Jupyter Notebooks, and JupyterLab](https://jupyter.org) and [IPython](https://ipython.org) environments
   * These are the jupyter, jupyterlab, and notebook packages.  This will also include the IPython interactive python environment
-  * [nbopen](https://github.com/takluyver/nbopen) If you want to open a Jupyter Notebook from inside a file manager window for Windows or Mac. (Follow the directions at this link [here]().). 
+  * [nbopen](https://github.com/takluyver/nbopen) If you want to open a Jupyter Notebook from inside a file manager window for Windows or Mac. 
 
 Then you can install (or reinstall) the following basic "must-have" packages for working in data science
 
@@ -73,7 +73,7 @@ if this gives you an error (at the time of this draft, it's not ready for python
 python3 -m pip install nbopen
 ```
 
-Then follow the instructions on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
+Then follow the instructions here [here](https://github.com/takluyver/nbopen) on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
 ### 4.2 More specialized libraries (not needed for CEE 284 students)
 If you are working in any of the weather & climate groups you will also want to install the following.
 
