@@ -60,6 +60,7 @@ conda install -c conda-forge jupyter jupyterlab notebook urllib3
 conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn seaborn
 
 ```
+### 4.2 Opening Your Notebooks from your File Manager
 
 NBOpen requires some work compared to the a simple instalation. 
 
@@ -74,7 +75,7 @@ python3 -m pip install nbopen
 ```
 
 Then follow the instructions here [here](https://github.com/takluyver/nbopen) on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
-### 4.2 More specialized libraries (not needed for CEE 284 students)
+### 4.3 More specialized libraries (not needed for CEE 284 students)
 If you are working in any of the weather & climate groups you will also want to install the following.
 
 * Get the following mapping libraries
