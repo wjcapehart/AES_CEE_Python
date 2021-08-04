@@ -31,15 +31,17 @@ Git is a revision-control program and environment that accesses code repositorie
 ```
 conda install -c conda-forge git
 ```
-## 4 Loading some popular libraries.
+## 4 Loading some Libraries.
 
-I'm going to recommend that at this point you load a number of libraries and packages.
+### 4.1 Commonly-Used Libraries 
+
+I'm going to recommend that, at this point, you load a number of libraries and packages.
 
 First you will need the Jupyter Resource packages to get the juphter notebooks running
 
 * [Jupyter Notebooks, and JupyterLab](https://jupyter.org) and [IPython](https://ipython.org) environments
   * These are the jupyter, jupyterlab, and notebook packages.  This will also include the IPython interactive python environment
-  * [nbopen](https://github.com/takluyver/nbopen) If you want to open a Jupyter Notebook from inside a file manager window for Windows or Mac. (Follow the directions at this link [here]().)
+  * [nbopen](https://github.com/takluyver/nbopen) If you want to open a Jupyter Notebook from inside a file manager window for Windows or Mac. (Follow the directions at this link [here]().). 
 
 Then you can install (or reinstall) the following basic "must-have" packages for working in data science
 
@@ -54,11 +56,26 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 In your terminal window enter the following:
 
 ```
-conda install -c conda-forge jupyter jupyterlab notebook urllib3 nbopen
+conda install -c conda-forge jupyter jupyterlab notebook urllib3 
 conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn seaborn
 
 ```
-If you are working in any of the weather and climate groups you will also want to install the following.
+
+NBOpen requires some work compared to the a simple instalation. 
+
+First: get the package
+
+```
+conda install -c conda-forge  nbopen
+```
+if this gives you an error (at the time of this draft, it's not ready for python 3.9's conda-forge build), do this:
+```
+python3 -m pip install nbopen
+```
+
+Then follow the instructions on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
+### 4.2 More specialized libraries (not needed for CEE 284 students)
+If you are working in any of the weather & climate groups you will also want to install the following.
 
 * Get the following mapping libraries
   * [Cartopy](https://scitools.org.uk/cartopy/docs/latest/) A basic geospatial processing library which will be essential for mapping
@@ -83,7 +100,7 @@ conda install -c conda-forge  wrf-python usgs
 
 ## 5 Adding a library that we'll be using: "version_information"
 
-Conda and Conda-Forge has a large number of libaries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system and other resources used in any Juptyer Notebook Python session.  Currently the Version_Information is not compatable with the current release of Python and the Robert Johansson, the original author of the package no longer supports it but since it has cult following (including me!), some of us have been trying to maintain it
+Conda and Conda-Forge has a large number of libaries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system and other resources used in any Juptyer Notebook Python session.  Currently the Version_Information is not compatable with the current release of Python and the Robert Johansson, the original author of the package no longer supports it but since it has cult following (including me!), some of us have been trying to maintain it.
 
 You can access it using the terminal window:
 
@@ -92,15 +109,7 @@ pip install git+https://github.com/wjcapehart/version_information
 ```
 
 
-## 6 Getting LaTeX for Creating Documents for Printing
-
-I am not a fan of the PDF output from Jupyter notebooks, favoring exporting them as HTML files.
-
-BUT... Jupyter uses LaTeX produce PDF files of your notebook. If you *really* want to do that, you will need to install the Windows version of TeX, "MikTeX" available at [https://miktex.org](https://miktex.org)
-
-You have fun.
-
-## 7 A Place For Your Stuff
+## 6 A Place For Your Stuff
 
 Jupyter's framework is expecting your work area to hang off of your home windows directory. Therefore, rather then a network drive like your H: drive, you probably should make a work directory in your Documents, Dropbox, One-Drive, Google-Drive or other drive access able by clocking on your file manager from your home directory.  
 
