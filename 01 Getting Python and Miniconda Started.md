@@ -82,10 +82,13 @@ First: get the package "nbopen."  This is a simple Jupyter interface.
 ```warning
 Warning: The step below with Conda currently does not work.  User the second option  with "pip" for now.
 ```
+
 ```
 conda install -c conda-forge  nbopen
 ```
+
 if this gives you an error (at the time of this draft, it's not ready for python 3.9's conda-forge build), do this:
+
 ```
 pip install nbopen
 ```
