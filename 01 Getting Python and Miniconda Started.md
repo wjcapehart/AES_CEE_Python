@@ -78,12 +78,41 @@ NBOpen requires some work compared to the a simple instalation.
 
 First: get the package "nbopen."  This is a simple Jupyter interface.
 
+
+```warning
+Warning: The step below with Conda currently does not work
+```
 ```
 conda install -c conda-forge  nbopen
 ```
 if this gives you an error (at the time of this draft, it's not ready for python 3.9's conda-forge build), do this:
 ```
-python3 -m pip install nbopen
+pip install nbopen
+```
+
+
+```warning
+Warning: If this step does not work try the following:
+
+1) Get the Anaconda Power Prompt open and type the following: 
+```
+regedit
+```
+
+2) You'll be ask to conform opening the Windows Registry Editor.  Then in the Registry Editor search bar (right under File/Edit/View..) type the following 
+```
+Computer\HKEY_CURRENT_USER\Software\Classes\Jupyter.nbopen\shell\open\command
+```
+3) Then rightclick over the "ab (Default) icon on the right panel and select "Modify"
+
+4) In the Value Data box type the following:
+
+``
+C:\Users\YOURPRISONERNUMBER\miniconda3\python.exe -m conda run -n base pythonw -m nbopen "%1"
+
+[but replace YOURPRISONERNUMBER with your actual username/student ID number.
+``
+
 ```
 
 Then follow the instructions here [here](https://github.com/takluyver/nbopen) on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
