@@ -94,6 +94,10 @@ pip install nbopen
 ```
 
 
+
+
+Then follow the instructions here [here](https://github.com/takluyver/nbopen) on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
+
 ```warning
 Warning: If this step does not work try the following:
 
@@ -117,10 +121,6 @@ Warning: If this step does not work try the following:
 
 
 ```
-
-Then follow the instructions here [here](https://github.com/takluyver/nbopen) on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
-
-
 
 
 ### 4.5 More specialized libraries (not needed for CEE 284 students)
