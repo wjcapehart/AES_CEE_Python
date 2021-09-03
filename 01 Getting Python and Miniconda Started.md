@@ -80,7 +80,7 @@ First: get the package "nbopen."  This is a simple Jupyter interface.
 
 
 ```warning
-Warning: The step below with Conda currently does not work
+Warning: The step below with Conda currently does not work.  User the second option  with "pip" for now.
 ```
 ```
 conda install -c conda-forge  nbopen
@@ -95,23 +95,23 @@ pip install nbopen
 Warning: If this step does not work try the following:
 
 1) Get the Anaconda Power Prompt open and type the following: 
-```
-regedit
-```
+
+**regedit**
+
 
 2) You'll be ask to conform opening the Windows Registry Editor.  Then in the Registry Editor search bar (right under File/Edit/View..) type the following 
-```
-Computer\HKEY_CURRENT_USER\Software\Classes\Jupyter.nbopen\shell\open\command
-```
+
+**Computer\HKEY_CURRENT_USER\Software\Classes\Jupyter.nbopen\shell\open\command** 
+
 3) Then rightclick over the "ab (Default) icon on the right panel and select "Modify"
 
 4) In the Value Data box type the following:
 
-``
-C:\Users\YOURPRISONERNUMBER\miniconda3\python.exe -m conda run -n base pythonw -m nbopen "%1"
+
+**C:\Users\YOURPRISONERNUMBER\miniconda3\python.exe -m conda run -n base pythonw -m nbopen "%1"**
 
 [but replace YOURPRISONERNUMBER with your actual username/student ID number.
-``
+
 
 ```
 
