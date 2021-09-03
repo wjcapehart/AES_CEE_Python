@@ -113,7 +113,7 @@ Warning: If this step does not work try the following:
 
 **C:\Users\YOURPRISONERNUMBER\miniconda3\python.exe -m conda run -n base pythonw -m nbopen "%1"**
 
-[but replace YOURPRISONERNUMBER with your actual username/student ID number.
+[but replace YOURPRISONERNUMBER with your actual username/student ID number.]
 
 
 ```
