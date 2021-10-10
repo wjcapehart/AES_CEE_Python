@@ -57,7 +57,7 @@ In your terminal window enter the following:
 
 ```
 conda install -c conda-forge jupyter jupyterlab notebook urllib3 
-conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn seaborn
+conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn seaborn openpyxl
 
 ```
 
@@ -144,7 +144,7 @@ If you are working in any of the weather & climate groups you will also want to 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj
 conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 siphon cfgrib pygrib cftime cf-python
-conda install -c conda-forge  wrf-python usgs timezonefinder pytz haversine
+conda install -c conda-forge  wrf-python usgs timezonefinder pytz haversine openpyxl
 ```
 
 ## 5 Adding a library that we'll be using: "version_information"
