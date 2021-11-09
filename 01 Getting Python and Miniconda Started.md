@@ -31,15 +31,17 @@ Git is a revision-control program and environment that accesses code repositorie
 ```
 conda install -c conda-forge git
 ```
-## 4 Loading some popular libraries.
+## 4 Loading some Libraries.
 
-I'm going to recommend that at this point you load a number of libraries and packages.
+### 4.1 Commonly-Used Libraries 
+
+I'm going to recommend that, at this point, you load a number of libraries and packages.
 
 First you will need the Jupyter Resource packages to get the juphter notebooks running
 
 * [Jupyter Notebooks, and JupyterLab](https://jupyter.org) and [IPython](https://ipython.org) environments
   * These are the jupyter, jupyterlab, and notebook packages.  This will also include the IPython interactive python environment
-  * [nbopen](https://github.com/takluyver/nbopen) If you want to open a Jupyter Notebook from inside a file manager window for Windows or Mac. (Follow the directions at this link [here]().)
+  * [nbopen](https://github.com/takluyver/nbopen) If you want to open a Jupyter Notebook from inside a file manager window for Windows or Mac. 
 
 Then you can install (or reinstall) the following basic "must-have" packages for working in data science
 
@@ -54,11 +56,75 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 In your terminal window enter the following:
 
 ```
-conda install -c conda-forge jupyter jupyterlab notebook urllib3 nbopen
-conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn seaborn
+conda install -c conda-forge jupyter jupyterlab notebook urllib3 
+conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn seaborn openpyxl
 
 ```
-If you are working in any of the weather and climate groups you will also want to install the following.
+
+
+### 4.3 Opening Jupyter Lab from a Start Menu or Desktop
+
+This is courtesy of Konstantin Taletskiy from an [article on Medium.com](https://medium.com/@kostal91/create-a-desktop-shortcut-for-jupyterlab-on-windows-9fcabcfa0d3f).  If you've gotten this far you already are ready to start step "3" in the article.  If you follow the example you will have a nice setup.  
+
+(Those %[stuff]% thingies are "environment variables" for your username and windows working directories.  Note that at the time of this article, there's a spot where he forgot to close an environmental variable with the closing "%" when you are asked to identify the direcotry you want to start Juptyer Lab in.)
+
+I do this slightly differently from the instructions.  Instead of making the shortcut on my desktop, I point my file manager to C:\Users\%username%\miniconda3\Scripts and make it there.  When done, I can pin a copy on my start menu.
+
+
+### 4.4 Cracking open Jupyter Notebooks from the file manager.  
+
+If you are keeping your material in a specific directory and you want to start your Juptyer server directly in that working directory you can use simpler Jupyter "Notebook."  This uses the open NBOpen tool. 
+NBOpen requires some work compared to the a simple instalation. 
+
+First: get the package "nbopen."  This is a simple Jupyter interface.
+
+
+```warning
+Warning: The step below with Conda currently does not work.  User the second option  with "pip" for now.
+```
+
+```
+conda install -c conda-forge  nbopen
+```
+
+if this gives you an error (at the time of this draft, it's not ready for python 3.9's conda-forge build), do this:
+
+```
+pip install nbopen
+```
+
+
+
+
+Then follow the instructions here [here](https://github.com/takluyver/nbopen) on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
+
+```warning
+Warning: If this step does not work try the following:
+
+1) Get the Anaconda Power Prompt open and type the following: 
+
+**regedit**
+
+
+2) You'll be ask to conform opening the Windows Registry Editor.  Then in the Registry Editor search bar (right under File/Edit/View..) type the following 
+
+**Computer\HKEY_CURRENT_USER\Software\Classes\Jupyter.nbopen\shell\open\command** 
+
+3) Then rightclick over the "ab (Default) icon on the right panel and select "Modify"
+
+4) In the Value Data box type the following:
+
+
+**C:\Users\YOURPRISONERNUMBER\miniconda3\python.exe -m conda run -n base pythonw -m nbopen "%1"**
+
+[but replace YOURPRISONERNUMBER with your actual username/student ID number.]
+
+
+```
+
+
+### 4.5 More specialized libraries (not needed for CEE 284 students)
+If you are working in any of the weather & climate groups you will also want to install the following.
 
 * Get the following mapping libraries
   * [Cartopy](https://scitools.org.uk/cartopy/docs/latest/) A basic geospatial processing library which will be essential for mapping
@@ -77,13 +143,13 @@ If you are working in any of the weather and climate groups you will also want t
 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj
-conda install -c conda-forge xarray metpy netCDF4 siphon cfgrib pygrib cftime cf-python
-conda install -c conda-forge  wrf-python usgs
+conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 siphon cfgrib pygrib cftime cf-python
+conda install -c conda-forge  wrf-python usgs timezonefinder pytz haversine openpyxl
 ```
 
 ## 5 Adding a library that we'll be using: "version_information"
 
-Conda and Conda-Forge has a large number of libaries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system and other resources used in any Juptyer Notebook Python session.  Currently the Version_Information is not compatable with the current release of Python and the Robert Johansson, the original author of the package no longer supports it but since it has cult following (including me!), some of us have been trying to maintain it
+Conda and Conda-Forge has a large number of libaries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system and other resources used in any Juptyer Notebook Python session.  Currently the Version_Information is not compatable with the current release of Python and the Robert Johansson, the original author of the package no longer supports it but since it has cult following (including me!), some of us have been trying to maintain it.
 
 You can access it using the terminal window:
 
@@ -92,15 +158,7 @@ pip install git+https://github.com/wjcapehart/version_information
 ```
 
 
-## 6 Getting LaTeX for Creating Documents for Printing
-
-I am not a fan of the PDF output from Jupyter notebooks, favoring exporting them as HTML files.
-
-BUT... Jupyter uses LaTeX produce PDF files of your notebook. If you *really* want to do that, you will need to install the Windows version of TeX, "MikTeX" available at [https://miktex.org](https://miktex.org)
-
-You have fun.
-
-## 7 A Place For Your Stuff
+## 6 A Place For Your Stuff
 
 Jupyter's framework is expecting your work area to hang off of your home windows directory. Therefore, rather then a network drive like your H: drive, you probably should make a work directory in your Documents, Dropbox, One-Drive, Google-Drive or other drive access able by clocking on your file manager from your home directory.  
 
