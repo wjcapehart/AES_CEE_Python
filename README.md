@@ -1,4 +1,4 @@
-# Dr C's Python ~Crying Fort~ Support Pages
+# Dr C's Python ~~Crying Fort~~ Support Pages
 ![Dr C Is Having a Bad Day](images/rage_crying.jpeg)
 
 
