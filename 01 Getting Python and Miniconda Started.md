@@ -33,7 +33,7 @@ conda install -c conda-forge git
 ```
 ## 4 Loading some Libraries.
 
-### 4.1 Commonly-Used Libraries 
+### 4.1 Commonly-Used Libraries
 
 I'm going to recommend that, at this point, you load a number of libraries and packages.
 
@@ -41,7 +41,7 @@ First you will need the Jupyter Resource packages to get the juphter notebooks r
 
 * [Jupyter Notebooks, and JupyterLab](https://jupyter.org) and [IPython](https://ipython.org) environments
   * These are the jupyter, jupyterlab, and notebook packages.  This will also include the IPython interactive python environment
-  * [nbopen](https://github.com/takluyver/nbopen) If you want to open a Jupyter Notebook from inside a file manager window for Windows or Mac. 
+  * [nbopen](https://github.com/takluyver/nbopen) If you want to open a Jupyter Notebook from inside a file manager window for Windows or Mac.
 
 Then you can install (or reinstall) the following basic "must-have" packages for working in data science
 
@@ -56,7 +56,7 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 In your terminal window enter the following:
 
 ```
-conda install -c conda-forge jupyter jupyterlab notebook urllib3 
+conda install -c conda-forge jupyter jupyterlab notebook urllib3
 conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn seaborn openpyxl
 
 ```
@@ -66,15 +66,15 @@ conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn s
 
 This is courtesy of Konstantin Taletskiy from an [article on Medium.com](https://medium.com/@kostal91/create-a-desktop-shortcut-for-jupyterlab-on-windows-9fcabcfa0d3f).  If you've gotten this far you already are ready to start step "3" in the article.  If you follow the example you will have a nice setup.  
 
-(Those %[stuff]% thingies are "environment variables" for your username and windows working directories.  Note that at the time of this article, there's a spot where he forgot to close an environmental variable with the closing "%" when you are asked to identify the direcotry you want to start Juptyer Lab in.)
+(Those %[stuff]% thingies are "environment variables" for your username and windows working directories.  Note that at the time of this article, there's a spot where he forgot to close an environmental variable with the closing "%" when you are asked to identify the directory you want to start Juptyer Lab in.)
 
 I do this slightly differently from the instructions.  Instead of making the shortcut on my desktop, I point my file manager to C:\Users\%username%\miniconda3\Scripts and make it there.  When done, I can pin a copy on my start menu.
 
 
 ### 4.4 Cracking open Jupyter Notebooks from the file manager.  
 
-If you are keeping your material in a specific directory and you want to start your Juptyer server directly in that working directory you can use simpler Jupyter "Notebook."  This uses the open NBOpen tool. 
-NBOpen requires some work compared to the a simple instalation. 
+If you are keeping your material in a specific directory and you want to start your Juptyer server directly in that working directory you can use simpler Jupyter "Notebook."  This uses the open NBOpen tool.
+NBOpen requires some work compared to the a simple installation.
 
 First: get the package "nbopen."  This is a simple Jupyter interface.
 
@@ -101,14 +101,14 @@ Then follow the instructions here [here](https://github.com/takluyver/nbopen) on
 ```warning
 Warning: If this step does not work try the following:
 
-1) Get the Anaconda Power Prompt open and type the following: 
+1) Get the Anaconda Power Prompt open and type the following:
 
 **regedit**
 
 
-2) You'll be ask to conform opening the Windows Registry Editor.  Then in the Registry Editor search bar (right under File/Edit/View..) type the following 
+2) You'll be ask to conform opening the Windows Registry Editor.  Then in the Registry Editor search bar (right under File/Edit/View..) type the following
 
-**Computer\HKEY_CURRENT_USER\Software\Classes\Jupyter.nbopen\shell\open\command** 
+**Computer\HKEY_CURRENT_USER\Software\Classes\Jupyter.nbopen\shell\open\command**
 
 3) Then rightclick over the "ab (Default) icon on the right panel and select "Modify"
 
@@ -123,7 +123,7 @@ Warning: If this step does not work try the following:
 ```
 
 
-### 4.5 More specialized libraries (not needed for CEE 284 students)
+### 4.5 More specialized libraries (not needed for CEE 284 students but students wanting to work in Atmospheric Sciences will want some of these)
 If you are working in any of the weather & climate groups you will also want to install the following.
 
 * Get the following mapping libraries
@@ -149,7 +149,7 @@ conda install -c conda-forge  wrf-python usgs timezonefinder pytz haversine open
 
 ## 5 Adding a library that we'll be using: "version_information"
 
-Conda and Conda-Forge has a large number of libaries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system and other resources used in any Juptyer Notebook Python session.  Currently the Version_Information is not compatable with the current release of Python and the Robert Johansson, the original author of the package no longer supports it but since it has cult following (including me!), some of us have been trying to maintain it.
+Conda and Conda-Forge has a large number of libraries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system and other resources used in any Juptyer Notebook Python session.  Currently the Version_Information is not compatable with the current release of Python and the Robert Johansson, the original author of the package no longer supports it but since it has cult following (including me!), some of us have been trying to maintain it.
 
 You can access it using the terminal window:
 

@@ -9,15 +9,15 @@ Also at the bottom are some deep dives into some applications where I've tried t
 
 ## The Rage-Quit Zone
 
-Looked at online help and got so frustrated that you wanted to quit python forever.  Had a set of procedures that you always loved to do in another languate (e.g., NCL, Gempak, or IDL) that just isn't as easy in Python.  
+Looked at online help and got so frustrated that you wanted to quit python forever.  Had a set of procedures that you always loved to do in another language (e.g., NCL, Gempak, or IDL) that just isn't as easy in Python.  
 
-Well, I was there, too!  In some cases, I haven't even left.  Hopefully some of the deep dives, suplementing, for example, the "quick start" materials on Page 2 of this site, will result in less rage, less swearing and less damage to capital equipment than I've already inflicted on everyone and everything around me!
+Well, I was there, too!  In some cases, I haven't even left.  Hopefully some of the deep dives, supplementing, for example, the "quick start" materials on Page 2 of this site, will result in less rage, less swearing and less damage to capital equipment than I've already inflicted on everyone and everything around me!
 
 ### Working with fancier elements of MatplotLib
 
-This deep dive tries to work through the confusion that can emege when a plot requires the "Axes" atribute.  This was probably my first major point of confusion when working with plotting in Python.
+This deep dive tries to work through the confusion that can emerge when a plot requires the "Axes" attribute.  This was probably my first major point of confusion when working with plotting in Python.  
 
-*  [Plotting_201_Fancy_Plots_in_Python](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_01_Rage_Quit_Support/03_01_01_Axes_and_Axises/Plotting_201_Fancy_Plots_in_Python.html)
+*  [Plotting 201 Getting Started with Fancy Plots in Python](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_01_Rage_Quit_Support/03_01_01_Axes_and_Axises/Plotting_201_Fancy_Plots_in_Python.html)
 
 ### Projecting (Maps not Psychological) in Python (and trolling Flat Earthers!)
 
@@ -28,7 +28,7 @@ This deep dive tries to work through the confusion that can emege when a plot re
 
 *  Coming Soon
 
-### Time, Funky Calendars, and other Date Time Headaches
+### Time, Funky Calendars, Time Zones, and other Date Time Headaches
 
 *  Coming Soon
 
