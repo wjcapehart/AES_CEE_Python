@@ -57,10 +57,15 @@ In your terminal window enter the following:
 
 ```
 conda install -c conda-forge jupyter jupyterlab notebook urllib3
-conda install -c conda-forge numpy matplotlib scipy sympy pandas  scikit-learn seaborn openpyxl
-
+conda install -c conda-forge numpy matplotlib scipy sympy pandas 
+conda install -c conda-forge scikit-learn seaborn openpyxl
 ```
 
+```warning
+When installing with conda it will first try to reconcile all the packages so any give package doesn't have components that may "break" other packatges.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.  
+
+If this happens too often you may want to reduce the number of packages that you are asking for in one install rewquest.
+```
 
 ### 4.3 Opening Jupyter Lab from a Start Menu or Desktop
 
@@ -143,8 +148,10 @@ If you are working in any of the weather & climate groups you will also want to 
 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj
-conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 siphon cfgrib pygrib cftime cf-python
-conda install -c conda-forge  wrf-python usgs timezonefinder pytz haversine openpyxl
+conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 
+conda install -c conda-forge siphon cfgrib pygrib cftime cf-python
+conda install -c conda-forge usgs timezonefinder pytz haversine openpyxl
+conda install -c conda-forge wrf-python
 ```
 
 ## 5 Adding a library that we'll be using: "version_information"
