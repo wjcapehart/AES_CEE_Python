@@ -149,8 +149,8 @@ If you are working in any of the weather & climate groups you will also want to 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj
 conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 
-conda install -c conda-forge siphon cfgrib pygrib cftime cf-python
-conda install -c conda-forge usgs timezonefinder pytz haversine openpyxl
+conda install -c conda-forge siphon cfgrib pygrib cftime timezonefinder
+conda install -c conda-forge usgs pytz haversine openpyxl
 conda install -c conda-forge wrf-python
 ```
 
