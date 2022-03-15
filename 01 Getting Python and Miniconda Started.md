@@ -147,7 +147,7 @@ If you are working in any of the weather & climate groups you will also want to 
   * [cftime](https://unidata.github.io/cftime/) UCAR-Unidata support for time data support (including 360-day, leap-year-free 365-day, and other quirky calendars, that only a meteorologist would love because the rest of the world are monsters)
 
 ```
-conda install -c conda-forge shapely cartopy OWSLib pyproj
+conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
 conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 
 conda install -c conda-forge siphon cfgrib pygrib cftime timezonefinder
 conda install -c conda-forge usgs pytz haversine openpyxl
