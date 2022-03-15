@@ -52,6 +52,7 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [SymPy](https://www.sympy.org/en/index.html) An symbolic algebraic solver engine for Python
 * [Scikit-Learn](https://scikit-learn.org/stable/) An open-source set of libraries for regressions, cluster analyses, and similar "machine-learning" activities.
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
+* [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
 
 In your terminal window enter the following:
 
@@ -136,22 +137,33 @@ If you are working in any of the weather & climate groups you will also want to 
   * [Shapely](https://shapely.readthedocs.io/en/latest/) A support package to help manipulate geometric objects
   * [OWSLib](https://geopython.github.io/OWSLib) Access to the Open Geoscience Consortium resources and services.  Lots of good mapping goodies to have.
   * [pyProj](https://pyproj4.github.io/pyproj/stable/) An interface for working with map projections
+  * [geopandas](https://geopandas.org/en/stable/) Geospatial access that leverages Pandas's Dataframe style resoruces
 
 * Get the following complex data and meteo data resources
   * [xarray](http://xarray.pydata.org/en/stable/) Data manipulation and archiving of multi-dimensional datasets
+  * [pint](https://pint.readthedocs.io/en/stable/) and [pint-xarray](https://pint-xarray.readthedocs.io/en/latest/) units support
   * [metpy](https://unidata.github.io/MetPy/latest/index.html) UCAR-Unidata tools for reading, viewing, and analyzing meteo data
-  * [Siphon](https://unidata.github.io/siphon/latest/) UCAR-Unidata support for accessing remote meteo data
   * [netCDF4](https://unidata.github.io/netcdf4-python/) UCAR-Unidata tools for NetCDF4 Support
+
+  * [Siphon](https://unidata.github.io/siphon/latest/) UCAR-Unidata support for accessing remote meteo data
   * [cfGrib](https://github.com/ecmwf/cfgrib) ECMWF tools for WMO Gridded Binary (GRIB 1/2) support
   * [pyGrib](https://jswhit.github.io/pygrib/)  NOAA-ESRL tools for WMO Gridded Binary (GRIB 1/2) support
   * [cftime](https://unidata.github.io/cftime/) UCAR-Unidata support for time data support (including 360-day, leap-year-free 365-day, and other quirky calendars, that only a meteorologist would love because the rest of the world are monsters)
 
+  * [timezonefinder](https://timezonefinder.readthedocs.io/en/latest/) useful for converting from civilized UTC time to more vulgar local times (including "daylight-'savings'" time).
+  * [pytz](http://pytz.sourceforge.net) further support for time zones
+  * [haversine](https://github.com/mapado/haversine) Calculate the distance (in various units) between two points on Earth using their latitude and longitude.
+
+  * [wrf-python](https://wrf-python.readthedocs.io/en/latest/) A collection of diagnostic and interpolation routines for use with output from the Weather Research and Forecasting (WRF-ARW) Model.
+
+
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
 conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 
-conda install -c conda-forge siphon cfgrib pygrib cftime timezonefinder
-conda install -c conda-forge usgs pytz haversine openpyxl
+conda install -c conda-forge siphon cfgrib pygrib cftime 
+conda install -c conda-forge timezonefinder pytz haversine
 conda install -c conda-forge wrf-python
+
 ```
 
 ## 5 Adding a library that we'll be using: "version_information"
