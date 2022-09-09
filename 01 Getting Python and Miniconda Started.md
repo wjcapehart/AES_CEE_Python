@@ -68,68 +68,9 @@ When installing with conda it will first try to reconcile all the packages so an
 If this happens too often you may want to reduce the number of packages that you are asking for in one install rewquest.
 ```
 
-### 4.3 Opening Jupyter Lab from a Start Menu or Desktop
-
-This is courtesy of Konstantin Taletskiy from an [article on Medium.com](https://medium.com/@kostal91/create-a-desktop-shortcut-for-jupyterlab-on-windows-9fcabcfa0d3f).  If you've gotten this far you already are ready to start step "3" in the article.  If you follow the example you will have a nice setup.  
-
-(Those %[stuff]% thingies are "environment variables" for your username and windows working directories.  Note that at the time of this article, there's a spot where he forgot to close an environmental variable with the closing "%" when you are asked to identify the directory you want to start Juptyer Lab in.)
-
-I do this slightly differently from the instructions.  Instead of making the shortcut on my desktop, I point my file manager to C:\Users\%username%\miniconda3\Scripts and make it there.  When done, I can pin a copy on my start menu.
 
 
-### 4.4 Cracking open Jupyter Notebooks from the file manager.  
-
-If you are keeping your material in a specific directory and you want to start your Juptyer server directly in that working directory you can use simpler Jupyter "Notebook."  This uses the open NBOpen tool.
-NBOpen requires some work compared to the a simple installation.
-
-First: get the package "nbopen."  This is a simple Jupyter interface.
-
-
-```warning
-Warning: The step below with Conda currently does not work.  User the second option  with "pip" for now.
-```
-
-```
-conda install -c conda-forge  nbopen
-```
-
-if this gives you an error (at the time of this draft, it's not ready for python 3.9's conda-forge build), do this:
-
-```
-pip install nbopen
-```
-
-
-
-
-Then follow the instructions here [here](https://github.com/takluyver/nbopen) on how to click-to-open a jupyter notebook from the file manager in your specific OS (Windows or Mac).
-
-```warning
-Warning: If this step does not work try the following:
-
-1) Get the Anaconda Power Prompt open and type the following:
-
-**regedit**
-
-
-2) You'll be ask to conform opening the Windows Registry Editor.  Then in the Registry Editor search bar (right under File/Edit/View..) type the following
-
-**Computer\HKEY_CURRENT_USER\Software\Classes\Jupyter.nbopen\shell\open\command**
-
-3) Then rightclick over the "ab (Default) icon on the right panel and select "Modify"
-
-4) In the Value Data box type the following:
-
-
-**C:\Users\YOURPRISONERNUMBER\miniconda3\python.exe -m conda run -n base pythonw -m nbopen "%1"**
-
-[but replace YOURPRISONERNUMBER with your actual username/student ID number.]
-
-
-```
-
-
-### 4.5 More specialized libraries (not needed for CEE 284 students but students wanting to work in Atmospheric Sciences will want some of these)
+### 4.2 More specialized libraries (not needed for CEE 284 students but students wanting to work in Atmospheric Sciences will want some of these)
 If you are working in any of the weather & climate groups you will also want to install the following.
 
 * Get the following mapping libraries
