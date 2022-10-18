@@ -85,25 +85,27 @@ If you are working in any of the weather & climate groups you will also want to 
   * [pint](https://pint.readthedocs.io/en/stable/) and [pint-xarray](https://pint-xarray.readthedocs.io/en/latest/) units support
   * [metpy](https://unidata.github.io/MetPy/latest/index.html) UCAR-Unidata tools for reading, viewing, and analyzing meteo data
   * [netCDF4](https://unidata.github.io/netcdf4-python/) UCAR-Unidata tools for NetCDF4 Support
-
   * [Siphon](https://unidata.github.io/siphon/latest/) UCAR-Unidata support for accessing remote meteo data
+  * [pyGrib](https://jswhit.github.io/pygrib/) NOAA-ESRL tools for WMO Gridded Binary (GRIB 1/2) support
   * [cfGrib](https://github.com/ecmwf/cfgrib) ECMWF tools for WMO Gridded Binary (GRIB 1/2) support
-  * [pyGrib](https://jswhit.github.io/pygrib/)  NOAA-ESRL tools for WMO Gridded Binary (GRIB 1/2) support
   * [cftime](https://unidata.github.io/cftime/) UCAR-Unidata support for time data support (including 360-day, leap-year-free 365-day, and other quirky calendars, that only a meteorologist would love because the rest of the world are monsters)
-
+  * [cf-python](https://ncas-cms.github.io/cf-python/) an Earth science data analysis library that is built on a complete implementation of the CF data model
+  * [cf-plot](http://ajheaps.github.io/cf-plot) a set of Python routines for making the common contour, vector and line plots that climate researchers use
+  * [cf-units](https://cf-units.readthedocs.io/en/latest/) Provision of a wrapper class to support Unidata/UCAR UDUNITS-2, and the cftime calendar functionality
   * [timezonefinder](https://timezonefinder.readthedocs.io/en/latest/) useful for converting from civilized UTC time to more vulgar local times (including "daylight-'savings'" time).
   * [pytz](http://pytz.sourceforge.net) further support for time zones
   * [haversine](https://github.com/mapado/haversine) Calculate the distance (in various units) between two points on Earth using their latitude and longitude.
-
   * [wrf-python](https://wrf-python.readthedocs.io/en/latest/) A collection of diagnostic and interpolation routines for use with output from the Weather Research and Forecasting (WRF-ARW) Model.
+  * [iris](https://scitools-iris.readthedocs.io/en/stable/) A powerful, format-agnostic, community-driven Python package for analysing and visualising Earth science data 
 
 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
 conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 
-conda install -c conda-forge siphon cfgrib pygrib cftime 
-conda install -c conda-forge timezonefinder pytz haversine
-conda install -c conda-forge wrf-python
+conda install -c conda-forge siphon cfgrib pygrib timezonefinder 
+conda install -c conda-forge cf-python cfdm  cftime cf-plot
+conda install -c conda-forge pytz haversine cf-units
+conda install -c conda-forge wrf-python iris
 
 ```
 
