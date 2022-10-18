@@ -97,7 +97,6 @@ If you are working in any of the weather & climate groups you will also want to 
   * [haversine](https://github.com/mapado/haversine) Calculate the distance (in various units) between two points on Earth using their latitude and longitude.
   * [wrf-python](https://wrf-python.readthedocs.io/en/latest/) A collection of diagnostic and interpolation routines for use with output from the Weather Research and Forecasting (WRF-ARW) Model.
   * [iris](https://scitools-iris.readthedocs.io/en/stable/) A powerful, format-agnostic, community-driven Python package for analysing and visualising Earth science data 
-  * [arm_pyart](https://arm-doe.github.io/pyart/) a Python module containing a collection of weather radar algorithms and utilities
 
 
 ```
@@ -105,7 +104,7 @@ conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
 conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 
 conda install -c conda-forge siphon cfgrib pygrib timezonefinder 
 conda install -c conda-forge cf-python cfdm  cftime cf-plot
-conda install -c conda-forge pytz haversine cf-units arm_pyart
+conda install -c conda-forge pytz haversine cf-units
 conda install -c conda-forge wrf-python iris
 
 ```
