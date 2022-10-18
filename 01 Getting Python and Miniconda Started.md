@@ -54,7 +54,7 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
 
-In your terminal window enter the following:
+In your terminal window enter the following *one line at a time*:
 
 ```
 conda install -c conda-forge jupyter jupyterlab notebook urllib3
