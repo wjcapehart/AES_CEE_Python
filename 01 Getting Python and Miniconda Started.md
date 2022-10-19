@@ -53,13 +53,14 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [Scikit-Learn](https://scikit-learn.org/stable/) An open-source set of libraries for regressions, cluster analyses, and similar "machine-learning" activities.
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
+* [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas dataframes
 
 In your terminal window enter the following *one line at a time*:
 
 ```
 conda install -c conda-forge jupyter jupyterlab notebook urllib3
 conda install -c conda-forge numpy matplotlib scipy sympy pandas 
-conda install -c conda-forge scikit-learn seaborn openpyxl
+conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr
 ```
 
 ```warning
