@@ -59,7 +59,7 @@ In your terminal window enter the following *one line at a time*:
 
 ```
 conda install -c conda-forge jupyter jupyterlab notebook urllib3
-conda install -c conda-forge numpy matplotlib scipy sympy pandas 
+conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray
 conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr
 ```
 
@@ -102,12 +102,20 @@ If you are working in any of the weather & climate groups you will also want to 
 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
-conda install -c conda-forge xarray pint pint-xarray metpy netCDF4 
+conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 
 conda install -c conda-forge siphon cfgrib pygrib timezonefinder 
-conda install -c conda-forge cf-python cfdm  cftime cf-plot
+conda install -c conda-forge cftime cfdm wrapt setuptools cython
 conda install -c conda-forge pytz haversine cf-units
-conda install -c conda-forge wrf-python iris
+conda install -c conda-forge iris satpy
+conda install -c conda-forge basemap-data basemap-data-hires
+```
 
+```warning
+As I write this WRF-Python and Basemap for Apple Silicon machines have been removed from conda-forge so proceed with caution.
+```
+```
+conda install -c conda-forge wrf-python 
+conda install -c conda-forge basemap 
 ```
 
 ## 5 Adding a library that we'll be using: "version_information"
