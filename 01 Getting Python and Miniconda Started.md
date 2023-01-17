@@ -111,8 +111,9 @@ conda install -c conda-forge basemap-data basemap-data-hires
 ```
 
 ```warning
-As I write this WRF-Python and Basemap for Apple Silicon machines have been removed from conda-forge so proceed with caution.
+WRF-Python and Basemap for Apple Silicon machines have been temporarily removed from conda-forge so proceed with caution.
 ```
+
 ```
 conda install -c conda-forge wrf-python 
 conda install -c conda-forge basemap 
