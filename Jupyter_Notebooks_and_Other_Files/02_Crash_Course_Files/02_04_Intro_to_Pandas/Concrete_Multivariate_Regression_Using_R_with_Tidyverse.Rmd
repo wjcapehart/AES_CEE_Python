@@ -1,84 +1,81 @@
 ---
 title: "Visualizing Statistics and Regressions from a Spreadsheet using R"
-output: html_notebook
---- 
+output:
+  word_document:
+    toc: yes
+  html_notebook:
+    toc: yes
+  pdf_document:
+    toc: yes
+    latex_engine: xelatex
+---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
 
 These notebooks are typically this is designed to create a pleasing viewing environment of data analysis that allows you to include figures, text, links, etc. so that your work is better understood and can be reproduced and used with confidence.
 
 The source code for this R notebook (Rmd suffixed files), when stored as web pages (html files), can be downloaded by clicking the button at the top of the page.
 
-If viewing the source code in R Studio, try executing each R "chunk" by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. z
-
+If viewing the source code in R Studio, try executing each R "chunk" by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*.
 
 **Warning. Typos are *Legion*!**
 
 # 1. Introduction
 
-When you're in [MATH 381 (Intro to Probability and Stats)](http://ecatalog.sdsmt.edu/preview_course_nopop.php?catoid=17&coid=26571) you'll get a taste of R.  R is an open-source statistical package build off of an earlier generation of commercial.
+When you're in [MATH 381 (Intro to Probability and Stats)](http://ecatalog.sdsmt.edu/preview_course_nopop.php?catoid=17&coid=26571) you'll get a taste of R. R is an open-source statistical package build off of an earlier generation of commercial.
 
 The goal here is to demonstrate cracking open an excel spreadsheet in R and calculate some basic stats, create various plots to view the statistics, and finally, do some linear and multivariate regression
 
-Another goal here is to show off some of R's features.  R is a very powerful tool.  When translating "powerful" from computereese to any frustrated human dialect, that means "steep learning curve."  It's also a community-supported environment.  When translating "powerful" from computereese to any overscheduled human dialect, that means "there are LOTS of people donating packages and libraries to R."  Some have evolved to be a standard in the community.  Others are highly specialized for a given discipline (but have one or two items that people outside their user communities find handy.)
+Another goal here is to show off some of R's features. R is a very powerful tool. When translating "powerful" from computereese to any frustrated human dialect, that means "steep learning curve." It's also a community-supported environment. When translating "powerful" from computereese to any overscheduled human dialect, that means "there are LOTS of people donating packages and libraries to R." Some have evolved to be a standard in the community. Others are highly specialized for a given discipline (but have one or two items that people outside their user communities find handy.)
 
-But don't let that intimidate you.  Once you learn one language you can slowly pick up more.  Also with this demo we aren't going to get to to be an R guru in a day. 
+But don't let that intimidate you. Once you learn one language you can slowly pick up more. Also with this demo we aren't going to get to to be an R guru in a day.
 
 If you want a good stepping off point to learn R I'd recommend some of the resources at [Data Camp](https://www.datacamp.com/courses/free-introduction-to-r) which have some free starter tutorials for R.
 
-
 # 2. Loading the Libraries
 
-To work with R we will first have to load some libraries.  This is like in C where you have the #include statement to do things like raise things to powers and stuff like that.
+To work with R we will first have to load some libraries. This is like in C where you have the #include statement to do things like raise things to powers and stuff like that.
 
-Some of these libraries or "packages" come with R.  Others will have to be installed.  Here are the ones we are using for this exercise.
+Some of these libraries or "packages" come with R. Others will have to be installed. Here are the ones we are using for this exercise.
 
-Also in this exercise, we're going to use the [tidyverse](https://www.tidyverse.org) set of packages.  Tidyverse is a set of co-developed tools for data science in R.  This is the new big thing in R and is widely used so we are just going to jump in here.  SD Mines has a course beyond Engineering Stats, [MATH 443/543 (Data Analysis)](http://ecatalog.sdsmt.edu/preview_course_nopop.php?catoid=17&coid=26973) that leverages this set of packages.
+Also in this exercise, we're going to use the [tidyverse](https://www.tidyverse.org) set of packages. Tidyverse is a set of co-developed tools for data science in R. This is the new big thing in R and is widely used so we are just going to jump in here. SD Mines has a course beyond Engineering Stats, [MATH 443/543 (Data Analysis)](http://ecatalog.sdsmt.edu/preview_course_nopop.php?catoid=17&coid=26973) that leverages this set of packages.
 
-* Install Us First
-  + [tidyverse](https://www.tidyverse.org) : Set of commonly-used Data Science packages for R that it can install and load all at once. In the long-run you probably also want to install the tidyverse package suite anyway. For this exercise this will include...   
-    - [ggplot2](https://ggplot2.tidyverse.org) : Create Elegant Data Visualizations Using the Grammar of Graphics
-    - [tibble](https://tibble.tidyverse.org) : Simple Data Frames
-    - [tidyr](https://tidyr.tidyverse.org) : Tools for shepherding data in data frames.
-    - [readr](https://readr.tidyverse.org) : Read Rectangular Text Data
-    - [purr](https://purrr.tidyverse.org) : Functional Programming Tools
-    - [dplyr](https://dplyr.tidyverse.org) : A grammar of data manipulation
-    - [stringr](https://stringr.tidyverse.org) : Simple, Consistent Wrappers for Common String Operations
-    - [forcats](https://forcats.tidyverse.org) : Tools for Working with Categorical Variables (Factors)
-
-  + [readxl](https://www.rdocumentation.org/packages/readxl/versions/1.1.0) : also part of the [tidyverse](https://www.tidyverse.org) package suite for reading traditional excel spreadsheets.  
-  + [moderndive](Tidyverse-Friendly Introductory Linear Regression) : Tidyverse-Friendly Introductory Linear Regression
-
-  
-* This should come with R's core install, if not install 'em.
-  + [MASS](https://www.rdocumentation.org/packages/MASS/versions/7.3-50) : Has a lot of resources for regression.
-
-* This doesn't come with R's core install so install that one... 
-  + [moments](https://www.rdocumentation.org/packages/moments/versions/0.14) : This has a load of good stuff for data analysis and plotting, more than you will need here, but get it anyway.
-
-* This is a nice contributed library that lets us make pretty statistics tables.  It was written for ecological applications but it's still pretty handy for looking at concrete
-  + [pastecs](https://www.rdocumentation.org/packages/pastecs/versions/1.3.21): Package for Analysis of Space-Time Ecological Series
-  
-* Another nice contributed library that makes matrices of correlation coefficients look pretty (and  graphically informative).
-  + [corrplot](https://www.rdocumentation.org/packages/corrplot/versions/0.84) Visualization of a Correlation Matrix
-
-* While not officially needed for this activity but I'll demonstrate how units can be used in R in this example
-  + [udunits2](https://www.rdocumentation.org/packages/udunits2/versions/0.13) Provides simple bindings to Unidata's udunits library for unit conversions (will be demonstrating but not explicity needing it here)
-  + [units](https://www.rdocumentation.org/packages/units/versions/0.6-0) Provides Measurement Units for R Vectors
+-   Install Us First
+    -   [tidyverse](https://www.tidyverse.org) : Set of commonly-used Data Science packages for R that it can install and load all at once. In the long-run you probably also want to install the tidyverse package suite anyway. For this exercise this will include...
+        -   [ggplot2](https://ggplot2.tidyverse.org) : Create Elegant Data Visualizations Using the Grammar of Graphics
+        -   [tibble](https://tibble.tidyverse.org) : Simple Data Frames
+        -   [tidyr](https://tidyr.tidyverse.org) : Tools for shepherding data in data frames.
+        -   [readr](https://readr.tidyverse.org) : Read Rectangular Text Data
+        -   [purr](https://purrr.tidyverse.org) : Functional Programming Tools
+        -   [dplyr](https://dplyr.tidyverse.org) : A grammar of data manipulation
+        -   [stringr](https://stringr.tidyverse.org) : Simple, Consistent Wrappers for Common String Operations
+        -   [forcats](https://forcats.tidyverse.org) : Tools for Working with Categorical Variables (Factors)
+    -   [readxl](https://www.rdocumentation.org/packages/readxl/versions/1.1.0) : also part of the [tidyverse](https://www.tidyverse.org) package suite for reading traditional excel spreadsheets.\
+    -   [moderndive](Tidyverse-Friendly%20Introductory%20Linear%20Regression) : Tidyverse-Friendly Introductory Linear Regression
+-   This should come with R's core install, if not install 'em.
+    -   [MASS](https://www.rdocumentation.org/packages/MASS/versions/7.3-50) : Has a lot of resources for regression.
+-   This doesn't come with R's core install so install that one...
+    -   [moments](https://www.rdocumentation.org/packages/moments/versions/0.14) : This has a load of good stuff for data analysis and plotting, more than you will need here, but get it anyway.
+-   This is a nice contributed library that lets us make pretty statistics tables. It was written for ecological applications but it's still pretty handy for looking at concrete
+    -   [pastecs](https://www.rdocumentation.org/packages/pastecs/versions/1.3.21): Package for Analysis of Space-Time Ecological Series
+-   Another nice contributed library that makes matrices of correlation coefficients look pretty (and graphically informative).
+    -   [corrplot](https://www.rdocumentation.org/packages/corrplot/versions/0.84) Visualization of a Correlation Matrix
+-   While not officially needed for this activity but I'll demonstrate how units can be used in R in this example
+    -   [udunits2](https://www.rdocumentation.org/packages/udunits2/versions/0.13) Provides simple bindings to Unidata's udunits library for unit conversions (will be demonstrating but not explicity needing it here)
+    -   [units](https://www.rdocumentation.org/packages/units/versions/0.6-0) Provides Measurement Units for R Vectors
 
 ```{r}
 
   # Tidyverse Handling Libraries
 
-    
-library(package = "tidyverse")  # main tidyverse suite
+  suppressMessages(library(package = "tidyverse"))   # main tidyverse suite
   library(package = "readxl")     # Read Excel Files
   library(package = "moderndive") # regression support
 
   # Statistics Libraries
 
   library(package = "moments")   # Moments, cumulants, skewness, kurtosis and related tests
-  library(package = "MASS")      # Support Functions and Datasets for Venables & Ripley's MASS text
+  library(package = "MASS", warn.conflicts=FALSE)      # Support Functions and Datasets for Venables & Ripley's MASS text
 
   # Extra Graphics Libraries
 
@@ -98,27 +95,25 @@ library(package = "tidyverse")  # main tidyverse suite
 
 The spreadsheet example below is a more complicated than what you hopefully have.
 
-The original data set is from a set of papers on Concrete by I-Cheng Yeh 
+The original data set is from a set of papers on Concrete by I-Cheng Yeh
 
-* [Yeh, I-Cheng, "Modeling slump of concrete with fly ash and superplasticizer," *Computers and Concrete*, **5**(6), 559-572, 2008. doi: 10.12989/cac.2008.5.6.559.](http://www.techno-press.org/content/?page=article&journal=cac&volume=5&num=6&ordernum=4)
+-   [Yeh, I-Cheng, "Modeling slump of concrete with fly ash and superplasticizer," *Computers and Concrete*, **5**(6), 559-572, 2008. doi: 10.12989/cac.2008.5.6.559.](http://www.techno-press.org/content/?page=article&journal=cac&volume=5&num=6&ordernum=4)
 
-* [Yeh, I-Cheng, "Simulation of concrete slump using neural networks," *Construction Materials*, **162**(1), 11-18, 2009. doi: 10.1680/coma.2009.162.1.11](https://www.icevirtuallibrary.com/doi/10.1680/coma.2009.162.1.11)
+-   [Yeh, I-Cheng, "Simulation of concrete slump using neural networks," *Construction Materials*, **162**(1), 11-18, 2009. doi: 10.1680/coma.2009.162.1.11](https://www.icevirtuallibrary.com/doi/10.1680/coma.2009.162.1.11)
 
-* [Yeh, I-Cheng, "Prediction of workability of concrete using design of experiments for mixtures," *Computers and Concrete*, **5**(1), 1-20, 2008. doi: 10.12989/cac.2008.5.1.001](http://www.techno-press.org/content/?page=article&journal=cac&volume=5&num=1&ordernum=1)
+-   [Yeh, I-Cheng, "Prediction of workability of concrete using design of experiments for mixtures," *Computers and Concrete*, **5**(1), 1-20, 2008. doi: 10.12989/cac.2008.5.1.001](http://www.techno-press.org/content/?page=article&journal=cac&volume=5&num=1&ordernum=1)
 
-* [Yeh, I-Cheng, "Modeling slump flow of concrete using second-order regressions and artificial neural networks," *Cement and Concrete Composites*, **29**(6), 474-480, 2007. doi: 10.1016/j.cemconcomp.2007.02.001](https://www.sciencedirect.com/science/article/pii/S0958946507000261?via%3Dihub)
+-   [Yeh, I-Cheng, "Modeling slump flow of concrete using second-order regressions and artificial neural networks," *Cement and Concrete Composites*, **29**(6), 474-480, 2007. doi: 10.1016/j.cemconcomp.2007.02.001](https://www.sciencedirect.com/science/article/pii/S0958946507000261?via%3Dihub)
 
-* [Yeh, I-Cheng, "Exploring concrete slump model using artificial neural networks," *ASCE J. of Computing in Civil Engineering*, **20**(3), 217-221, 2006. doi: 10.1061/(ASCE)0887-3801(2006)20:3(217)](https://ascelibrary.org/doi/10.1061/%28ASCE%290887-3801%282006%2920%3A3%28217%29)
+-   [Yeh, I-Cheng, "Exploring concrete slump model using artificial neural networks," *ASCE J. of Computing in Civil Engineering*, **20**(3), 217-221, 2006. doi: 10.1061/(ASCE)0887-3801(2006)20:3(217)](https://ascelibrary.org/doi/10.1061/%28ASCE%290887-3801%282006%2920%3A3%28217%29)
 
 and is kept at the [UC-Irvine Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Concrete+Slump+Test).
 
-
-
 It can be found here at [http://kyrill.ias.sdsmt.edu/cee_284/Base_Concrete_Slump_Test_for_R.xlsx](http://kyrill.ias.sdsmt.edu/wjc/eduresources/Base_Concrete_Slump_Test_for_R.xlsx)
 
-The relevant page and screenshot is below.  For drama-free R import you are probably best off keeping a page on your spreadsheet file that is very simple, with numbers going down, and a single line for Row-1 with the headers of each column.  If you want to get fancy on other pages that you'd turn in as tables in reports, you can do that on another spreadsheet page.
+The relevant page and screenshot is below. For drama-free R import you are probably best off keeping a page on your spreadsheet file that is very simple, with numbers going down, and a single line for Row-1 with the headers of each column. If you want to get fancy on other pages that you'd turn in as tables in reports, you can do that on another spreadsheet page.
 
-![Concrete Spreadsheet Screenshot](http://kyrill.ias.sdsmt.edu/wjc/eduresources/Base_Concrete_Slump_Test_for_R.png)
+![Concrete Spreadsheet Screenshot](./Base_Concrete_Slump_Test_for_R.png)
 
 To crack open the spreadsheet we will want to use the [read_excel](https://www.rdocumentation.org/packages/readxl/versions/1.1.0/topics/read_excel) function.
 
@@ -176,7 +171,7 @@ You can read the spreadsheet from a local drive or from a website.
   
 ```
 
-With the data read in we can now look at the table of the data.  This looks much nicer when working in R Notebooks instead of Plain Ordinary R.
+With the data read in we can now look at the table of the data. This looks much nicer when working in R Notebooks instead of Plain Ordinary R.
 
 ```{r}
 
@@ -185,12 +180,12 @@ With the data read in we can now look at the table of the data.  This looks much
   print(concrete)
 
 ```
+
 ### Extra: Units (not part of this exercise but it's a nifty tangent)
 
-*Dang.  I like units. I don't see any.  I'm anal and have learned that adding as much descriptive data early on in processing your data set will make people (and most importantly, yourself) not hate you at a later date.  So I am adding them here with the [set_units](https://www.rdocumentation.org/packages/units/versions/0.6-0/topics/set_units) function. This will add units as an attribute.
+\*Dang. I like units. I don't see any. I'm anal and have learned that adding as much descriptive data early on in processing your data set will make people (and most importantly, yourself) not hate you at a later date. So I am adding them here with the [set_units](https://www.rdocumentation.org/packages/units/versions/0.6-0/topics/set_units) function. This will add units as an attribute.
 
-Units don't work with everything and you should probably keep a copy of your original un-unitted data frame.  
-
+Units don't work with everything and you should probably keep a copy of your original un-unitted data frame.
 
 ```{r}
 
@@ -235,13 +230,13 @@ print(concrete_units)
 
 If you click in the Global Environment Box, those units aren't arbitrary strings. They are listed as numerators, denominators and also the way in which squares, etc., are archived are explicit.
 
-Better Still, the same command of set_units when applied to a variable that already has units will convert it.  This is nice when moving between SI units, USCS units.  [If you are going to be cheeky and try the Furlong/Firkin/Fortnight system (FFF), sorry to disappoint, that while the udunits2 package in R recognizes all three units, it recognizes firkins as a volume measure (which is really is) and not the mass measure based on density of water.]
+Better Still, the same command of set_units when applied to a variable that already has units will convert it. This is nice when moving between SI units, USCS units. [If you are going to be cheeky and try the Furlong/Firkin/Fortnight system (FFF), sorry to disappoint, that while the udunits2 package in R recognizes all three units, it recognizes firkins as a volume measure (which is really is) and not the mass measure based on density of water.]
 
 Example here:
 
 ```{r}
 
-  # a little unit-fu™️ play!
+  # a little unit play!
 
   strength_in_psi = set_units(x     = concrete_units$Compressive_Strength_28dy,
                               value = "psi")
@@ -268,10 +263,10 @@ Example here:
   remove(concrete_units)
   
 ```
-Caveat!  As useful as this can be, know this:  Not all R functions play nice with units or other "attributes" in data frames  Some of the plotting routines and linear regression routines below will work with this.
 
-If you need your units and want to minimize "messy" code in R when it conflicts any given function.  You can later strip out units by using the [as.numeric()](https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/numeric) function
+Caveat! As useful as this can be, know this: Not all R functions play nice with units or other "attributes" in data frames Some of the plotting routines and linear regression routines below will work with this.
 
+If you need your units and want to minimize "messy" code in R when it conflicts any given function. You can later strip out units by using the [as.numeric()](https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/numeric) function
 
 # 4. Some Basic Statistics and Traditional Single Variable Plots
 
@@ -279,10 +274,7 @@ Lets start with some basic statistics and plotting of them.
 
 ## 4.1. The "classic" stats
 
-Let's get the mom-and-apple-pie stats for Concrete
-That second argument allows you to deal with missing data.
-
-
+Let's get the mom-and-apple-pie stats for Concrete That second argument allows you to deal with missing data.
 
 ```{r}
 
@@ -311,13 +303,13 @@ That second argument allows you to deal with missing data.
      
 ```
 
-OK this is a little clunky.  It would be nice if someone somewhere made a support library for R that will make nice tables of statistics.
+OK this is a little clunky. It would be nice if someone somewhere made a support library for R that will make nice tables of statistics.
 
 In this case Vive La France! A team from French Research Institute for Exploitation of the Sea thought the same question and as is often the case for the R community not only drafted a set of tools to do this, *and* made it public.
 
 Here we ware using their [stat.desc](https://www.rdocumentation.org/packages/pastecs/versions/1.3.21/topics/stat.desc) function.
 
-This will hopefully give people wanting to make basic tables "maximum satisfaction with minimal effort."
+This will hopefully give people wanting to make basic tables maximum satisfaction with minimal effort.
 
 ```{r}
 
@@ -337,17 +329,13 @@ This will hopefully give people wanting to make basic tables "maximum satisfacti
 
 ```
 
-
-
 ## 4.2. Reorganizing Your Data to Handle Multiple Variables at Once
 
 To leverage some of R's more nifty features we will need to reorganize our data from a "spreadsheet style" format to what some people have called a "long form" table so that the column headers of our concrete traits become a single column with the values in the columns placed all into a single column similar to the graphic below.
 
-
-![Example of the Gather Function](https://jules32.github.io/2016-07-12-Oxford/dplyr_tidyr/img/rstudio-cheatsheet-reshaping-data-gather.png)
+![Example of the Gather Function](./rstudio-cheatsheet-reshaping-data-gather.png)
 
 This is done with the function [gather()](https://www.rdocumentation.org/packages/tidyr/versions/0.8.1/topics/gather)
-
 
 ```{r}
 
@@ -400,24 +388,19 @@ This is done with the function [gather()](https://www.rdocumentation.org/package
   
 ```
 
-
-
-
-
 # 5. Plotting Graphics using Tidyverse Resources
 
 R has a few ways to do the basic histograms, Boxplots and other distribution plots.
 
 There are a number of spiffy ways to plot these statistical plots in R. We're just using one here...
 
-## 5.1.  SLOOOOWWWWLLLLLYYY Making a Simple Plot (Histogram Edition)
+## 5.1. SLOOOOWWWWLLLLLYYY Making a Simple Plot (Histogram Edition)
 
-Now I'm going to do this one tiny step at a time until we get to a viable product.  (This is how I work through cryptic procedures so I can see what each little additional mystery thingie does.)
+Now I'm going to do this one tiny step at a time until we get to a viable product. (This is how I work through cryptic procedures so I can see what each little additional mystery thingie does.)
 
-Graphing is invoked by the [ggplot2](https://ggplot2.tidyverse.org) command.. which has a heluvalot under its hood!  For me all that detail was what had me a little shy to adopt this way of printing data.
+Graphing is invoked by the [ggplot2](https://ggplot2.tidyverse.org) command.. which has a heluvalot under its hood! For me all that detail was what had me a little shy to adopt this way of printing data.
 
-Tidyverse uses what is sometimes called the ["grammar of graphics"](https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html) method... to make a long story longer, the GoG presents separate commands to do separate things rather bundle stuff in a single graphing function.  Sometimes it makes a lot of sense... other times it may be confusion.  (Hence me demonstrating making a graph this one tiny step at a time!
-
+Tidyverse uses what is sometimes called the ["grammar of graphics"](https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html) method... to make a long story longer, the GoG presents separate commands to do separate things rather bundle stuff in a single graphing function. Sometimes it makes a lot of sense... other times it may be confusion. (Hence me demonstrating making a graph this one tiny step at a time!
 
 First thing we are going to do is open a plotting space with the command [ggplot()](https://ggplot2.tidyverse.org/reference/ggplot.html)
 
@@ -429,7 +412,7 @@ ggplot()
 
 ```
 
-Wow.  We have a... big square of... grey.  All it's doing is setting up our plot environment... so let's do some more...
+Wow. We have a... big square of... grey. All it's doing is setting up our plot environment... so let's do some more...
 
 If we want to do a histogram we are going to have to tell it what we want to print and where to get the stuff
 
@@ -447,11 +430,11 @@ ggplot(data = concrete) +   # EDIT:  invoke graphics environment using a given d
 
 ```
 
-OK now we have something that looks like we may have the making of the graph.  If you don't like grey outlines and white grids, no worries, we can change that shortly.
+OK now we have something that looks like we may have the making of the graph. If you don't like grey outlines and white grids, no worries, we can change that shortly.
 
-OK.. we are now ready to make a histogram... 
+OK.. we are now ready to make a histogram...
 
-Here we will use one of the gglot2's "geom_*" (draw stuff) resources.  The default should work for us here.
+Here we will use one of the gglot2's "geom\_\*" (draw stuff) resources. The default should work for us here.
 
 ```{r}
 
@@ -465,15 +448,13 @@ ggplot(data = concrete) +   # invoke graphics environment using a given datafram
 
 (you may have gotten a warning about using the bin=X, you can adjust it.)
 
-Now quickly before moving on... I am not keen on  the grey background with white lines.  
+Now quickly before moving on... I am not keen on the grey background with white lines.
 
-There are a number of out-of-the-box ["themes"](https://ggplot2.tidyverse.org/reference/ggtheme.html) for ggplot2.  
+There are a number of out-of-the-box ["themes"](https://ggplot2.tidyverse.org/reference/ggtheme.html) for ggplot2.
 
-I'm partial to theme_bw() and theme_light() but try the ones that you prefer or stick with the default, theme_gray().  
+I'm partial to theme_bw() and theme_light() but try the ones that you prefer or stick with the default, theme_gray().
 
-These plots shown here are mine.  You should fidget about so they are *yours* and so you can adapt to this new way of working with data.
-
-
+These plots shown here are mine. You should fidget about so they are *yours* and so you can adapt to this new way of working with data.
 
 ```{r}
 
@@ -487,7 +468,7 @@ ggplot(data = concrete) + # invoke graphics environment using a given dataframe
 
 ```
 
-My OCD hates axes where the labels don't envelop all of the data... 
+My OCD hates axes where the labels don't envelop all of the data...
 
 We can fix that with [xlim() or ylim()](https://ggplot2.tidyverse.org/reference/lims.html)
 
@@ -526,7 +507,7 @@ ggplot(data = concrete) +     # invoke graphics environment using a given datafr
 
 Want to customize the labels and titles so we can have units?
 
-You can add custom labels and titles!  (https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf)
+You can add custom labels and titles! (<https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf>)
 
 For the superscripting in the x-axis label, I am using the [expression()](http://vis.supstat.com/2013/04/mathematical-annotation-in-r/) tool in R.
 
@@ -548,9 +529,10 @@ ggplot(data = concrete) +     # invoke graphics environment using a given datafr
   geom_histogram(fill="gray") # insert histogram (with a single chosen color)
 
 ```
-And I could keep tweaking this graph all day, but good enough is good enough so this is a good place to stop... 
 
-We also can plot a few other fields with some trial and error.. 
+And I could keep tweaking this graph all day, but good enough is good enough so this is a good place to stop...
+
+We also can plot a few other fields with some trial and error..
 
 ```{r}
 
@@ -594,7 +576,6 @@ ggplot(data = concrete) +     # invoke graphics environment using a given datafr
 
 (And from our Intro to Stats Lecture...)
 
-
 ```{r}
 
 # Histogram of Strength
@@ -623,7 +604,6 @@ Here to play with them we will take a quick step back and address that "tidy"'ed
 
 We can now use all the parameters in the "tidy" (long) data frame to print by specific traits.
 
-
 ```{r}
 
 ggplot(data = concrete_tidy) +            # invoke graphics environment using a given dataframe
@@ -641,12 +621,11 @@ ggplot(data = concrete_tidy) +            # invoke graphics environment using a 
 
 ```
 
-In the past, I've gotten good results with this but in this case, I think it's too messy in part due to the disparity in the dynamic range of our parameters. 
+In the past, I've gotten good results with this but in this case, I think it's too messy in part due to the disparity in the dynamic range of our parameters.
 
 ## 5.3. Box-Whisker Plot Example
 
-How about leveraging a box whisker?  (I'm using only the independent variables this time.)
-
+How about leveraging a box whisker? (I'm using only the independent variables this time.)
 
 ```{r}
 
@@ -672,7 +651,7 @@ ggplot(data = concrete_independent) +      # EDIT Changing dataframe
 
 ```
 
-What about our dependant variables?  We can start by changing the data frame...
+What about our dependent variables? We can start by changing the data frame...
 
 ```{r}
 
@@ -698,7 +677,7 @@ ggplot(data = concrete_dependent) +      # EDIT Changing dataframe
 
 ```
 
-Want units?  That's a little tougher here since the units differ by parameter.  We can force the values to into new names though.
+Want units? That's a little tougher here since the units differ by parameter. We can force the values to into new names though.
 
 ```{r}
 
@@ -735,8 +714,7 @@ ggplot(data = concrete_dependent) +      # EDIT Changing dataframe
 
 ## 5.4. Violin Plot Example
 
-How about leveraging a "violin" plot?  A violin plot's width swells in areas with more observations and contracts with sparser data so it is like looking at a probability distribution.
-
+How about leveraging a "violin" plot? A violin plot's width swells in areas with more observations and contracts with sparser data so it is like looking at a probability distribution.
 
 ```{r}
 
@@ -764,7 +742,9 @@ ggplot(data = concrete_independent) +      # EDIT Changing dataframe
   
 
 ```
+
 and...
+
 ```{r}
 
 ggplot(data = concrete_dependent) +      # EDIT Changing dataframe
@@ -799,11 +779,12 @@ ggplot(data = concrete_dependent) +      # EDIT Changing dataframe
                              # gives every plot the same width  
 
 ```
-This is basically the above "density" plot but "looking down" as with a box plot.  Also here we are trimming the plot so that when we leave the range of any of the data points, the "violins" are truncated.
+
+This is basically the above "density" plot but "looking down" as with a box plot. Also here we are trimming the plot so that when we leave the range of any of the data points, the "violins" are truncated.
 
 ## 5.5. Stacked Column or Bar Plot Example
 
-We also can do bar plots or stacked column plots.  The one produced here shows the combined components by test unit.
+We also can do bar plots or stacked column plots. The one produced here shows the combined components by test unit.
 
 ```{r}
 
@@ -826,17 +807,15 @@ ggplot(data = concrete_independent) +      # EDIT Changing dataframe
 
 ```
 
-
 # 6. Correlation of Variables
 
 ## 6.1. Correlating and then Fitting Cement to Compressive Strength
 
-Let's start by doing a "simple"" plot .  In this case since I already know the answer because the spreadsheet also has a table of how well our independent variables correlate against the dependent variables (e.g., Slump, Flow, or in our case Strength).  The Cement correlates the best against Compressive Strength (OK, truth be told, it correlates the least badly).
+Let's start by doing a "simple"" plot . In this case since I already know the answer because the spreadsheet also has a table of how well our independent variables correlate against the dependent variables (e.g., Slump, Flow, or in our case Strength). The Cement correlates the best against Compressive Strength (OK, truth be told, it correlates the least badly).
 
 We can actually do this with a correlate function, [cor()](https://www.rdocumentation.org/packages/stats/versions/3.4.3/topics/cor)...
 
-To grab a value in the table "concrete" we call the data frame (concrete) and the variable name (Cement or Water vs Compressive_Strength_28dy), separating the frame and variable names by a $ sign.
-
+To grab a value in the table "concrete" we call the data frame (concrete) and the variable name (Cement or Water vs Compressive_Strength_28dy), separating the frame and variable names by a \$ sign.
 
 ```{r}
 
@@ -862,7 +841,7 @@ tbl_df(correlation_matrix)
 
 ```
 
-Lots of numbers... not all that insightful on their own... 
+Lots of numbers... not all that insightful on their own...
 
 You also can graph the look-n-feel of what all of the different correlations are... (it works best with a much smaller number of variables)
 
@@ -874,7 +853,8 @@ You also can graph the look-n-feel of what all of the different correlations are
            type   = "upper")
 
 ```
-We can now see for example that cement, slag, and fly ash amounts have a nominal but not thrilling correlation to compression strength while water has a good correlation with the resulting slump values.  One thing that this does *not* show is how well these parameters play with other parameters.  As we'll see when all of our independent values are working together we'll discover that cement and water, followed by fly ash and coarse aggregates will, together, contribute the most of our independent parameters in calculating the compressive strength.
+
+We can now see for example that cement, slag, and fly ash amounts have a nominal but not thrilling correlation to compression strength while water has a good correlation with the resulting slump values. One thing that this does *not* show is how well these parameters play with other parameters. As we'll see when all of our independent values are working together we'll discover that cement and water, followed by fly ash and coarse aggregates will, together, contribute the most of our independent parameters in calculating the compressive strength.
 
 ## 6.2. Scatter Plot Example
 
@@ -901,7 +881,7 @@ ggplot(data = concrete) +                # invoke graphics environment using a g
 
 ```
 
-Here's a cute trick:  Could we color those dots by a variable?
+Here's a cute trick: Could we color those dots by a variable?
 
 Sure!
 
@@ -927,7 +907,7 @@ ggplot(data = concrete) +                # invoke graphics environment using a g
 
 ```
 
-Love overkill without any distinct numerical score and look at how everything in your data set correlates with every other variables...? 
+Love overkill without any distinct numerical score and look at how everything in your data set correlates with every other variables...?
 
 Try [pairs()](https://www.rdocumentation.org/packages/graphics/versions/3.5.1/topics/pairs)
 
@@ -944,17 +924,15 @@ pairs(x   = concrete, # do everything in the dataframe
 
 (Obviously the more variables in your dataframe the messier it gets!)
 
-
-
 ## 6.3. Creating our linear model and "calibrating" it
 
 We weren't all that thrilled with the correlation between these components and strength but let's go ahead and demonstrate a regression.
 
-But let's move on and create a regression model from this.  
+But let's move on and create a regression model from this.
 
 Here we will use the [lm()](https://www.rdocumentation.org/packages/stats/versions/3.4.3/topics/lm) (linear model) function from the MASS package.
 
-For the regression formula 
+For the regression formula
 
 $\widehat{y}(x) = {\alpha_0}+{\alpha_1}\ x$
 
@@ -962,15 +940,15 @@ or
 
 $\widehat{Strength}(concrete) = {\alpha_0}+{\alpha_1}\ concrete$
 
-the "prototype" (formula) for the function is written as ... 
+the "prototype" (formula) for the function is written as ...
 
-"Y ~ X" (with the y-intercept implicit in the formula... you don't put it in but it'll be there when you're done.)
+"Y \~ X" (with the y-intercept implicit in the formula... you don't put it in but it'll be there when you're done.)
 
 The above syntax is works like this....
 
-Dependent Variable  [~ is a function of ] Independent Variable [and any other parameter you need gets added with a plus]
+Dependent Variable [\~ is a function of ] Independent Variable [and any other parameter you need gets added with a plus]
 
-If this were a $\widehat{y}(x)={\alpha_0}+{\alpha_0}\ x^3$, then the prototype for the function would be y ~ x^3
+If this were a $\widehat{y}(x)={\alpha_0}+{\alpha_0}\ x^3$, then the prototype for the function would be y \~ x\^3
 
 This will hopefully make more sense as we continue!
 
@@ -982,9 +960,9 @@ linear_model.S_v_c =  lm(formula = Compressive_Strength_28dy ~ Cement, # your fo
                          data    = concrete)                           # the data frame
 ```
 
-Let's see what we have...  This summary command will provide the details of the lm() function's important results
+Let's see what we have... This summary command will provide the details of the lm() function's important results
 
-For us we want to see the Y-Intercept [the (Intercept) under "Estimate"] and the slope that goes with our independent value ("Concrete" under "Estimate") 
+For us we want to see the Y-Intercept [the (Intercept) under "Estimate"] and the slope that goes with our independent value ("Concrete" under "Estimate")
 
 The Standard Error of the Estimate is there (Residual Standard Error) as is the Coefficient of Determination (Multiple R-squared)
 
@@ -996,14 +974,13 @@ We'll talk about a few of the other features when we do the larger multivariate 
 
 ```
 
-In the above output, the asterisk identify the most significant independent variables.   Here it's trivial even though this is a terrible relationship between cement and strength.  Later we will use all of our available independent variables and the use of these asterisks will become more important.
+In the above output, the asterisk identify the most significant independent variables. Here it's trivial even though this is a terrible relationship between cement and strength. Later we will use all of our available independent variables and the use of these asterisks will become more important.
 
+Want to plot it?
 
-Want to plot it?  
+Good news?
 
-Good news?  
-
-Like Excel, you have some automated features to give you quick satisfaction and happiness.  More still, it will give you confidence limits.
+Like Excel, you have some automated features to give you quick satisfaction and happiness. More still, it will give you confidence limits.
 
 For this we use an extension to the graphics package called [geom_smooth()](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
 
@@ -1036,7 +1013,6 @@ ggplot(data = concrete) +                # invoke graphics environment using a g
 The line here looks like a positive correlation between the cement amount and the resulting strength.
 
 Let's try water:
-
 
 ```{r}
 
@@ -1077,7 +1053,7 @@ ggplot(data = concrete) +                # invoke graphics environment using a g
 
 ```
 
-Looking up back the tables none of the variables 
+Looking up back the tables none of the variables
 
 # 7. Multivariate Linear Regression
 
@@ -1085,13 +1061,11 @@ And now we're going to do something about that!
 
 We're now going to use not just one independent variable... but all 7 of them!
 
-The good news is that it follows the same form as the simple linear regression.  This time we string along all of our independent variables with in our formula prototype.
+The good news is that it follows the same form as the simple linear regression. This time we string along all of our independent variables with in our formula prototype.
 
 Our formula now has multiple independent values but still follows the same style of solution...
 
-$\widehat{y}(\mathbf{x}) = {\alpha_0}+{\alpha_1} x_1 + {\alpha_2} x_2 + {\alpha_2} x_3  + ... +{\alpha_n} x_n$ 
-
-
+$\widehat{y}(\mathbf{x}) = {\alpha_0}+{\alpha_1} x_1 + {\alpha_2} x_2 + {\alpha_2} x_3 + ... +{\alpha_n} x_n$
 
 ```{r}
 
@@ -1107,7 +1081,7 @@ linear_model.S_v_all <- lm(data    = concrete,                             # you
 
 ```
 
-And here are these results... 
+And here are these results...
 
 ```{r}
 
@@ -1117,7 +1091,7 @@ summary(object = linear_model.S_v_all)
 
 Our regression coefficients are still here under the "Estimate" column as are our Standard Error of our Estimate and our Coeff of Determination.
 
-Also we can now take a good look at those asterisks at the end of line with the parameter coefficients.  These can explain which independent variables do the heaviest lifting in our regression. The more asterisks, the more important the dependent variable is to the larger multivariate regression. Here, we can see that the Cement and Water are doing most of the "work" in fitting our suite of independent variables to our dependent variable of Compressive Strength.
+Also we can now take a good look at those asterisks at the end of line with the parameter coefficients. These can explain which independent variables do the heaviest lifting in our regression. The more asterisks, the more important the dependent variable is to the larger multivariate regression. Here, we can see that the Cement and Water are doing most of the "work" in fitting our suite of independent variables to our dependent variable of Compressive Strength.
 
 Finally there is the P parameter for which the smaller it is, the better we can say that the relationship that we've made with our regression represents our dependent variable.
 
@@ -1125,18 +1099,17 @@ Now... on to looking at our results.
 
 Here is where viewing the results of the regression is tricky.
 
-We have 7 independent variables but we'd like to see the impact of the fit if all 7 variables on our strength 
+We have 7 independent variables but we'd like to see the impact of the fit if all 7 variables on our strength
 
 When I do this I like to plot the true y value against my regression y(x1,x2,x3,..)
 
 So to do this I will take the fitted values of y and plot them against the original values of y
 
-Getting the fitted values is easy.  
+Getting the fitted values is easy.
 
 I'm using the get_regression_points function which adds the modeled "y-hat" value to the dataframe of all of the other values [get_regression_points()](https://www.rdocumentation.org/packages/stats/versions/3.5.1/topics/fitted) function.
 
-The fitted version is the dependent variable w/ a "_hat"" at the end
-
+The fitted version is the dependent variable w/ a "\_hat"" at the end
 
 ```{r}
 
@@ -1146,9 +1119,7 @@ print(fitted.S_v_all)
 
 ```
 
-
-And finally we can plot our actual vs modeled values.  (I'm adding a trend line)
-
+And finally we can plot our actual vs modeled values. (I'm adding a trend line)
 
 ```{r}
 
@@ -1195,7 +1166,7 @@ And to close things off, we can do some general error metrics that may be useful
 
 First, the Mean Squared Error (MSE) or Bias... (if we are too high or too low)
 
-$BIAS = MSE = \frac{1}{N}  \sum_{i=1}^{n} [\widehat{y}(\overrightarrow{x_i})-y_i]  =    \overline{[\widehat{y}(\overrightarrow{x_i})-y_i]}$
+$BIAS = MSE = \frac{1}{N} \sum_{i=1}^{n} [\widehat{y}(\overrightarrow{x_i})-y_i] = \overline{[\widehat{y}(\overrightarrow{x_i})-y_i]}$
 
 ```{r}
   # Calculate Bias (MSE)
@@ -1205,14 +1176,14 @@ $BIAS = MSE = \frac{1}{N}  \sum_{i=1}^{n} [\widehat{y}(\overrightarrow{x_i})-y_i
   
   print(str_c(" Mean Squared Error (MSE) or Bias: ", bias))
 ```
+
 For a linear or multivariate regression the average of our residuals (the difference between each observation and prediction) *should* be zero.
 
-The root mean squared error (RMSE) is shown here.  It shouldn't be zero since the residuals are squared before summing them up.  We technically should use the standard error of the estimate, but RMSE remains a common error metric.   We can always do both.  The standard error of the estimate takes into account the degrees of freedom which which now includes all of the independent variables (p).  We can get the standard error of the estimate from our 
+The root mean squared error (RMSE) is shown here. It shouldn't be zero since the residuals are squared before summing them up. We technically should use the standard error of the estimate, but RMSE remains a common error metric. We can always do both. The standard error of the estimate takes into account the degrees of freedom which which now includes all of the independent variables (p). We can get the standard error of the estimate from our
 
-$RMSE = \sqrt{ \frac{1}{N}  \sum_{i=1}^{n} [\widehat{y}(\overrightarrow{x_i})-y_i]^2 } = \sqrt{\overline{[\widehat{y}(\overrightarrow{x_i})-y_i]^2}     }$
+$RMSE = \sqrt{ \frac{1}{N} \sum_{i=1}^{n} [\widehat{y}(\overrightarrow{x_i})-y_i]^2 } = \sqrt{\overline{[\widehat{y}(\overrightarrow{x_i})-y_i]^2} }$
 
-$s_{e}$ or $s_{y/x} = \sqrt{ \frac{1}{N-p-1}  \sum_{i=1}^{n} [\widehat{y}(\overrightarrow{x_i})-y_i]^2 }$
-
+$s_{e}$ or $s_{y/x} = \sqrt{ \frac{1}{N-p-1} \sum_{i=1}^{n} [\widehat{y}(\overrightarrow{x_i})-y_i]^2 }$
 
 ```{r}
   # Calculate RMSE
@@ -1246,12 +1217,6 @@ And finally our correlation coefficient (which is basically our coefficient of d
 
 ```
 
+# 9. Closing
 
-And with that, we're done... Once again, this exercise demonstrates a lot of tricks just to show how you can use R for various statistics.  You may not use all of them in your encouters with R for linear or multivariate regression or even at all, but you may be able to cannibalize some of the tricks here for other applications.
-
-
-
-
-
-
-
+And with that, we're done... Once again, this exercise demonstrates a lot of tricks just to show how you can use R for various statistics. You may not use all of them in your encouters with R for linear or multivariate regression or even at all, but you may be able to cannibalize some of the tricks here for other applications.
