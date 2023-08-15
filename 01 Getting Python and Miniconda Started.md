@@ -35,7 +35,7 @@ conda update -c conda-forge conda
 
 I recommend that, at this point, you load a number of libraries and packages.
 
-First you will need the Jupyter Resource packages to get the juphter notebooks running
+First, you will need the Jupyter Resource packages to get the Jupyter notebooks running
 
 * [Jupyter Notebooks, and JupyterLab](https://jupyter.org) and [IPython](https://ipython.org) environments
   * These are the jupyter, jupyterlab, and notebook packages.  This will also include the IPython interactive python environment
@@ -67,7 +67,7 @@ When installing with conda it will first try to reconcile all the packages so an
 You may also experience a few iterations of "Solving Environment," as shown below.
 
 ```
-![Conda Struggling to Reconcile Packages]("images/Conda_Struggling_to_Reconcile_Packages.png") 
+![Conda Struggling to Reconcile Packages](images/Conda_Struggling_to_Reconcile_Packages.png) 
 
 
 
