@@ -66,7 +66,7 @@ When installing with conda it will first try to reconcile all the packages so an
 
 You may also experience a few iterations of "Solving Environment," as shown below.
 
-![Conda Struggling to Reconcile Packages]("images/Conda_Struggling_to_Reconcile_Packages.png")
+![Conda Struggling to Reconcile Packages]("images/Conda_Struggling_to_Reconcile_Packages.png") 
 
 ```
 
