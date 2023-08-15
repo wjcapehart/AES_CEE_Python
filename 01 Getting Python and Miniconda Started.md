@@ -11,14 +11,14 @@ I am recommending that you use Miniconda for this.  Minoconda is a "slimmed down
 Also I am recommending that you work mostly through the conda-forge community.  Again, this provides a little more consistency in a lot of the packages with which you'll be working. There are scores of repository areas (or "channels" in the conda community) and consequently it is easy to accidentally get a package that was written by Frank that relies on a package written by Susan, which (naturally) is reliant on one developed by Pat.  The result can be a web of dependancies that may eventually come into conflict once you install "that one package."  Therefore we will stick with conda-forge as the "go-to" channel through which to get your packages.  From my experience it's provided the least amount of misery.  
 
 To enable conda-forge, you should open a terminal window (in Unix or Mac it's just a terminal window) and in Windows you can find a Conda Powershell that will drop you into a conda-friendly operating system environment.
-Once you have an open working terminal enter the following commands one line at a time.
+Once you have an open working terminal, enter the following commands one line at a time.
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Then run an update to set this channels packages as *your* packages.
+Then run an update to set this channel's packages as *your* packages.
 
 ```
 conda update --all
@@ -26,7 +26,7 @@ conda update --all
 
 ## 3 Get Git (If you don't already have it).
 
-Git is a revision-control program and environment that accesses code repositories that are made public to the larger user community.  To use some resources it's not a bad idea to have.  If you have a Mac, you already have it.  If you are on Windows you can get it from your terminal window by typing the following command
+Git is a revision-control program and environment that accesses code repositories made public to the larger user community.  To use some resources, it's not a bad idea to have.  If you have a Mac, you already have it.  If you are on Windows, you can get it from your terminal window by typing the following command.
 
 ```
 conda install -c conda-forge git
@@ -35,7 +35,7 @@ conda install -c conda-forge git
 
 ### 4.1 Commonly-Used Libraries
 
-I'm going to recommend that, at this point, you load a number of libraries and packages.
+I recommend that, at this point, you load a number of libraries and packages.
 
 First you will need the Jupyter Resource packages to get the juphter notebooks running
 
@@ -58,7 +58,7 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 In your terminal window enter the following *one line at a time*:
 
 ```
-conda install -c conda-forge jupyter jupyterlab notebook urllib3
+conda install -c conda-forge jupyterlab  
 conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray
 conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr
 ```
@@ -66,7 +66,7 @@ conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr
 ```warning
 When installing with conda it will first try to reconcile all the packages so any give package doesn't have components that may "break" other packatges.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.  
 
-If this happens too often you may want to reduce the number of packages that you are asking for in one install rewquest.
+If this happens too often you should reduce the number of packages that you are asking for in one install rewquest.
 ```
 
 
@@ -121,7 +121,7 @@ conda install -c conda-forge basemap
 
 ## 5 Adding a library that we'll be using: "version_information"
 
-Conda and Conda-Forge has a large number of libraries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system and other resources used in any Juptyer Notebook Python session.  Currently the Version_Information is not compatable with the current release of Python and the Robert Johansson, the original author of the package no longer supports it but since it has cult following (including me!), some of us have been trying to maintain it.
+Conda and Conda-Forge have a large number of libraries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system and other resources used in any Juptyer Notebook Python session.  Currently, the Version_Information is not compatible with the current release of Python and Robert Johansson, the original author of the package no longer supports it but since it has a cult following (including me!), some of us have been trying to maintain it.
 
 You can access it using the terminal window:
 
@@ -132,10 +132,8 @@ pip install git+https://github.com/wjcapehart/version_information
 
 ## 6 A Place For Your Stuff
 
-Jupyter's framework is expecting your work area to hang off of your home windows directory. Therefore, rather then a network drive like your H: drive, you probably should make a work directory in your Documents, Dropbox, One-Drive, Google-Drive or other drive access able by clocking on your file manager from your home directory.  
-
-The exception is you have the [nbopen](https://github.com/takluyver/nbopen) tool that works with the Jupyter Notebook (sorry, it's not ready for JupyterLab, yet).  If you need something in another part of your file system to carry your notebooks, you can use that.   If you are a "power-user" you can do the same thing by using a terminal window and just "cd-ing" yourself into any given directory and just opening the notebook there via the command
+Jupyter's framework is expecting your work area to hang off of your home Windows directory. Therefore, rather than a network drive like your H: drive, you probably should make a working directory in your Documents, Dropbox, One-Drive, Google Drive or other drive access by mouse-clicking on your file manager from your home directory.  
 
 ```
-jupyter notebook
+jupyterlab
 ```
