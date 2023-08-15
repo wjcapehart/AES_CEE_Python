@@ -20,8 +20,13 @@ conda config --set channel_priority strict
 
 Then run an update to set this channel's packages as *your* packages.
 
+```warning
+The late August 2023 installation of Miniconda gave me some rather odd errors when installing. I have revised the script below to reflect that.  Also this semester's install seems to be taking much longer on my Windows machine than in the past.
+```
+
 ```
 conda update --all
+conda update -c conda-forge conda
 ```
 
 ## 3 Loading some Libraries.
@@ -57,9 +62,13 @@ conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr
 ```
 
 ```warning
-When installing with conda it will first try to reconcile all the packages so any give package doesn't have components that may "break" other packatges.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.  
+When installing with conda it will first try to reconcile all the packages so any given package doesn't have components that may "break" other packages.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.
 
-If this happens too often you should reduce the number of packages that you are asking for in one install rewquest.
+You may also experience a few iterations of "Solving Environment," as shown below.
+
+![Conda Struggling to Reconcile Packages]()
+
+
 ```
 
 
