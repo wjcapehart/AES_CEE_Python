@@ -21,7 +21,7 @@ conda config --set channel_priority strict
 Then run an update to set this channel's packages as *your* packages.
 
 ```warning
-The late August 2023 installation of Miniconda gave me some rather odd errors when installing. I have revised the script below to reflect that.  Also, this semester's install seems to be taking much longer on my Windows machine than in the past.
+The late August 2023 installation of Miniconda gave me some rather odd errors when installing. I have revised the script below to reflect that.  Also, this semester's installation seems to take much longer on my Windows machine than in the past.
 ```
 
 ```
@@ -66,9 +66,9 @@ When installing with conda it will first try to reconcile all the packages so an
 
 You may also experience a few iterations of "Solving Environment," as shown below.
 
+```
 ![Conda Struggling to Reconcile Packages]("images/Conda_Struggling_to_Reconcile_Packages.png") 
 
-```
 
 
 
