@@ -137,12 +137,38 @@ You can access it using the terminal window:
 ```
 pip install git+https://github.com/wjcapehart/version_information
 ```
+## 6 "Let's Light This Candle!"
 
+How we are ready to go.  To launch Jupyter, I recommend that you again open the Anaconda Powershell Prompt from the start menu if it's not open already. You can also "Pin" it to your "Start" for easy access along with Excel and Mathcad.)
 
-## 6 A Place For Your Stuff
-
-Jupyter's framework is expecting your work area to hang off of your home Windows directory. Therefore, rather than a network drive like your H: drive, you probably should make a working directory in your Documents, Dropbox, One-Drive, Google Drive or other drive access by mouse-clicking on your file manager from your home directory.  
+At the shell prompt, just enter. 
 
 ```
-jupyterlab
+jupyter lab
 ```
+
+And then the fun starts...
+
+### 6.1 Firing Up the Jupyter Service
+
+... the first thing you will see is a flurry of activity in your shell window.  That's ok.  What is happening is that your laptop is creating a virtual web service.   
+
+!["My God! It's full of text!"](images/Anaconda_Shell_Window_Firing_Up_JupyterLab.png)
+
+You will see a web browser tab opening (it may ask you for a specific browser such as Edge, Chrome, Firefox, Mosaic...).  You'll have a web page called "localhost:8080" open up.  This is the pretend web service housing your Jupyter workspace for coding in Python. 
+
+!["The Jupyter Interface"](images/Jupyter_Hub_Web_Interface.png)
+
+To the left, you will see what looks like a File Manager. (That's your Jupyter File Manager.)  To the right will be a workspace.  It will most likely have a "launcher" pave with apps to push or the last Juptyer Notebook you had open.  You'll also see a menu at the top and other toys around the webpage's perimeter.
+
+### 6.2 A Place For Your ~Crap~ Stuff
+
+Jupyter's framework is expecting your work area to hang off of your home Windows directory. Therefore, I recommend creating a good working directory for your Python development wherever you keep your class materials in your Documents, Dropbox, One-Drive, Google Drive, or other drive access by mouse-clicking on the Jupyter File Manager Sub-Window from your home directory.  
+
+And with that, congratulations!  You have a flexible work environment that allows you to code in Python (and other languages) and create a document that includes traditional word-processing text, pictures, tables, active code, output, graphs, tables, and other resources. This will allow you to create a truly replicable and shareable piece of work that you can share with colleagues or clients. 
+
+### 7 Ways Forward
+
+From here, I have a fast "spinup" course that introduces you to the basic Markdown language to document python and also some basics.  Much of it is for students who join my workgroup who have not had python or need some practice to refresh their skills.  There is also a page of "Stupid Python Tricks" for more advanced use.
+
+Play Rough. Have Fun.
