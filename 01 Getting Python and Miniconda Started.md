@@ -24,16 +24,9 @@ Then run an update to set this channel's packages as *your* packages.
 conda update --all
 ```
 
-## 3 Get Git (If you don't already have it).
+## 3 Loading some Libraries.
 
-Git is a revision-control program and environment that accesses code repositories made public to the larger user community.  To use some resources, it's not a bad idea to have.  If you have a Mac, you already have it.  If you are on Windows, you can get it from your terminal window by typing the following command.
-
-```
-conda install -c conda-forge git
-```
-## 4 Loading some Libraries.
-
-### 4.1 Commonly-Used Libraries
+### 3.1 Commonly-Used Libraries
 
 I recommend that, at this point, you load a number of libraries and packages.
 
@@ -71,7 +64,7 @@ If this happens too often you should reduce the number of packages that you are 
 
 
 
-### 4.2 More specialized libraries (not needed for CEE 284 students but students wanting to work in Atmospheric Sciences will want some of these)
+### 3.2 More specialized libraries (not needed for CEE 284 students but students wanting to work in Atmospheric Sciences will want some of these)
 If you are working in any of the weather & climate groups you will also want to install the following.
 
 * Get the following mapping libraries
@@ -117,6 +110,14 @@ WRF-Python and Basemap for Apple Silicon machines have been temporarily removed 
 ```
 conda install -c conda-forge wrf-python 
 conda install -c conda-forge basemap 
+```
+
+## 4 Get Git (If you don't already have it).
+
+Git is a revision-control program and environment that accesses code repositories made public to the larger user community.  To use some resources, it's not a bad idea to have.  If you have a Mac, you already have it.  If you are on Windows, you can get it from your terminal window by typing the following command.
+
+```
+conda install -c conda-forge git
 ```
 
 ## 5 Adding a library that we'll be using: "version_information"
