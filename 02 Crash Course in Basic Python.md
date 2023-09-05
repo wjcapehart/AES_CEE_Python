@@ -14,8 +14,8 @@ To download Python Jupyter Notebooks
   * [Completed Jupyter Notebook for Part 1a with all Markdown Examples Included](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01a_Intro_to_Markdown/Part%201a%20--%20Introduction%20to%20Jupyter%20and%20Markdown.ipynb)
   * [Web Page of Completed Jupyter Notebook for Part 1a](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01a_Intro_to_Markdown/Part%201a%20--%20Introduction%20to%20Jupyter%20and%20Markdown.html)
 * Part 1b - The bare-bone basics of Python (variable types, loops and decision blocks)
-  * [Kick-Starter Raw Jupyter Notebook for Part 1b's Classtime Activity](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01b_Intro_to_Basic_Python/Part%201b%20--%20Python%20Staters%20with%20Basic%20Structures%20Kick-Starter.ipynb)
-  * [Web Page of Completed Jupyter Notebook for Part 1b](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01b_Intro_to_Basic_Python/Part%201b%20--%20Python%20Staters%20with%20Basic%20Structures.html)
+  * [Kick-Starter Raw Jupyter Notebook for Part 1b's Classtime Activity](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01b_Intro_to_Basic_Python/Part_1b_--_Python_Staters_with_Basic_Structures_Kickoff.ipynb)
+  * [Web Page of Completed Jupyter Notebook for Part 1b](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01b_Intro_to_Basic_Python/Part_1b_--_Python_Staters_with_Basic_Structures_Complete.html)
 
 ## Session 2: Arrays, Math, and Plotting in Python (numpy and matplotlib)
 
