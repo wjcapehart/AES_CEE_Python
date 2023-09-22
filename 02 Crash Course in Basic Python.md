@@ -23,9 +23,9 @@ To download Python Jupyter Notebooks
   * [NumPy Reference Page](https://numpy.org/doc/stable/reference/index.html)
   * [matplotlib.pyplot Reference Page](https://matplotlib.org/api/pyplot_summary.html)
 
-* Part 2 - Arrays, Math, and Plotting in Python
-  * [Kick-Starter Raw Jupyter Notebook for Part 2's Classtime Activity](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_02_Intro_to_NumPy_and_Matplotlib/Part%202%20--%20Arrays,%20Math,%20and%20Plotting%20in%20Python%20Kick-Starter.ipynb)
-  * [Web Page of Completed Jupyter Notebook for Part 2](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_02_Intro_to_NumPy_and_Matplotlib/Part%202%20--%20Arrays,%20Math,%20and%20Plotting%20in%20Python.html)
+* Part 2 - Arrays, Math, and Simple Plotting in Python
+  * [Kick-Starter Raw Jupyter Notebook for Part 2's Classtime Activity](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_02_Intro_to_NumPy_and_Matplotlib/CEE_284_S08_2020_Loops_Decision_Blocks_and_Arrays_Kickoff_Sheet.ipynb)
+  * [Web Page of Completed Jupyter Notebook for Part 2](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_02_Intro_to_NumPy_and_Matplotlib/CEE_284_S08_2020_Loops_Decision_Blocks_and_Arrays.html)
 
 ## Session 3: Symbolics and STEM Libraries in Python (sympy and scipy)
 
