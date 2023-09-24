@@ -25,7 +25,7 @@ To download Python Jupyter Notebooks
 
 * Part 2 - Arrays, Math, and Simple Plotting in Python
   * [Kick-Starter Raw Jupyter Notebook for Part 2's Classtime Activity](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_02_Intro_to_NumPy_and_Matplotlib/Part_2_--_Arrays_Math_and_Plotting_in_Python_Kickstarter.ipynb)
-  * [Web Page of Completed Jupyter Notebook for Part 2](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_02_Intro_to_NumPy_and_Matplotlib/![CEE Masthead](Part_2_--_Arrays_Math_and_Plotting_in_Python.html)
+  * [Web Page of Completed Jupyter Notebook for Part 2](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_02_Intro_to_NumPy_and_Matplotlib/Part_2_--_Arrays_Math_and_Plotting_in_Python.html)
 
 ## Session 3: Symbolics and STEM Libraries in Python (sympy and scipy)
 
