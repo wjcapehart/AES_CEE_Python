@@ -1,7 +1,7 @@
 # Getting the Stuff to Get Started
 
-> [!IMPORTANT]  
->Installing Python can take a while.  Much of it is spent letting the package manager to search for available package versiosn that will not conflict with other installed packages.  Be Patient.
+> [!IMPORTANT]
+> Installing Python can take a while.  Much of it is spent letting the package manager to search for available package versiosn that will not conflict with other installed packages.  Be Patient.
 
 ## 1 Installing Miniconda
 
