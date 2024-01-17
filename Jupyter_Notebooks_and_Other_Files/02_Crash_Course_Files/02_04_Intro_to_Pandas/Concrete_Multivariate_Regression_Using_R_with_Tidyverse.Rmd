@@ -1,8 +1,6 @@
 ---
 title: "Visualizing Statistics and Regressions from a Spreadsheet using R"
 output:
-  word_document:
-    toc: yes
   html_notebook:
     toc: yes
   pdf_document:
@@ -26,7 +24,7 @@ When you're in [MATH 381 (Intro to Probability and Stats)](http://ecatalog.sdsmt
 
 The goal here is to demonstrate cracking open an excel spreadsheet in R and calculate some basic stats, create various plots to view the statistics, and finally, do some linear and multivariate regression
 
-Another goal here is to show off some of R's features. R is a very powerful tool. When translating "powerful" from computereese to any frustrated human dialect, that means "steep learning curve." It's also a community-supported environment. When translating "powerful" from computereese to any overscheduled human dialect, that means "there are LOTS of people donating packages and libraries to R." Some have evolved to be a standard in the community. Others are highly specialized for a given discipline (but have one or two items that people outside their user communities find handy.)
+Another goal here is to show off some of R's features. R is a very powerful tool. When translating "powerful" from computereese to any frustrated human dialect, that means "steep learning curve." It's also a community-supported environment. When translating "powerful" from computereese to any over-scheduled human dialect, that means "there are LOTS of people donating packages and libraries to R." Some have evolved to be a standard in the community. Others are highly specialized for a given discipline (but have one or two items that people outside their user communities find handy.)
 
 But don't let that intimidate you. Once you learn one language you can slowly pick up more. Also with this demo we aren't going to get to to be an R guru in a day.
 
@@ -60,15 +58,12 @@ Also in this exercise, we're going to use the [tidyverse](https://www.tidyverse.
     -   [pastecs](https://www.rdocumentation.org/packages/pastecs/versions/1.3.21): Package for Analysis of Space-Time Ecological Series
 -   Another nice contributed library that makes matrices of correlation coefficients look pretty (and graphically informative).
     -   [corrplot](https://www.rdocumentation.org/packages/corrplot/versions/0.84) Visualization of a Correlation Matrix
--   While not officially needed for this activity but I'll demonstrate how units can be used in R in this example
-    -   [udunits2](https://www.rdocumentation.org/packages/udunits2/versions/0.13) Provides simple bindings to Unidata's udunits library for unit conversions (will be demonstrating but not explicity needing it here)
-    -   [units](https://www.rdocumentation.org/packages/units/versions/0.6-0) Provides Measurement Units for R Vectors
 
 ```{r}
 
   # Tidyverse Handling Libraries
 
-  suppressMessages(library(package = "tidyverse"))   # main tidyverse suite
+  library(package = "tidyverse")   # main tidyverse suite
   library(package = "readxl")     # Read Excel Files
   library(package = "moderndive") # regression support
 
@@ -86,8 +81,7 @@ Also in this exercise, we're going to use the [tidyverse](https://www.tidyverse.
 
   library(package = "pastecs")   # Package for Analysis of Space-Time Ecological Series
 
-  library(package = "udunits2")  # Unit Conversion Support
-  library(package = "units")     # Measurement Units for R Vectors
+
 
 ```
 
@@ -115,7 +109,7 @@ The relevant page and screenshot is below. For drama-free R import you are proba
 
 ![Concrete Spreadsheet Screenshot](./Base_Concrete_Slump_Test_for_R.png)
 
-To crack open the spreadsheet we will want to use the [read_excel](https://www.rdocumentation.org/packages/readxl/versions/1.1.0/topics/read_excel) function.
+To crack open the spreadsheet we will want to use the [readxl::read_excel](https://www.rdocumentation.org/packages/readxl/versions/1.1.0/topics/read_excel) function.
 
 You can read the spreadsheet from a local drive or from a website.
 
@@ -154,21 +148,9 @@ You can read the spreadsheet from a local drive or from a website.
   
   # clean up your hard drive!  Don't be like me!
 
-  if(.Platform$OS.type == "windows") {
-    # Windows
-    system(str_c("DEL   ", 
-                 spreadsheet_name,
-                 sep=""))
-    } else {
-    # Unix (Linux, MacOS, Solaris)
-    system(str_c("rm -v  ", 
-                 spreadsheet_name,
-                 sep=""))
-      }
   
-  remove(spreadsheet_name) # clean up variables
 
-  
+concrete
 ```
 
 With the data read in we can now look at the table of the data. This looks much nicer when working in R Notebooks instead of Plain Ordinary R.
@@ -181,92 +163,9 @@ With the data read in we can now look at the table of the data. This looks much 
 
 ```
 
-### Extra: Units (not part of this exercise but it's a nifty tangent)
+### Extra: Units: AVOID!
 
-\*Dang. I like units. I don't see any. I'm anal and have learned that adding as much descriptive data early on in processing your data set will make people (and most importantly, yourself) not hate you at a later date. So I am adding them here with the [set_units](https://www.rdocumentation.org/packages/units/versions/0.6-0/topics/set_units) function. This will add units as an attribute.
-
-Units don't work with everything and you should probably keep a copy of your original un-unitted data frame.
-
-```{r}
-
-# first we clone our data frame
-
-concrete_units = concrete
-
-concrete_units$Cement                    = set_units(x     = concrete_units$Cement, 
-                                                     value = "kg m-3")
-
-concrete_units$Slag                      = set_units(x     = concrete_units$Slag, 
-                                                     value = "kg m-3")
-
-concrete_units$Fly_Ash                   = set_units(x     = concrete_units$Fly_Ash, 
-                                                     value = "kg m-3")
-
-concrete_units$Water                     = set_units(x     = concrete_units$Water, 
-                                                     value = "kg m-3")
-
-concrete_units$Superplasticizer          = set_units(x     = concrete_units$Superplasticizer, 
-                                                     value = "kg m-3")
-
-concrete_units$Coarse_Aggregates         = set_units(x     = concrete_units$Coarse_Aggregates, 
-                                                     value = "kg m-3")
-
-concrete_units$Fine_Aggregates           = set_units(x     = concrete_units$Fine_Aggregates, 
-                                                     value = "kg m-3")
-
-concrete_units$Slump                     = set_units(x     = concrete_units$Slump, 
-                                                     value = "cm")
-
-concrete_units$Flow                      = set_units(x     = concrete_units$Flow, 
-                                                     value = "cm")
-
-concrete_units$Compressive_Strength_28dy = set_units(x     = concrete_units$Compressive_Strength_28dy, 
-                                                     value = "MPa")
-
-print(concrete_units)
-
-
-```
-
-If you click in the Global Environment Box, those units aren't arbitrary strings. They are listed as numerators, denominators and also the way in which squares, etc., are archived are explicit.
-
-Better Still, the same command of set_units when applied to a variable that already has units will convert it. This is nice when moving between SI units, USCS units. [If you are going to be cheeky and try the Furlong/Firkin/Fortnight system (FFF), sorry to disappoint, that while the udunits2 package in R recognizes all three units, it recognizes firkins as a volume measure (which is really is) and not the mass measure based on density of water.]
-
-Example here:
-
-```{r}
-
-  # a little unit play!
-
-  strength_in_psi = set_units(x     = concrete_units$Compressive_Strength_28dy,
-                              value = "psi")
-
-  print(concrete_units$Compressive_Strength_28dy[1])
-  print(strength_in_psi[1])
-  
-  # Ok now I'm being silly but so were the package developers.  
-  # Blame them.  
-  # (Once again, I can't do official FFF units)
-
-  cement_in_slug_per_cu3 = set_units(x     = concrete_units$Cement,
-                                     value = "slugs/furlongs^3")
-  
-  print(concrete_units$Cement[1])
-  print(cement_in_slug_per_cu3[1])
-  
-  
-  # cleaning-up our horseplay..
-  
-  remove(strength_in_psi)
-  remove(cement_in_slug_per_cu3)
-  
-  remove(concrete_units)
-  
-```
-
-Caveat! As useful as this can be, know this: Not all R functions play nice with units or other "attributes" in data frames Some of the plotting routines and linear regression routines below will work with this.
-
-If you need your units and want to minimize "messy" code in R when it conflicts any given function. You can later strip out units by using the [as.numeric()](https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/numeric) function
+... Uh... Just don't. Unlike Mathcad which is designed to work with units or python which claims to be able to work with units, R is awful with it. I've used units once or twice. But I've found it to be more work than it's worth.
 
 # 4. Some Basic Statistics and Traditional Single Variable Plots
 
@@ -331,36 +230,34 @@ This will hopefully give people wanting to make basic tables maximum satisfactio
 
 ## 4.2. Reorganizing Your Data to Handle Multiple Variables at Once
 
-To leverage some of R's more nifty features we will need to reorganize our data from a "spreadsheet style" format to what some people have called a "long form" table so that the column headers of our concrete traits become a single column with the values in the columns placed all into a single column similar to the graphic below.
+To leverage some of R's more nifty features we will need to reorganize our data from a "spreadsheet style" format to what some people have called a "long form" table so that the column headers of our concrete traits become a single column with the values in the columns placed all into a single column similar to the graphics below.
 
-![Example of the Gather Function](./rstudio-cheatsheet-reshaping-data-gather.png)
+![Example of the "pivot_long" Function](https://epirhandbook.com/en/images/pivoting/pivot_longer_new.png)
 
-This is done with the function [gather()](https://www.rdocumentation.org/packages/tidyr/versions/0.8.1/topics/gather)
+![Example of the "pivot_wide" Function](https://epirhandbook.com/en/images/pivoting/pivot_wider_new.png)
+
+In R this is now done with an analog to a function in [Python's Pandas's package (and excel), the "pivot"](https://pandas.pydata.org/docs/user_guide/reshaping.html).
+
+In R this is managed in the [tidr](https://tidyr.tidyverse.org/articles/pivot.html) package using [tidyr::pivot_longer()](https://tidyr.tidyverse.org/reference/pivot_longer.html) to gathers a group of columns into a single longer column, and [tidyr::pivot_wider()](https://tidyr.tidyverse.org/reference/pivot_wider.html) which spreads a column into a shorter-but-wider table.
+
+The documentation doesn't help me a lot here. I need cartoons for that!
 
 ```{r}
 
   # Gathering our components into a single column.
 
-  # We just want the names of our components here so we get everything past
-  # the first column (which is the experiment name)
-
-  column_names  = colnames(concrete[2:ncol(concrete)])   
-
-  tbl_df(column_names) # tbl_df makes it look pretty when printed
-
-  # the gather command will group everything. in the column name group 
-
-  concrete_tidy = gather(data  =    concrete, # your data frame
-                         key   = "Parameter", # column name for your former columns
-                         value =     "Value", # column name for your data
-                         column_names       ) # the list for the columns to "gather"
-
+  # the pivot_longer command will group everything in the column name group 
+  
+  concrete_tidy = concrete %>%    # pipe your data frame from "concrete"
+    pivot_longer(cols      = "Cement":"Compressive_Strength_28dy", # the list for the columns to "gather"
+                 names_to  = "Parameter",                          # column name for your former columns
+                 values_to =     "Value")                          # column name for your data
   
 
   # this will let us sort future plots in the same order as our plots.  
   
   concrete_tidy$Parameter = factor(x      = concrete_tidy$Parameter,
-                                   levels = column_names)
+                                   levels = unique(concrete_tidy$Parameter))
   
   # we can also split things between our dependant variables and independant variables.
   
@@ -402,7 +299,7 @@ Graphing is invoked by the [ggplot2](https://ggplot2.tidyverse.org) command.. wh
 
 Tidyverse uses what is sometimes called the ["grammar of graphics"](https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html) method... to make a long story longer, the GoG presents separate commands to do separate things rather bundle stuff in a single graphing function. Sometimes it makes a lot of sense... other times it may be confusion. (Hence me demonstrating making a graph this one tiny step at a time!
 
-First thing we are going to do is open a plotting space with the command [ggplot()](https://ggplot2.tidyverse.org/reference/ggplot.html)
+First thing we are going to do is open a plotting space with the command [ggplot2::ggplot()](https://ggplot2.tidyverse.org/reference/ggplot.html)
 
 ```{r}
 
@@ -418,7 +315,7 @@ If we want to do a histogram we are going to have to tell it what we want to pri
 
 When we add things to a plot command in Tidyverse we "add" to the steps incrementally.
 
-This involves a "mapping" function called "[aes](https://ggplot2.tidyverse.org/reference/aes.html)" (short for aesthetics)
+This involves a "mapping" function called "[ggplot2::aes](https://ggplot2.tidyverse.org/reference/aes.html)" (short for aesthetics)
 
 here, we are working with the data frame "concrete" and are working on the variable Cement which we are tossing onto the x axis because that's where the bins of cement go!
 
@@ -470,7 +367,7 @@ ggplot(data = concrete) + # invoke graphics environment using a given dataframe
 
 My OCD hates axes where the labels don't envelop all of the data...
 
-We can fix that with [xlim() or ylim()](https://ggplot2.tidyverse.org/reference/lims.html)
+We can fix that with [ggplot2::xlim() or ggplot2::ylim()](https://ggplot2.tidyverse.org/reference/lims.html)
 
 ```{r}
 
@@ -813,7 +710,7 @@ ggplot(data = concrete_independent) +      # EDIT Changing dataframe
 
 Let's start by doing a "simple"" plot . In this case since I already know the answer because the spreadsheet also has a table of how well our independent variables correlate against the dependent variables (e.g., Slump, Flow, or in our case Strength). The Cement correlates the best against Compressive Strength (OK, truth be told, it correlates the least badly).
 
-We can actually do this with a correlate function, [cor()](https://www.rdocumentation.org/packages/stats/versions/3.4.3/topics/cor)...
+We can actually do this with a correlate function, [boot::cor()](https://www.rdocumentation.org/packages/stats/versions/3.4.3/topics/cor)...
 
 To grab a value in the table "concrete" we call the data frame (concrete) and the variable name (Cement or Water vs Compressive_Strength_28dy), separating the frame and variable names by a \$ sign.
 
@@ -843,11 +740,11 @@ tbl_df(correlation_matrix)
 
 Lots of numbers... not all that insightful on their own...
 
-You also can graph the look-n-feel of what all of the different correlations are... (it works best with a much smaller number of variables)
+You also can graph the look-n-feel of what all of the different correlations are... (it works best with a much smaller number of variables).  This function is called [corrplot::corrplot()](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html) and makes a nice presentation of the data.
 
 ```{r}
 
-  # draw a coorelation graphic...
+  # draw a correlation graphic...
 
   corrplot(corr   = correlation_matrix,
            type   = "upper")
@@ -862,7 +759,7 @@ But for now, let's plot plot the Cement amount against Compressive Strength
 
 ```{r}
 
-# Making a simple X-Y scatterplot.
+# Making a simple X-Y scatter plot.
 
 ggplot(data = concrete) +                # invoke graphics environment using a given dataframe
   
@@ -909,7 +806,7 @@ ggplot(data = concrete) +                # invoke graphics environment using a g
 
 Love overkill without any distinct numerical score and look at how everything in your data set correlates with every other variables...?
 
-Try [pairs()](https://www.rdocumentation.org/packages/graphics/versions/3.5.1/topics/pairs)
+Try [graphics::pairs()](https://www.rdocumentation.org/packages/graphics/versions/3.5.1/topics/pairs)
 
 (I like the corrplot function better!)
 
@@ -930,7 +827,7 @@ We weren't all that thrilled with the correlation between these components and s
 
 But let's move on and create a regression model from this.
 
-Here we will use the [lm()](https://www.rdocumentation.org/packages/stats/versions/3.4.3/topics/lm) (linear model) function from the MASS package.
+Here we will use the [stats::lm()](https://www.rdocumentation.org/packages/stats/versions/3.4.3/topics/lm) (linear model) from the basic toolboxes that come with R.
 
 For the regression formula
 
@@ -982,7 +879,7 @@ Good news?
 
 Like Excel, you have some automated features to give you quick satisfaction and happiness. More still, it will give you confidence limits.
 
-For this we use an extension to the graphics package called [geom_smooth()](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
+For this we use an extension to the graphics package called [ggplot2::geom_smooth()](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
 
 ```{r}
 
@@ -1107,7 +1004,7 @@ So to do this I will take the fitted values of y and plot them against the origi
 
 Getting the fitted values is easy.
 
-I'm using the get_regression_points function which adds the modeled "y-hat" value to the dataframe of all of the other values [get_regression_points()](https://www.rdocumentation.org/packages/stats/versions/3.5.1/topics/fitted) function.
+I'm using the get_regression_points function which adds the modeled "y-hat" value to the dataframe of all of the other values [stats::get_regression_points()](https://www.rdocumentation.org/packages/stats/versions/3.5.1/topics/fitted) function.
 
 The fitted version is the dependent variable w/ a "\_hat"" at the end
 
@@ -1219,4 +1116,4 @@ And finally our correlation coefficient (which is basically our coefficient of d
 
 # 9. Closing
 
-And with that, we're done... Once again, this exercise demonstrates a lot of tricks just to show how you can use R for various statistics. You may not use all of them in your encouters with R for linear or multivariate regression or even at all, but you may be able to cannibalize some of the tricks here for other applications.
+And with that, we're done... Once again, this exercise demonstrates a lot of tricks just to show how you can use R for various statistics. You may not use all of them in your encounters with R for linear or multivariate regression or even at all, but you may be able to cannibalize some of the tricks here for other applications.
