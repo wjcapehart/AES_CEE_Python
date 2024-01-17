@@ -1,8 +1,8 @@
 # Getting the Stuff to Get Started
 
-## HURRY-UP AND WAIT!
-
-Installing Python can take a while.  Much of it is spent letting the package manager to 
+```warning
+Installing Python can take a while.  Much of it is spent letting the package manager to search for available package versiosn that will not conflict with other installed packages.  Be Patient.
+```
 
 ## 1 Installing Miniconda
 
@@ -56,13 +56,14 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
 * [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas dataframes
+* [version_information](https://github.com/jrjohansson/version_information) A very handy tool by Robert Johansson for Jupyter Notebooks to record what packages and their versions were used to make your notebook.  Good for troubleshooting and documentation/replicability.
 
 In your terminal window, enter the following *one line at a time*:
 
 ```
 conda install -c conda-forge jupyterlab  
 conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray
-conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr
+conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr version_information
 ```
 
 ```warning
@@ -132,16 +133,8 @@ Git is a revision-control program and environment that accesses code repositorie
 conda install -c conda-forge git
 ```
 
-## 5 Adding a library that we'll be using: "version_information"
 
-Conda and Conda-Forge have many libraries that we'll be using.  But we will be needing one more that doesn't always come in with the default distribution of Python.  *"Version_Information"* is a tool to extract information on the modules, operating system, and other resources used in any Juptyer Notebook Python session.  Currently, the Version_Information is not compatible with the current release of Python.  Robert Johansson, the original author of the package, no longer supports it, but since it has a cult following (including me!), some of us have been trying to maintain it.
-
-You can access it using the terminal window:
-
-```
-pip install git+https://github.com/wjcapehart/version_information
-```
-## 6 "Let's Light This Candle!"
+## 5 "Let's Light This Candle!"
 
 How we are ready to go.  To launch Jupyter, I recommend that you again open the Anaconda Powershell Prompt from the start menu if it's not open already. You can also "Pin" it to your "Start" for easy access along with Excel and Mathcad.)
 
@@ -153,7 +146,7 @@ jupyter lab
 
 And then the fun starts...
 
-### 6.1 Firing Up the Jupyter Service
+### 5.1 Firing Up the Jupyter Service
 
 ... the first thing you will see is a flurry of activity in your shell window.  That's ok.  What is happening is that your laptop is creating a virtual web service.   
 
@@ -165,14 +158,14 @@ You will see a web browser tab opening (it may ask you for a specific browser, s
 
 To the left, you will see what looks like a File Manager. (That's your Jupyter File Manager.)  To the right will be a workspace.  It will most likely have a "launcher" pave with apps to push or the last Juptyer Notebook you had open.  You'll also see a menu at the top and other toys around the webpage's perimeter.
 
-### 6.2 A Place For Your ~Crap~ Stuff
+### 5.2 A Place For Your ~Crap~ Stuff
 
 Jupyter's framework is expecting your work area to hang off of your home Windows directory. Therefore, I recommend creating a good working directory for your Python development wherever you keep your class materials in your Documents, Dropbox, One-Drive-SDSMT, Google Drive, or other drive access by mouse-clicking on the Jupyter File Manager Sub-Window from your home directory.  
 
 And with that, congratulations!  You have a flexible work environment that allows you to code in Python (and other languages) and create a document that includes traditional word-processing text, pictures, tables, active code, output, graphs, tables, and other resources. This will allow you to create a truly replicable and shareable piece of work that you can share with colleagues or clients. 
 
-### 7 Ways Forward
+### 6 Ways Forward
 
 From here, I have a fast "spinup" course that introduces you to the basic Markdown language to document Python and some basics skills.  Much of it is for students who join my workgroup who have not had Python or need some practice to refresh their skills.  There is also a page of "Stupid Python Tricks" for more advanced use.
 
-Play Rough. Have Fun.
+Play Hard. Have Fun.
