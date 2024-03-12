@@ -1,20 +1,20 @@
 # Getting the Stuff to Get Started
 
 ```warning
-Installing Python can take a while.  Much of it is spent letting the package manager to search for available package versiosn that will not conflict with other installed packages.  Be Patient.
+Installing Python can take a while.  Much of it is spent letting the package manager search for available package versions that will not conflict with other installed packages.  Be Patient.
 ```
 
 ## 1 Installing Miniconda
 
-I am recommending that you use Miniconda for this.  Minoconda is a "slimmed down" version of the larger Anaconda package that many people recommend.  My experience is that the overhead for Anaconda makes for lots of problems later. The instructions to get Miniconda installed on Windows or MacOS is here:     
+I am recommending that you use Miniconda for this.  Minoconda is a "slimmed down" version of the larger Anaconda package many people recommend.  My experience is that the overhead for Anaconda makes for lots of problems later. The instructions to get Miniconda installed on Windows or MacOS is here:     
 
 *  [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html).
 
 ## 2 Adding and Locking-down Conda-Forge as your designated channel
 
-Also, I am recommending that you work mostly through the conda-forge community.  Again, this provides more consistency in a lot of the packages with which you'll be working. There are scores of repository areas (or "channels" in the conda community). Consequently, it is easy to accidentally get a package that was written by Frank that relies on a package written by Susan, which (naturally) is reliant on one developed by Pat.  The result can be a web of dependencies that may eventually conflict once you install "that one package."  Therefore we will stick with conda-forge as the "go-to" channel to get your packages.  From my experience, it's provided the least amount of misery.  
+Also, I am recommending that you work mostly through the conda-forge community.  Again, this provides more consistency in many of the packages you'll be working with. There are scores of repository areas (or "channels" in the conda community). Consequently, it is easy to accidentally get a package that was written by Frank that relies on a package written by Susan, which (naturally) is reliant on one developed by Pat.  The result can be a web of dependencies that may eventually conflict once you install "that one package."  Therefore we will stick with conda-forge as the "go-to" channel to get your packages.  From my experience, it's provided the least amount of misery.  
 
-To enable conda-forge, you should open a terminal window (in Unix or Mac, it's just a terminal window), and in Windows, you can find an "Anaconda Powershell" that will drop you into a conda-friendly operating system environment.
+To enable conda-forge, you should open a terminal window (in Unix or Mac, it's just a terminal window). In Windows, you can find an "Anaconda Powershell" that will launch you into a conda-friendly operating system environment.
 
 Once you have an open working terminal, enter the following commands one line at a time.
 
@@ -26,7 +26,7 @@ conda config --set channel_priority strict
 Then run an update to set this channel's packages as *your* packages.
 
 ```warning
-The late August 2023 installation of Miniconda gave me some rather odd errors when installing. I have revised the script below to reflect that.  Also, this semester's installation takes much longer on my Windows machine than in the past.  Times on the mac will vary.
+The late August 2023 installation of Miniconda gave me some rather odd errors when installing. I have revised the script below to reflect that.  Also, this semester's installation takes much longer on my Windows machine than in the past.  Times on a Mac will vary.
 ```
 
 ```
@@ -40,10 +40,10 @@ conda update -c conda-forge conda
 
 I recommend that, at this point, you load several libraries and packages.
 
-First, you will need the Jupyter Resource packages to get the Jupyter notebooks running.
+First, you will need the Jupyter Resource packages to run the Jupyter notebooks.
 
 * [Jupyter Notebooks, and JupyterLab](https://jupyter.org) and [IPython](https://ipython.org) environments
-  * These are the jupyter, jupyterlab, and notebook packages.  This will also include the IPython interactive python environment
+  * These are the jupyter, jupyterlab, and notebook packages.  This will also include the IPython interactive Python environment
 
 Then you can install (or reinstall) the following basic "must-have" packages for working in data science.
 
@@ -51,7 +51,7 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [Matplotlib](https://matplotlib.org) The go-to package for graphics and plotting in Python
 * [SciPy](https://www.scipy.org) A library used for scientific computing and technical computing
 * [Pandas](https://pandas.pydata.org) A package commonly used for working with tabular data as well as time series data
-* [SymPy](https://www.sympy.org/en/index.html) An symbolic algebraic solver engine for Python
+* [SymPy](https://www.sympy.org/en/index.html) A symbolic algebraic solver engine for Python
 * [Scikit-Learn](https://scikit-learn.org/stable/) An open-source set of libraries for regressions, cluster analyses, and similar "machine-learning" activities.
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
@@ -77,13 +77,14 @@ You may also experience a few iterations of "Solving Environment," as shown belo
 
 
 
-### 3.2 More specialized libraries (not needed for CEE 284 students but students wanting to work in Atmospheric Sciences will want some of these)
-If you are working in any of the hydrology, weather & climate groups, you will also want to install the following.
+### 3.2 More specialized libraries (not needed for CEE 284 students, but students wanting to work in Atmospheric Sciences, Hydrology, Climate Science or will want some of these)
+
+If you work in any hydrology, weather & climate groups, you will also want to install the following.
 
 * Get the following mapping libraries
   * [Cartopy](https://scitools.org.uk/cartopy/docs/latest/) A basic geospatial processing library that will be essential for mapping
   * [Shapely](https://shapely.readthedocs.io/en/latest/) A support package to help manipulate geometric objects
-  * [OWSLib](https://geopython.github.io/OWSLib) Access to the Open Geoscience Consortium resources and services.  Lots of good mapping goodies to have.
+  * [OWSLib](https://geopython.github.io/OWSLib) Access the Open Geoscience Consortium resources and services.  Lots of good mapping goodies to have.
   * [pyProj](https://pyproj4.github.io/pyproj/stable/) An interface for working with map projections
   * [geopandas](https://geopandas.org/en/stable/) Geospatial access that leverages Pandas's Dataframe style resources
 
@@ -95,15 +96,15 @@ If you are working in any of the hydrology, weather & climate groups, you will a
   * [Siphon](https://unidata.github.io/siphon/latest/) UCAR-Unidata support for accessing remote meteo data
   * [pyGrib](https://jswhit.github.io/pygrib/) NOAA-ESRL tools for WMO Gridded Binary (GRIB 1/2) support
   * [cfGrib](https://github.com/ecmwf/cfgrib) ECMWF tools for WMO Gridded Binary (GRIB 1/2) support
-  * [cftime](https://unidata.github.io/cftime/) UCAR-Unidata support for time data support (including 360-day, leap-year-free 365-day, and other quirky calendars, that only a meteorologist would love because the rest of the world are monsters)
+  * [cftime](https://unidata.github.io/cftime/) UCAR-Unidata support for time data support (including 360-day, leap-year-free 365-day, and other quirky calendars that only a meteorologist would love because the rest of the world are monsters)
   * [cf-python](https://ncas-cms.github.io/cf-python/) an Earth science data analysis library that is built on a complete implementation of the CF data model
-  * [cf-plot](http://ajheaps.github.io/cf-plot) a set of Python routines for making the common contour, vector, and line plots that climate researchers use
+  * [cf-plot](http://ajheaps.github.io/cf-plot) is a set of Python routines for making the common contour, vector, and line plots that climate researchers use
   * [cf-units](https://cf-units.readthedocs.io/en/latest/) Provision of a wrapper class to support Unidata/UCAR UDUNITS-2, and the cftime calendar functionality
   * [timezonefinder](https://timezonefinder.readthedocs.io/en/latest/) useful for converting from civilized UTC time to more vulgar local times (including "daylight-'savings'" time).
   * [pytz](http://pytz.sourceforge.net) further support for time zones
   * [haversine](https://github.com/mapado/haversine) Calculate the distance (in various units) between two points on Earth using their latitude and longitude.
   * [wrf-python](https://wrf-python.readthedocs.io/en/latest/) A collection of diagnostic and interpolation routines for use with output from the Weather Research and Forecasting (WRF-ARW) Model.
-  * [iris](https://scitools-iris.readthedocs.io/en/stable/) A powerful, format-agnostic, community-driven Python package for analysing and visualising Earth science data 
+  * [iris](https://scitools-iris.readthedocs.io/en/stable/) A powerful, format-agnostic, community-driven Python package for analyzing and visualizing Earth science data 
 
 
 ```
@@ -160,12 +161,12 @@ To the left, you will see what looks like a File Manager. (That's your Jupyter F
 
 ### 5.2 A Place For Your ~Crap~ Stuff
 
-Jupyter's framework is expecting your work area to hang off of your home Windows directory. Therefore, I recommend creating a good working directory for your Python development wherever you keep your class materials in your Documents, Dropbox, One-Drive-SDSMT, Google Drive, or other drive access by mouse-clicking on the Jupyter File Manager Sub-Window from your home directory.  
+Jupyter's framework expects your work area to hang off of your home Windows directory. Therefore, I recommend creating a good working directory for your Python development wherever you keep your class materials: in your Documents, Dropbox, One-Drive-SDSMT, Google Drive, or other drive access by mouse-clicking on the Jupyter File Manager Sub-Window from your home directory.  
 
 And with that, congratulations!  You have a flexible work environment that allows you to code in Python (and other languages) and create a document that includes traditional word-processing text, pictures, tables, active code, output, graphs, tables, and other resources. This will allow you to create a truly replicable and shareable piece of work that you can share with colleagues or clients. 
 
 ### 6 Ways Forward
 
-From here, I have a fast "spinup" course that introduces you to the basic Markdown language to document Python and some basics skills.  Much of it is for students who join my workgroup who have not had Python or need some practice to refresh their skills.  There is also a page of "Stupid Python Tricks" for more advanced use.
+From here, I have a fast "spinup" course that introduces you to the basic Markdown language for documenting Python and some basic skills.  Much of it is for students who join my workgroup who have yet to learn Python before this or need some practice to refresh their skills.  There is also a "Stupid Python Tricks" page for more advanced use.
 
 Play Hard. Have Fun.
