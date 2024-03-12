@@ -4,18 +4,18 @@
 
 This section is dedicated to those who have looked at online documentation and examples and have come out even more confused than they were when they started.  They also cover aspects of Python that I normally don't explicitly cover in classes.   
 
-Also at the bottom are some deep dives into some applications where I've tried to get fancy with Python which hopefully will, in turn, help you.
+Also, at the bottom are some deep dives into some applications where I've tried to get fancy with Python.
 
 
 ## The Rage-Quit Zone
 
-Looked at online help and got so frustrated that you wanted to quit python forever.  Had a set of procedures that you always loved to do in another language (e.g., NCL, Gempak, or IDL) that just isn't as easy in Python.  
+You looked at online help and got so frustrated that you wanted to quit Python forever. You had a set of procedures that you always loved to do in another language (e.g., NCL, Gempak, or IDL) that just aren't as easy in Python.  
 
-Well, I was there, too!  In some cases, I haven't even left.  Hopefully some of the deep dives, supplementing, for example, the "quick start" materials on Page 2 of this site, will result in less rage, less swearing and less damage to capital equipment than I've already inflicted on everyone and everything around me!
+Well, I was there, too!  In some cases, I have yet to leave.  Hopefully, some of the deep dives, supplementing, for example, the "quick start" materials on Page 2 of this site, will result in less rage, less swearing, and less damage to capital equipment than I've already inflicted on everyone and everything around me!
 
-### Working with fancier elements of MatplotLib
+### Working with fancier elements of matplotlib
 
-This deep dive tries to work through the confusion that can emerge when a plot requires the "Axes" attribute.  This was probably my first major point of confusion when working with plotting in Python.  
+This deep dive tries to work through the confusion that can emerge when a plot requires the "Axes" attribute.  This was my first major point of confusion when working with plotting in Python.  
 
 *  [Plotting 201 Getting Started with Fancy Plots in Python](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_01_Rage_Quit_Support/03_01_01_Axes_and_Axises/Plotting_201_Fancy_Plots_in_Python.html)
 
@@ -35,10 +35,10 @@ This deep dive tries to work through the confusion that can emerge when a plot r
 ## Getting Fancy With Examples
 
 ```warning
-A lot of these these examples are still being modified to make them more navigable.  Contact me if you have any questions therein.
+Many of these examples are still being modified to make them more navigable. Contact me if you have any questions.
 ```
 
-### Forward in Time Modeling and ODE Equation Solving (the infamous Disease Modeling Case from the CEE 284 MATLAB days)
+### Forward-in-Time Modeling and ODE Equation Solving (the infamous Disease Modeling Case from the CEE 284 MATLAB days)
 
 * [Web Page of Jupyter Notebook for ODE Equation Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_ODE_Functions_in_Python.html)
   * [Kickstarter Jupyter Notebook for ODE Equation Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_ODE_Functions_in_Python%20Starter-Pack.ipynb)
