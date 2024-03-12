@@ -100,11 +100,15 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [cf-python](https://ncas-cms.github.io/cf-python/) an Earth science data analysis library that is built on a complete implementation of the CF data model
   * [cf-plot](http://ajheaps.github.io/cf-plot) is a set of Python routines for making the common contour, vector, and line plots that climate researchers use
   * [cf-units](https://cf-units.readthedocs.io/en/latest/) Provision of a wrapper class to support Unidata/UCAR UDUNITS-2, and the cftime calendar functionality
+  * [cf_xarray](https://cf-xarray.readthedocs.io/en/latest/) cf_xarray mainly provides an accessor that allows you to interpret Climate and Forecast metadata convention attributes present on xarray object
   * [timezonefinder](https://timezonefinder.readthedocs.io/en/latest/) useful for converting from civilized UTC time to more vulgar local times (including "daylight-'savings'" time).
   * [pytz](http://pytz.sourceforge.net) further support for time zones
   * [haversine](https://github.com/mapado/haversine) Calculate the distance (in various units) between two points on Earth using their latitude and longitude.
   * [wrf-python](https://wrf-python.readthedocs.io/en/latest/) A collection of diagnostic and interpolation routines for use with output from the Weather Research and Forecasting (WRF-ARW) Model.
-  * [iris](https://scitools-iris.readthedocs.io/en/stable/) A powerful, format-agnostic, community-driven Python package for analyzing and visualizing Earth science data 
+  * [iris](https://scitools-iris.readthedocs.io/en/stable/) A powerful, format-agnostic, community-driven Python package for analyzing and visualizing Earth science data
+  * [geocat-comp](https://geocat-comp.readthedocs.io/en/stable/) GeoCAT-comp provides implementations of computational functions for operating on geosciences data
+  * [geocat-viz](https://geocat-viz.readthedocs.io/en/latest/index.html) The GeoCAT-viz repo contains tools to help plot data, including convenience and plotting functions that are used to facilitate plotting geosciences data with Matplotlib, Cartopy, and possibly other Python ecosystem plotting packages
+  * [uxarray](https://uxarray.readthedocs.io/en/latest/index.html) UXarray provides Xarray-styled functionality for working with unstructured grids build around the UGRID conventions
 
 
 ```
@@ -112,8 +116,9 @@ conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
 conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 
 conda install -c conda-forge siphon cfgrib pygrib timezonefinder 
 conda install -c conda-forge cftime cfdm wrapt setuptools cython
-conda install -c conda-forge pytz haversine cf-units
+conda install -c conda-forge pytz haversine cf-units cf-xarray uxarray
 conda install -c conda-forge iris satpy
+conda install -c conda-forge geocat-comp geocat-viz
 conda install -c conda-forge basemap-data basemap-data-hires
 ```
 
