@@ -114,21 +114,21 @@ If you work in any hydrology, weather & climate groups, you will also want to in
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
 conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 
-conda install -c conda-forge siphon cfgrib pygrib timezonefinder 
-conda install -c conda-forge cftime cfdm wrapt setuptools cython
-conda install -c conda-forge pytz haversine cf-units cf-xarray uxarray
-conda install -c conda-forge iris satpy
+conda install -c conda-forge siphon pygrib timezonefinder iris satpy
+conda install -c conda-forge cftime cfdm cf_xarray cf_pandas cf-units cfgrib
+conda install -c conda-forge pytz haversine uxarray wrapt setuptools cython
 conda install -c conda-forge geocat-comp geocat-viz
 conda install -c conda-forge basemap-data basemap-data-hires
 ```
 
 ```warning
-WRF-Python and Basemap for Apple Silicon machines have been temporarily removed from conda-forge, so proceed cautiously.
+WRF-Python for [Apple Silicon machines](https://github.com/NCAR/wrf-python/issues/235) have been temporarily removed from conda-forge, so proceed cautiously.
+
+There is also a problem recently with newer versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237) interfering with wrf-python
 ```
 
 ```
 conda install -c conda-forge wrf-python 
-conda install -c conda-forge basemap 
 ```
 
 ## 4 Get Git (If you don't already have it).
