@@ -1,8 +1,8 @@
 # Getting the Stuff to Get Started
 
-> **Note**
->
-> Want Mathcad Prime?  Click Here.
+```note
+Want Mathcad Prime?  Click Here.
+```
 
 ```warning
 Installing Python can take a while.  Much of it is spent letting the package manager search for available package versions that will not conflict with other installed packages.  Be Patient.
