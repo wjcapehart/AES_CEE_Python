@@ -2,6 +2,10 @@
 
 
 
+```info
+Looking for Mathcad Prime Instructions?  Click here!
+```
+
 ```warning
 Installing Python can take a while.  Much of it is spent letting the package manager search for available package versions that will not conflict with other installed packages.  Be Patient.
 ```
@@ -124,9 +128,7 @@ conda install -c conda-forge basemap-data basemap-data-hires
 ```
 
 ```warning
-WRF-Python for [Apple Silicon machines](https://github.com/NCAR/wrf-python/issues/235) have been temporarily removed from conda-forge, so proceed cautiously.
-
-There is also a problem recently with newer versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237) interfering with wrf-python
+WRF-Python will require additional steps to get it running un most environments until  the package is updated for more recent versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237).  If you need WRF-Python, see Dr. Capehart or Dr. French in person for guidance.
 ```
 
 ```
