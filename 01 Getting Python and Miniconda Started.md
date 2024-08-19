@@ -73,12 +73,13 @@ conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr version_infor
 ```
 
 ```warning
-When installing with conda it will first try to reconcile all the packages so any given package doesn't have components that may "break" other packages.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.
+When installing with *conda* it will first try to reconcile all the packages so any given package doesn't have components that may "break" other packages.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.
 
 You may also experience a few iterations of "Solving Environment," as shown below.
 
-```
 ![Conda Struggling to Reconcile Packages](images/Conda_Struggling_to_Reconcile_Packages.png) 
+```
+
 
 
 
