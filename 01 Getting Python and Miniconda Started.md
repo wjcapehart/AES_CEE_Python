@@ -2,7 +2,7 @@
 
 
 
-```info
+```note
 Looking for Mathcad Prime Instructions?  Click here!
 ```
 
