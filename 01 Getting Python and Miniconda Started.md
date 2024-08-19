@@ -3,7 +3,7 @@
 
 
 ```note
-Looking for Mathcad Prime Instructions?  Click [here](https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58)!
+Looking for Mathcad Prime Instructions?  Click [here](https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58)!  Regardless of what the instructions say, always install the latest edition.
 ```
 
 ```warning
