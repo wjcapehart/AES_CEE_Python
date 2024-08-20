@@ -25,7 +25,7 @@ For those, I tend to mostly JFGIing it or holding my breath and diving into Stac
 
 ## Contact Information
 
-[[Dr. Bill Capehart](https://www.sdsmt.edu/Directories/Personnel/Profile/Capehart,-William/), Director, Atmospheric and Environmental Sciences<br>
+[Dr. Bill Capehart](https://www.sdsmt.edu/about/directory/capehart_-william.html), Director, Atmospheric and Environmental Sciences<br>
 Civil & Environmental Engineering<br>
 South Dakota Mines<br>
 501 E. Saint Joseph St.<br> Rapid City, SD 57701<br>
