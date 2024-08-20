@@ -12,28 +12,35 @@ Installing Python can take a while.  Much of it is spent letting the package man
 
 ## 1 Installing Miniconda
 
-I am recommending that you use Miniconda for this.  Minoconda is a "slimmed down" version of the larger Anaconda package many people recommend.  My experience is that the overhead for Anaconda makes for lots of problems later. The instructions to get Miniconda installed on Windows or MacOS is here:     
+
+I am recommending that you use Miniconda for this.  Miniconda is a "slimmed down" version of the larger Anaconda package many people recommend.  My experience is that the overhead for Anaconda makes for lots of problems later. The instructions to get Miniconda installed on Windows or MacOS is here:     
 
 *  [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html).
+
+```note
+If you have Anaconda already installed from other classwork and aren't going to put much on it (i.e., of you are in CEE 284), for now you are fine.  If you are in an Atmospheric Sci class or upper level datascience class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
+```
 
 ## 2 Adding and Locking-down Conda-Forge as your designated channel
 
 Also, I am recommending that you work mostly through the conda-forge community.  Again, this provides more consistency in many of the packages you'll be working with. There are scores of repository areas (or "channels" in the conda community). Consequently, it is easy to accidentally get a package that was written by Frank that relies on a package written by Susan, which (naturally) is reliant on one developed by Pat.  The result can be a web of dependencies that may eventually conflict once you install "that one package."  Therefore we will stick with conda-forge as the "go-to" channel to get your packages.  From my experience, it's provided the least amount of misery.  
 
-To enable conda-forge, you should open a terminal window (in Unix or Mac, it's just a terminal window). In Windows, you can find an "Anaconda Powershell" that will launch you into a conda-friendly operating system environment.
+To enable conda-forge, you should open a terminal window.
 
-Once you have an open working terminal, enter the following commands one line at a time.
+*  In Unix or MacOS, it's just a terminal window.
+*  In Windows, you can find an "Anaconda Powershell" under your "apps" from the "Start Menu" under "Miniconda3" (or "Anaconda" if you have Anaconda installed from earlier classwork).  That will launch you into a conda-friendly operating system environment.  While you are doing that, this would be a good time to "pin" the "Anaconda Powershell" to your "Start Menu."
+
+If your terminal or Power Shell has a "(base)" at the user prompt, you are ready to go!
+
+Once you have an open working terminal, enter the following commands one line at a time.  **You will be prompted to proceed on each step so don't drop the entire command blocks shown below.**
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
+With this, you should have your "channel" locked in.
 
-Then run an update to set this channel's packages as *your* packages.
-
-```warning
-The late August 2023 installation of Miniconda gave me some rather odd errors when installing. I have revised the script below to reflect that.  Also, this semester's installation takes much longer on my Windows machine than in the past.  Times on a Mac will vary.
-```
+Now run an update to set this channel's packages as *your* packages.  There will be a LOT of them.  Approve these changes.  This will create a consistant distribution of packages should be less likely to be in conflict with one another.
 
 ```
 conda update -c conda-forge --all
@@ -75,7 +82,7 @@ conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr version_infor
 ```warning
 When installing with *conda* it will first try to reconcile all the packages so any given package doesn't have components that may "break" other packages.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.
 
-You may also experience a few iterations of "Solving Environment," as shown below.
+You may also experience a few iterations of "Solving Environment," as shown below.  The busier your distribution, the more likely this will happen.  At that point it is also best to only install one package at a time rather then a bunch in one single command.
 
 ![Conda Struggling to Reconcile Packages](images/Conda_Struggling_to_Reconcile_Packages.png) 
 ```
@@ -129,23 +136,16 @@ conda install -c conda-forge basemap-data basemap-data-hires
 ```
 
 ```warning
-WRF-Python will require additional steps to get it running un most environments until  the package is updated for more recent versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237).  If you need WRF-Python, see Dr. Capehart or Dr. French in person for guidance.
+WRF-Python will require additional steps to get it running un most environments until the package is updated for more recent versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237).  The biggest one at present is that you will need a new conda environment based on an older version of Python-3 ([Hat tip to Eric Salathé @ U. Washington](https://groups.google.com/a/ucar.edu/g/wrfpython-talk/c/QfZ_eEfTbDI)}.  If you need WRF-Python, see Dr. Capehart or Dr. French in person for guidance.
 ```
 
 ```
 conda install -c conda-forge wrf-python 
 ```
 
-## 4 Get Git (If you don't already have it).
-
-Git is a revision-control program and environment that accesses code repositories made public to the larger user community. If you have a Mac, you already have it in the MacOS operating system.  If you are in Windows, you can get it from your terminal window by typing the following command.
-
-```
-conda install -c conda-forge git
-```
 
 
-## 5 "Let's Light This Candle!"
+## 4 "Let's Light This Candle!"
 
 How we are ready to go.  To launch Jupyter, I recommend that you again open the Anaconda Powershell Prompt from the start menu if it's not open already. You can also "Pin" it to your "Start" for easy access along with Excel and Mathcad.)
 
@@ -157,7 +157,7 @@ jupyter lab
 
 And then the fun starts...
 
-### 5.1 Firing Up the Jupyter Service
+### 4.1 Firing Up the Jupyter Service
 
 ... the first thing you will see is a flurry of activity in your shell window.  That's ok.  What is happening is that your laptop is creating a virtual web service.   
 
@@ -169,14 +169,14 @@ You will see a web browser tab opening (it may ask you for a specific browser, s
 
 To the left, you will see what looks like a File Manager. (That's your Jupyter File Manager.)  To the right will be a workspace.  It will most likely have a "launcher" pave with apps to push or the last Juptyer Notebook you had open.  You'll also see a menu at the top and other toys around the webpage's perimeter.
 
-### 5.2 A Place For Your ~Crap~ Stuff
+### 4.2 A Place For Your ~Crap~ Stuff
 
 Jupyter's framework expects your work area to hang off of your home Windows directory. Therefore, I recommend creating a good working directory for your Python development wherever you keep your class materials: in your Documents, Dropbox, One-Drive-SDSMT, Google Drive, or other drive access by mouse-clicking on the Jupyter File Manager Sub-Window from your home directory.  
 
 And with that, congratulations!  You have a flexible work environment that allows you to code in Python (and other languages) and create a document that includes traditional word-processing text, pictures, tables, active code, output, graphs, tables, and other resources. This will allow you to create a truly replicable and shareable piece of work that you can share with colleagues or clients. 
 
-### 6 Ways Forward
+### 5 Ways Forward
 
-From here, I have a fast "spinup" course that introduces you to the basic Markdown language for documenting Python and some basic skills.  Much of it is for students who join my workgroup who have yet to learn Python before this or need some practice to refresh their skills.  There is also a "Stupid Python Tricks" page for more advanced use.
+From here, I have a fast "spinup" tutorial that introduces you to the basic Markdown language for documenting Python and some basic skills (that's the next section below this one in the menu to the left).  Much of it is for students who join my workgroup who have yet to learn Python before this or need some practice to refresh their skills.  There is also a "Stupid Python Tricks" page for more advanced use.
 
 Play Hard. Have Fun.
