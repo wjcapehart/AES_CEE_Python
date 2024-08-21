@@ -35,20 +35,21 @@
   }
   
   @font-face {
-    font-family: "matrix-ii", serif;
+    font-family: "Amiri", serif;
     font-weight: $font-weight-normal;
     font-style: normal;
     font-display: block;
-    src: url("fonts/MatrixIIOT-Reg.otf") format("opentype");
+    src: url("fonts/amiri-v17-latin-regular.woff2") format("woff2"),
+         url("fonts/amiri-v17-latin-regular.woff")  format("woff");
   }
   
   @font-face {
-    font-family: "matrix-ii", serif;
+    font-family: "Amiri", serif;
     font-weight: $font-weight-bold;
     font-style: normal;
     font-display: block;
-    src: url("fonts/MatrixIIOT-Bold.otf") format("opentype");
-  }
+    src: url("amiri-v17-latin-700.woff2") format("woff2"),
+         url("amiri-v17-latin-700.woff") format("woff");
   
   @font-face {
     font-family: "FontAwesome";
