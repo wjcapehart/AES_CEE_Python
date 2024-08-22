@@ -57,9 +57,6 @@ Many of these examples are still being modified to make them more navigable. Con
 * [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_03_Chaos/Chaos_Modeling_with_ODE_Functions_in_Python.html)
 
 
-* [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_04_Satellites/GOES_Image_Ingesting_Demonstrator.html)
-* [Animated Gif](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_04_Satellites/GOES-16_Dorian_CH-03.gif)
-
 ### Displaying Satellite Imagery (features animations)
 
 * [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_04_Satellites/GOES_Image_Ingesting_Demonstrator.html)
