@@ -31,8 +31,8 @@ sdmines_developer_homepage: https://www.sdsmt.edu/Directories/Personnel/Profile/
 site.email: William.Capehart@sdsmt.edu
 url: https://wjcapehart.github.io/AES_CEE_Python/
 
-sass:
-   sass_dir: _sass
+#sass:
+#   sass_dir: _sass
 
 
 
