@@ -2,6 +2,15 @@
 ---
 
 @import "{{ site.theme }}";
-.markdown-body {
-  font-family: 'Times New Roman', Times, serif;
+
+.markdown-body{
+    font-family: "Comic Sans MS", sans-serif;
 }
+
+body{
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.font-body{
+    font-family: "Comic Sans MS", sans-serif;
+  }
