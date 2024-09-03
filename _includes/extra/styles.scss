@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "Open Sans";
-    font-weight: $font-weight-normal;
+    font-weight: 400;
     font-style: normal;
     font-display: block;
     src: url("fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
@@ -13,7 +13,7 @@
   
   @font-face {
     font-family: "Open Sans";
-    font-weight: $font-weight-normal;
+    font-weight: 400;
     font-style: italic;
     font-display: block;
     src: url("fonts/OpenSans-Italic-webfont.woff2") format("woff2"),
@@ -22,7 +22,7 @@
   
   @font-face {
     font-family: "Open Sans";
-    font-weight: $font-weight-bold;
+    font-weight: 600;
     font-style: normal;
     font-display: block;
     src: url("fonts/OpenSans-Bold-webfont.woff2") format("woff2"),
@@ -31,7 +31,7 @@
   
   @font-face {
     font-family: "Open Sans";
-    font-weight: $font-weight-bold;
+    font-weight:600;
     font-style: italic;
     font-display: block;
     src: url("fonts/OpenSans-BoldItalic-webfont.woff2") format("woff2"),
@@ -40,7 +40,7 @@
   
   @font-face {
     font-family: "Spectral";
-    font-weight: $font-weight-normal;
+    font-weight:400
     font-style: normal;
     font-display: block;
     src: url("fonts/spectral-regular.woff2") format("woff2"),
@@ -49,7 +49,7 @@
   
   @font-face {
     font-family: "Spectral";
-    font-weight: $font-weight-bold;
+    font-weight:600;
     font-style: normal;
     font-display: block;
     src: url("fonts/spectral-bold.woff2") format("woff2"),
