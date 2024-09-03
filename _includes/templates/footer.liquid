@@ -2,6 +2,7 @@
 {%- if page.url != "/search.html" and page.url != "/404.html" -%}
     {%- if next or prev -%}
         <div class="navigation-bottom d-flex flex-justify-between py-3" role="navigation" aria-label="footer navigation">
+        <font color=#002554>
             <div class="prev">
                 {%- if prev -%}
                     <a href="{{ prev.url | relative_url }}" class="btn" title="{{ prev.title }}" accesskey="p" rel="prev">
@@ -16,13 +17,14 @@
                     </a>
                 {%- endif -%}
             </div>
+            </font>
         </div>
     {%- endif -%}
 {%- endif -%}
 
 <hr>
-<font color=#002554>
 <div class="copyright text-center text-gray" role="contentinfo">
+    <font color=#002554>
     <i class="fa fa-copyright"></i>
     <span class="time">
         {%- assign created_time = rest_created_at | date: "%Y" -%}
@@ -51,5 +53,6 @@
             and archived for posterity by the nice folks at <a href="https://clearpathrobotics.com">Clear Path Robotics</a>.
         </div>
     {% endunless %}
+    </font>
 </div>
-</font>
+
