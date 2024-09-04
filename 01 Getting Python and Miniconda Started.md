@@ -18,7 +18,7 @@ I am recommending that you use Miniconda for this.  Miniconda is a "slimmed down
 *  [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html).
 
 ```note
-If you have Anaconda already installed from other classwork and aren't going to put much on it (i.e., of you are in CEE 284), for now you are fine.  If you are in an Atmospheric Sci class or upper level datascience class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
+If you have Anaconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), for now, you are fine.  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
 ```
 
 ## 2 Adding and Locking-down Conda-Forge as your designated channel
@@ -40,7 +40,7 @@ conda config --set channel_priority strict
 ```
 With this, you should have your "channel" locked in.
 
-Now run an update to set this channel's packages as *your* packages.  There will be a LOT of them.  Approve these changes.  This will create a consistant distribution of packages should be less likely to be in conflict with one another.
+Now run an update to set this channel's packages as *your* packages.  There will be a LOT of them.  Approve these changes.  This will create a consistent distribution of packages that should be less likely to conflict with one another.
 
 ```
 conda update -c conda-forge --all
@@ -56,7 +56,7 @@ I recommend that, at this point, you load several libraries and packages.
 First, you will need the Jupyter Resource packages to run the Jupyter notebooks.
 
 * [Jupyter Notebooks, and JupyterLab](https://jupyter.org) and [IPython](https://ipython.org) environments
-  * These are the jupyter, jupyterlab, and notebook packages.  This will also include the IPython interactive Python environment
+  * These are the Jupyter, JupyterLab, and notebook packages.  This will also include the IPython interactive Python environment
 
 Then you can install (or reinstall) the following basic "must-have" packages for working in data science.
 
@@ -68,7 +68,7 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [Scikit-Learn](https://scikit-learn.org/stable/) An open-source set of libraries for regressions, cluster analyses, and similar "machine-learning" activities.
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
-* [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas dataframes
+* [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas data frames
 * [version_information](https://github.com/jrjohansson/version_information) A very handy tool by Robert Johansson for Jupyter Notebooks to record what packages and their versions were used to make your notebook.  Good for troubleshooting and documentation/replicability.
 
 In your terminal window, enter the following *one line at a time*:
@@ -82,7 +82,7 @@ conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr version_infor
 ```warning
 When installing with *conda* it will first try to reconcile all the packages so any given package doesn't have components that may "break" other packages.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.
 
-You may also experience a few iterations of "Solving Environment," as shown below.  The busier your distribution, the more likely this will happen.  At that point it is also best to only install one package at a time rather then a bunch in one single command.
+You may also experience a few iterations of "Solving Environment," as shown below.  The busier your distribution, the more likely this will happen.  At that point, it is also best to only install one package at a time rather than a bunch in one single command.
 
 ![Conda Struggling to Reconcile Packages](images/Conda_Struggling_to_Reconcile_Packages.png) 
 ```
@@ -122,7 +122,7 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [iris](https://scitools-iris.readthedocs.io/en/stable/) A powerful, format-agnostic, community-driven Python package for analyzing and visualizing Earth science data
   * [geocat-comp](https://geocat-comp.readthedocs.io/en/stable/) GeoCAT-comp provides implementations of computational functions for operating on geosciences data
   * [geocat-viz](https://geocat-viz.readthedocs.io/en/latest/index.html) The GeoCAT-viz repo contains tools to help plot data, including convenience and plotting functions that are used to facilitate plotting geosciences data with Matplotlib, Cartopy, and possibly other Python ecosystem plotting packages
-  * [uxarray](https://uxarray.readthedocs.io/en/latest/index.html) UXarray provides Xarray-styled functionality for working with unstructured grids build around the UGRID conventions
+  * [uxarray](https://uxarray.readthedocs.io/en/latest/index.html) UXarray provides Xarray-styled functionality for working with unstructured grids built around the UGRID conventions
 
 
 ```
@@ -136,7 +136,7 @@ conda install -c conda-forge basemap-data basemap-data-hires
 ```
 
 ```warning
-WRF-Python will require additional steps to get it running un most environments until the package is updated for more recent versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237).  The biggest one at present is that you will need a new conda environment based on an older version of Python-3 ([Hat tip to Eric Salathé @ U. Washington](https://groups.google.com/a/ucar.edu/g/wrfpython-talk/c/QfZ_eEfTbDI)}.  If you need WRF-Python, see Dr. Capehart or Dr. French in person for guidance.
+WRF-Python will require additional steps to get it running in most environments until the package is updated for more recent versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237).  The biggest one at present is that you will need a new conda environment based on an older version of Python-3 ([Hat tip to Eric Salathé @ U. Washington](https://groups.google.com/a/ucar.edu/g/wrfpython-talk/c/QfZ_eEfTbDI)}.  If you need WRF-Python, see Dr. Capehart or Dr. French in person for guidance.
 ```
 
 ```
