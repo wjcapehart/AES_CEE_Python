@@ -8,9 +8,9 @@ Warning: Typos are Legion
 
 ## About this Site
 
-This page is a collection of "deep dives" that slowly work through basic issues on spinning up Python for beginners.  It covers the basics of getting started with Python in a Jupyter Notebook and emphasizes things that made me want to rage-quit in my own transition to Python. Consequently, a lot of the material here is slightly cheeky (and sometimes not-so-cheekly).
+This page is a collection of "deep dives" that slowly work through basic issues on spinning up Python for beginners.  It covers the basics of getting started with Python in a Jupyter Notebook and emphasizes things that made me want to rage-quit in my transition to Python. Consequently, a lot of the material here is slightly cheeky (and sometimes not-so-cheekly).
 
-This differs from a number of tutorial sites and "example" pages out there, as my demos presented here slowly build the activity step-by-step, adding small modifications one element at a time. (In my experience, being flooded with everything at once led to me having to close my door for the benefit of my neighboring colleagues.)
+This differs from many tutorial sites and "example" pages out there, as my demos presented here slowly build the activity step-by-step, adding small modifications one element at a time. (In my experience, being flooded with everything at once led to me having to close my door for the benefit of my neighboring colleagues.)
 
 
 ## "Where would Dr Capehart go?"  
