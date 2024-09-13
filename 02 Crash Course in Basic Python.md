@@ -12,7 +12,7 @@ To download Python Jupyter Notebooks
 
 * Part 1a - Exploring the Jupyter Notebook's Markdown Language
   * [Completed Jupyter Notebook for Part 1a with all Markdown Examples Included](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01a_Intro_to_Markdown/Part_1a_--_Introduction_to_Jupyter_and_Markdown_Complete.ipynb)
-  * [Web Page of Completed Jupyter Notebook for Part 1a](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/Part_1a_--_Introduction_to_Jupyter_and_Markdown_Complete.html)
+  * [Web Page of Completed Jupyter Notebook for Part 1a](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01a_Intro_to_Markdown/Part_1a_--_Introduction_to_Jupyter_and_Markdown_Complete.html)
 * Part 1b - The bare-bone basics of Python (variable types, loops, and decision blocks)
   * [Kick-Starter Raw Jupyter Notebook for Part 1b's Classtime Activity](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01b_Intro_to_Basic_Python/Part_1b_--_Python_Staters_with_Basic_Structures_Kickoff.ipynb)
   * [Web Page of Completed Jupyter Notebook for Part 1b](Jupyter_Notebooks_and_Other_Files/02_Crash_Course_Files/02_01b_Intro_to_Basic_Python/Part_1b_--_Python_Staters_with_Basic_Structures_Complete.html)
