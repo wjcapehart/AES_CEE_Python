@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Part 1b -- Python_Staters_with_Basic_Structures_Complete</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Part_1b_--_Python_Staters_with_Basic_Structures_Complete</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7331,10 +7331,12 @@ a.anchor-link {
     if (!diagrams.length) {
       return;
     }
-    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.3/mermaid.esm.min.mjs")).default;
+    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs")).default;
+    const parser = new DOMParser();
 
     mermaid.initialize({
       maxTextSize: 100000,
+      maxEdges: 100000,
       startOnLoad: false,
       fontFamily: window
         .getComputedStyle(document.body)
@@ -7347,39 +7349,52 @@ a.anchor-link {
     let _nextMermaidId = 0;
 
     function makeMermaidImage(svg) {
-      const img = document.createElement('img');
-      const maxWidth = svg.match(/max-width: (\d+)/);
-      if (maxWidth && maxWidth[1]) {
-        const width = parseInt(maxWidth[1]);
-        if (width && !Number.isNaN(width) && Number.isFinite(width)) {
-          img.width = width;
-        }
+      const img = document.createElement("img");
+      const doc = parser.parseFromString(svg, "image/svg+xml");
+      const svgEl = doc.querySelector("svg");
+      const { maxWidth } = svgEl?.style || {};
+      const firstTitle = doc.querySelector("title");
+      const firstDesc = doc.querySelector("desc");
+
+      img.setAttribute("src", `data:image/svg+xml,${encodeURIComponent(svg)}`);
+      if (maxWidth) {
+        img.width = parseInt(maxWidth);
       }
-      img.setAttribute('src', `data:image/svg+xml,${encodeURIComponent(svg)}`);
-      return img;
+      if (firstTitle) {
+        img.setAttribute("alt", firstTitle.textContent);
+      }
+      if (firstDesc) {
+        const caption = document.createElement("figcaption");
+        caption.className = "sr-only";
+        caption.textContent = firstDesc.textContent;
+        return [img, caption];
+      }
+      return [img];
     }
 
     async function makeMermaidError(text) {
-      let errorMessage = '';
+      let errorMessage = "";
       try {
         await mermaid.parse(text);
       } catch (err) {
         errorMessage = `${err}`;
       }
 
-      const result = document.createElement('details');
-      const summary = document.createElement('summary');
-      const pre = document.createElement('pre');
-      const code = document.createElement('code');
+      const result = document.createElement("details");
+      result.className = 'jp-RenderedMermaid-Details';
+      const summary = document.createElement("summary");
+      summary.className = 'jp-RenderedMermaid-Summary';
+      const pre = document.createElement("pre");
+      const code = document.createElement("code");
       code.innerText = text;
       pre.appendChild(code);
       summary.appendChild(pre);
       result.appendChild(summary);
 
-      const warning = document.createElement('pre');
+      const warning = document.createElement("pre");
       warning.innerText = errorMessage;
       result.appendChild(warning);
-      return result;
+      return [result];
     }
 
     async function renderOneMarmaid(src) {
@@ -7389,30 +7404,74 @@ a.anchor-link {
       const el = document.createElement("div");
       el.style.visibility = "hidden";
       document.body.appendChild(el);
-      let result = null;
+      let results = null;
+      let output = null;
       try {
-        const { svg } = await mermaid.render(id, raw, el);
-        result = makeMermaidImage(svg);
+        let { svg } = await mermaid.render(id, raw, el);
+        svg = cleanMermaidSvg(svg);
+        results = makeMermaidImage(svg);
+        output = document.createElement("figure");
+        results.map(output.appendChild, output);
       } catch (err) {
         parent.classList.add("jp-mod-warning");
-        result = await makeMermaidError(raw);
+        results = await makeMermaidError(raw);
+        output = results[0];
       } finally {
         el.remove();
       }
       parent.classList.add("jp-RenderedMermaid");
-      parent.appendChild(result);
+      parent.appendChild(output);
+    }
+
+
+    /**
+     * Post-process to ensure mermaid diagrams contain only valid SVG and XHTML.
+     */
+    function cleanMermaidSvg(svg) {
+      return svg.replace(RE_VOID_ELEMENT, replaceVoidElement);
+    }
+
+
+    /**
+     * A regular expression for all void elements, which may include attributes and
+     * a slash.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+     *
+     * Of these, only `<br>` is generated by Mermaid in place of `\n`,
+     * but _any_ "malformed" tag will break the SVG rendering entirely.
+     */
+    const RE_VOID_ELEMENT =
+      /<\s*(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)\s*([^>]*?)\s*>/gi;
+
+    /**
+     * Ensure a void element is closed with a slash, preserving any attributes.
+     */
+    function replaceVoidElement(match, tag, rest) {
+      rest = rest.trim();
+      if (!rest.endsWith('/')) {
+        rest = `${rest} /`;
+      }
+      return `<${tag} ${rest}>`;
     }
 
     void Promise.all([...diagrams].map(renderOneMarmaid));
   });
 </script>
 <style>
-  .jp-RenderedMarkdown .jp-Mermaid:not(.jp-RenderedMermaid) {
+  .jp-Mermaid:not(.jp-RenderedMermaid) {
     display: none;
   }
-  .jp-RenderedMarkdown .jp-RenderedMermaid.jp-mod-warning {
+
+  .jp-RenderedMermaid {
+    overflow: auto;
+    display: flex;
+  }
+
+  .jp-RenderedMermaid.jp-mod-warning {
     width: auto;
-    padding: 10px;
+    padding: 0.5em;
+    margin-top: 0.5em;
     border: var(--jp-border-width) solid var(--jp-warn-color2);
     border-radius: var(--jp-border-radius);
     color: var(--jp-ui-font-color1);
@@ -7420,17 +7479,32 @@ a.anchor-link {
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  .jp-RenderedMarkdown .jp-RenderedMermaid.jp-mod-warning details > pre {
+
+  .jp-RenderedMermaid figure {
+    margin: 0;
+    overflow: auto;
+    max-width: 100%;
+  }
+
+  .jp-RenderedMermaid img {
+    max-width: 100%;
+  }
+
+  .jp-RenderedMermaid-Details > pre {
     margin-top: 1em;
   }
-  .jp-RenderedMarkdown .jp-RenderedMermaid.jp-mod-warning summary {
+
+  .jp-RenderedMermaid-Summary {
     color: var(--jp-warn-color2);
   }
-  .jp-RenderedMarkdown .jp-RenderedMermaid.jp-mod-warning summary > pre {
-    display: inline-block;
-  }
-  .jp-RenderedMermaid > .mermaid {
+
+  .jp-RenderedMermaid:not(.jp-mod-warning) pre {
     display: none;
+  }
+
+  .jp-RenderedMermaid-Summary > pre {
+    display: inline-block;
+    white-space: normal;
   }
 </style>
 <!-- End of mermaid configuration --></head>
@@ -7442,10 +7516,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><img alt="AES/CEE Masthead" src="http://kyrill.ias.sdsmt.edu/wjc/eduresources/AES_CEE_Masthead.png"/></p>
-<h1 id="Part-1b----Python-Basic-Structures-(Complete)">Part 1b -- Python Basic Structures (Complete)<a class="anchor-link" href="#Part-1b----Python-Basic-Structures-(Complete)">¶</a></h1><h2 id="Victory-Laps-for-This-Session">Victory Laps for This Session<a class="anchor-link" href="#Victory-Laps-for-This-Session">¶</a></h2><p>For this session we will explore</p>
+<p><img alt="CEE/AES Masthead" src="http://kyrill.ias.sdsmt.edu/wjc/eduresources/AES_CEE_Masthead.png"/></p>
+<h1 id="Part-1b----Python-Basic-Structures-(Complete)">Part 1b -- Python Basic Structures (Complete)<a class="anchor-link" href="#Part-1b----Python-Basic-Structures-(Complete)">¶</a></h1><h2 id="Victory-Laps-for-This-Session">Victory Laps for This Session<a class="anchor-link" href="#Victory-Laps-for-This-Session">¶</a></h2><p>For this session, we will explore</p>
 <ul>
-<li>Bloat your Python Directories with Stuff that <em>may</em> be Useful</li>
 <li>Simple Output to The Screen</li>
 <li>Elementary Arithmetic</li>
 <li>Data Elements of Basic Python<ul>
@@ -7463,7 +7536,7 @@ a.anchor-link {
 <li>While Loops</li>
 </ul>
 </li>
-<li>If-Elif-Else Structures (Forshadowing our next session)</li>
+<li>If-Elif-Else Structures (Foreshadowing our next session)</li>
 </ul>
 </div>
 </div>
@@ -7500,9 +7573,9 @@ a.anchor-link {
 <span class="c1"># Hello World (Comments in Python start with a #Capital-3)</span>
 <span class="c1">#</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">'Hello World'</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'Hello'</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="s1">'World'</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">,</span> <span class="s1">'World'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">"Hello"</span>  <span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span> <span class="s2">"Hello Kitty, Kill! Kill!"</span> <span class="p">)</span>
 
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
@@ -7518,10 +7591,14 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Hello World
-Hello World
-Hello World
+<pre>Hello
 </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>'Hello Kitty, Kill! Kill!'</pre>
 </div>
 </div>
 </div>
@@ -7568,13 +7645,12 @@ Hello World
 <span class="c1">#       separator</span>
 <span class="c1">#</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 + 6   = "</span><span class="p">,</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 - 6   = "</span><span class="p">,</span> <span class="mi">9</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 * 6   = "</span><span class="p">,</span> <span class="mi">9</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 / 6   = "</span><span class="p">,</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 % 6   = "</span><span class="p">,</span> <span class="mi">9</span> <span class="o">%</span> <span class="mi">6</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 ** 6  = "</span><span class="p">,</span> <span class="mi">9</span> <span class="o">**</span> <span class="mi">6</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">" pow(9,6) = "</span><span class="p">,</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">2</span><span class="o">+</span><span class="mi">4</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="mi">2</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="mi">26</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="mi">27</span> <span class="o">%</span> <span class="mi">6</span><span class="p">)</span> 
+
 
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
@@ -7590,13 +7666,21 @@ Hello World
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>  9 + 6   =  15
-  9 - 6   =  3
-  9 * 6   =  54
-  9 / 6   =  1.5
-  9 % 6   =  3
-  9 ** 6  =  531441
- pow(9,6) =  531441
+<pre>6
+10
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>4.333333333333333</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>3
 </pre>
 </div>
 </div>
@@ -7629,15 +7713,16 @@ Hello World
 <span class="c1">#    a number as a number separated with a comma</span>
 <span class="c1">#</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 + 6   = "</span><span class="p">,</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">" 2 + 4 = "</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span>
+
 
 <span class="c1">#</span>
 <span class="c1">#    and a number as a string with both a comma </span>
 <span class="c1">#       and a  plus</span>
 <span class="c1">#</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 + 6   = "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">6</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  9 + 6   = "</span><span class="p">,</span>  <span class="nb">str</span><span class="p">(</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">"I am adding"</span>  <span class="o">+</span> <span class="s2">"2 + 4 ="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span>  <span class="p">)</span>
+
 
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
@@ -7653,9 +7738,8 @@ Hello World
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>  9 + 6   =  15
-  9 + 6   = 15
-  9 + 6   =  15
+<pre> 2 + 4 =  6
+I am adding2 + 4 =6
 </pre>
 </div>
 </div>
@@ -7939,13 +8023,16 @@ z =  1e+308 &lt;class 'float'&gt;
 <span class="c1"># Strings and Characters</span>
 <span class="c1">#</span>
 
-<span class="n">string1</span> <span class="o">=</span> <span class="s2">"Hello"</span>
-<span class="n">string2</span> <span class="o">=</span> <span class="s1">'World'</span>
-<span class="n">string3</span> <span class="o">=</span> <span class="n">string1</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">string2</span>
-<span class="c1">#</span>
+<span class="n">string1</span> <span class="o">=</span> <span class="s2">"32"</span>
+<span class="n">string2</span> <span class="o">=</span>  <span class="s2">"rhjewakhrarhj"</span>
+<span class="n">string3</span> <span class="o">=</span> <span class="s2">"it was a darsk and stormy knight"</span>
+<span class="n">int1</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">int2</span> <span class="o">=</span> <span class="mi">3</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">"string1 = "</span><span class="p">,</span> <span class="n">string1</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">string1</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"string2 = "</span><span class="p">,</span> <span class="n">string2</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">string2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"string3 = "</span><span class="p">,</span> <span class="n">string3</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">string3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"float1 = "</span><span class="p">,</span> <span class="n">int1</span><span class="o">/</span><span class="n">int2</span><span class="p">,</span> <span class="nb">type</span><span class="p">((</span><span class="n">int1</span><span class="o">/</span><span class="n">int2</span><span class="p">)))</span>
 
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
@@ -7961,9 +8048,10 @@ z =  1e+308 &lt;class 'float'&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>string1 =  Hello &lt;class 'str'&gt;
-string2 =  World &lt;class 'str'&gt;
-string3 =  Hello World &lt;class 'str'&gt;
+<pre>string1 =  32 &lt;class 'str'&gt;
+string2 =  rhjewakhrarhj &lt;class 'str'&gt;
+string3 =  it was a darsk and stormy knight &lt;class 'str'&gt;
+float1 =  2.0 &lt;class 'float'&gt;
 </pre>
 </div>
 </div>
@@ -7976,7 +8064,7 @@ string3 =  Hello World &lt;class 'str'&gt;
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Lists,-%22Tupples%22-and-Arrays">Lists, "Tupples" and Arrays<a class="anchor-link" href="#Lists,-%22Tupples%22-and-Arrays">¶</a></h3><p>Arrays and Lists are treated differently.  Arrays will be addressed in a future session on Numerical Python (NumPy).</p>
+<h3 id="Lists,-%22Tuples%22-and-Arrays">Lists, "Tuples" and Arrays<a class="anchor-link" href="#Lists,-%22Tuples%22-and-Arrays">¶</a></h3><p>Arrays and Lists are treated differently.  Arrays will be addressed in a future session on Numerical Python (NumPy).</p>
 <p>For lists it's easy.  They are 1-D lists (<em>but not vectors</em>) with brackets for "wrapping" and commas to delimit the members of the list.</p>
 <p>One interesting thing about lists is that you can list heterogeneous types in them, mixing types (e.g., characters, integers, &amp; floats) in a single list.  (This won't be the case with numerical arrays)</p>
 </div>
@@ -7987,7 +8075,7 @@ string3 =  Hello World &lt;class 'str'&gt;
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################</span>
@@ -7995,27 +8083,26 @@ string3 =  Hello World &lt;class 'str'&gt;
 <span class="c1"># Lists</span>
 <span class="c1">#</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>   <span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="p">,</span>   <span class="mi">4</span> <span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">20.</span><span class="p">,</span> <span class="mf">30.</span><span class="p">,</span> <span class="mf">40.</span><span class="p">]</span>
-<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'zero'</span><span class="p">,</span><span class="s2">"one"</span><span class="p">,</span><span class="s2">"two"</span><span class="p">,</span><span class="s1">'three'</span><span class="p">,</span><span class="s2">"four"</span><span class="p">]</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="n">j</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="n">j</span><span class="p">,</span>  <span class="mi">4</span><span class="p">]</span>
-<span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span>   <span class="s2">"one"</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="n">j</span><span class="p">,</span>  <span class="mi">4</span><span class="p">]</span>
-
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"one"</span><span class="p">,</span><span class="s2">"two"</span><span class="p">,</span><span class="s2">"three"</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"33"</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="s2">"thirty-five"</span><span class="p">]</span>
 
 <span class="c1">#</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"a = "</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"b = "</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"c = "</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"d = "</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"e = "</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 
 
 <span class="nb">print</span><span class="p">()</span>
 
-<span class="n">a_plus_b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> 
+<span class="n">a_plus_b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"2a = "</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"2b = "</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="p">))</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">"a + b = "</span><span class="p">,</span><span class="n">a_plus_b</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a_plus_b</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">)</span>
 
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
@@ -8031,15 +8118,30 @@ string3 =  Hello World &lt;class 'str'&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>a =  [0, 1, 2, 3, 4] &lt;class 'list'&gt;
-b =  [0.0, 10.0, 20.0, 30.0, 40.0] &lt;class 'list'&gt;
-c =  ['zero', 'one', 'two', 'three', 'four'] &lt;class 'list'&gt;
-d =  [0, 1j, 2, 3j, 4] &lt;class 'list'&gt;
-e =  [0, 'one', 2, 3j, 4] &lt;class 'list'&gt;
+<pre>a =  [1, 6, 2, 8] &lt;class 'list'&gt;
+b =  ['one', 'two', 'three'] &lt;class 'list'&gt;
+c =  ['33', 34, 'thirty-five'] &lt;class 'list'&gt;
 
-2a =  [0, 1, 2, 3, 4, 0, 1, 2, 3, 4] &lt;class 'list'&gt;
-a + b =  [0, 1, 2, 3, 4, 0.0, 10.0, 20.0, 30.0, 40.0] &lt;class 'list'&gt;
+2a =  [1, 6, 2, 8, 1, 6, 2, 8] &lt;class 'list'&gt;
+2b =  ['one', 'two', 'three', 'one', 'two', 'three'] &lt;class 'list'&gt;
+a + b =  [1, 6, 2, 8, 'one', 'two', 'three'] &lt;class 'list'&gt;
 </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[10], line 25</span>
+<span class="ansi-green-intense-fg ansi-bold">     21</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">2b = </span><span style="color: rgb(175,0,0)">"</span>, <span style="color: rgb(98,98,98)">2</span><span style="color: rgb(98,98,98)">*</span>b, <span style="color: rgb(0,135,0)">type</span>(<span style="color: rgb(98,98,98)">2</span><span style="color: rgb(98,98,98)">*</span>b))
+<span class="ansi-green-intense-fg ansi-bold">     23</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">a + b = </span><span style="color: rgb(175,0,0)">"</span>,a_plus_b, <span style="color: rgb(0,135,0)">type</span>(a_plus_b))
+<span class="ansi-green-fg">---&gt; 25</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">a</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">b</span>)
+<span class="ansi-green-intense-fg ansi-bold">     27</span> <span style="color: rgb(95,135,135)">#</span>
+<span class="ansi-green-intense-fg ansi-bold">     28</span> <span style="color: rgb(95,135,135)">#####################################################</span>
+
+<span class="ansi-red-fg">TypeError</span>: can't multiply sequence by non-int of type 'list'</pre>
 </div>
 </div>
 </div>
@@ -8063,7 +8165,7 @@ a + b =  [0, 1, 2, 3, 4, 0.0, 10.0, 20.0, 30.0, 40.0] &lt;class 'list'&gt;
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>You may also sometimes see a structure that wraps a series of fields in a parenthesis.</p>
-<p>These are called "tupples."  In Python a tupple is a list that you can create or declare but while you can change the values in an array or list, you cannot do so in a "Tupple."  While a function may throw me a tupple, I personally prefer not to use them, prefering the more flexible lists and arrays instead.</p>
+<p>These are called "tuples."  In Python a tuple is a list that you can create or declare but while you can change the values in an array or list, you cannot do so in a "Tuple."  While a function may throw me a tuple, I personally prefer not to use them, prefering the more flexible lists and arrays instead.</p>
 </div>
 </div>
 </div>
@@ -8077,26 +8179,28 @@ a + b =  [0, 1, 2, 3, 4, 0.0, 10.0, 20.0, 30.0, 40.0] &lt;class 'list'&gt;
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################</span>
 <span class="c1">#</span>
-<span class="c1"># Tupple Demonstration </span>
+<span class="c1"># Tuple Demonstration </span>
 <span class="c1">#</span>
 
-<span class="n">mylist</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"happy"</span><span class="p">]</span> <span class="c1"># list</span>
+<span class="n">mylist</span>      <span class="o">=</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"happy"</span><span class="p">]</span> <span class="c1"># list</span>
 
-<span class="n">mytupple</span>    <span class="o">=</span> <span class="p">(</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"happy"</span><span class="p">)</span> <span class="c1"># tupple</span>
+<span class="n">mytuple</span>    <span class="o">=</span> <span class="p">(</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"happy"</span><span class="p">)</span> <span class="c1"># tuple</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"MyList "</span><span class="p">,</span>   <span class="n">mylist</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"MyTupple "</span><span class="p">,</span> <span class="n">mytupple</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"MyTuple "</span><span class="p">,</span> <span class="n">mytuple</span><span class="p">)</span>
 
 <span class="c1"># Let's try to change an element in each.</span>
 <span class="c1">#  Indexing in Python starts at zero</span>
 
-<span class="n">mylist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"b"</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"My New List "</span><span class="p">,</span>   <span class="n">mylist</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">mylist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">mytuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
 
 <span class="c1">#</span>
+<span class="n">mylist</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"one"</span>
+<span class="n">mytuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"one"</span>
 
-<span class="n">mytupple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"b"</span> <span class="c1"># (this will make an error)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"My New Tupple "</span><span class="p">,</span>   <span class="n">mytupple</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">mylist</span> <span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">mytuple</span><span class="p">)</span>
 
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
@@ -8113,8 +8217,9 @@ a + b =  [0, 1, 2, 3, 4, 0.0, 10.0, 20.0, 30.0, 40.0] &lt;class 'list'&gt;
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>MyList  ['A', 'a', 1, 2, 'happy']
-MyTupple  ('A', 'a', 1, 2, 'happy')
-My New List  ['A', 'b', 1, 2, 'happy']
+MyTuple  ('A', 'a', 1, 2, 'happy')
+a
+a
 </pre>
 </div>
 </div>
@@ -8125,12 +8230,11 @@ My New List  ['A', 'b', 1, 2, 'happy']
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
 Cell <span class="ansi-green-fg">In[11], line 21</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">My New List </span><span style="color: rgb(175,0,0)">"</span>,   mylist)
 <span class="ansi-green-intense-fg ansi-bold">     19</span> <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">---&gt; 21</span> <span class="ansi-yellow-bg">mytupple</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">1</span><span class="ansi-yellow-bg">]</span> <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">b</span><span style="color: rgb(175,0,0)">"</span> <span style="color: rgb(95,135,135)"># (this will make an error)</span>
-<span class="ansi-green-intense-fg ansi-bold">     22</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">My New Tupple </span><span style="color: rgb(175,0,0)">"</span>,   mytupple)
-<span class="ansi-green-intense-fg ansi-bold">     24</span> <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-intense-fg ansi-bold">     25</span> <span style="color: rgb(95,135,135)">#####################################################</span>
+<span class="ansi-green-intense-fg ansi-bold">     20</span> mylist[<span style="color: rgb(98,98,98)">2</span>] <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">one</span><span style="color: rgb(175,0,0)">"</span>
+<span class="ansi-green-fg">---&gt; 21</span> <span class="ansi-yellow-bg">mytuple</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">2</span><span class="ansi-yellow-bg">]</span> <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">one</span><span style="color: rgb(175,0,0)">"</span>
+<span class="ansi-green-intense-fg ansi-bold">     23</span> <span style="color: rgb(0,135,0)">print</span>( mylist )
+<span class="ansi-green-intense-fg ansi-bold">     24</span> <span style="color: rgb(0,135,0)">print</span> (mytuple)
 
 <span class="ansi-red-fg">TypeError</span>: 'tuple' object does not support item assignment</pre>
 </div>
@@ -8161,6 +8265,8 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"The first element of b (element zero) is = "</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
+
+
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
 </pre></div>
@@ -8175,7 +8281,7 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The first element of b (element zero) is =  0.0
+<pre>The first element of b (element zero) is =  one
 </pre>
 </div>
 </div>
@@ -8208,7 +8314,7 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The second element of b (element 1) is =  10.0
+<pre>The second element of b (element 1) is =  two
 </pre>
 </div>
 </div>
@@ -8238,6 +8344,8 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"The first three elements of b SHOULD be... "</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The first three elements of b SHOULD be... "</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
 </pre></div>
@@ -8252,7 +8360,8 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The first three elements of b SHOULD be...  [0.0, 10.0]
+<pre>The first three elements of b SHOULD be...  ['one', 'two']
+The first three elements of b SHOULD be...  ['one', 'two', 'three']
 </pre>
 </div>
 </div>
@@ -8282,6 +8391,8 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################</span>
 <span class="c1">#</span>
+<span class="c1"># exploring inclusive and exclusive indexing</span>
+<span class="c1">#</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"The first three elements of b are *really*... "</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"                                           or "</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
@@ -8301,8 +8412,8 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The first three elements of b are *really*...  [0.0, 10.0, 20.0]
-                                           or  [0.0, 10.0, 20.0]
+<pre>The first three elements of b are *really*...  ['one', 'two', 'three']
+                                           or  ['one', 'two', 'three']
 </pre>
 </div>
 </div>
@@ -8348,6 +8459,62 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 <span class="c1"># Range from 1 to 10</span>
 <span class="c1">#</span>
 
+<span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1">#</span>
+<span class="c1">#####################################################</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>range(0, 10)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Loops">Loops<a class="anchor-link" href="#Loops">¶</a></h2><p>And that is a good segue into loops.</p>
+<p>There two species of loops</p>
+<h3 id="Counting-Loops-(The-For-Loop)">Counting Loops (The For Loop)<a class="anchor-link" href="#Counting-Loops-(The-For-Loop)">¶</a></h3><p>Counting Loops leverage Ranges which as we saw above have that inclusive exclusive pairing.</p>
+<p>And we just did one...</p>
+<p>A few things.</p>
+<ul>
+<li>The Loops and If-Elif-Else Blocks start with : at the starter line.</li>
+<li>You must then indent (Jupyter will do it for you).</li>
+<li>When done with the indent the "cue" that you are out of the structure is simply returning to the previous indent level (or hard against the left margin).  You'll see a nested system shortly.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################</span>
+<span class="c1">#</span>
+<span class="c1"># Range from 1 to 10</span>
+
 <span class="n">range1</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="n">range1</span><span class="p">)</span>
@@ -8392,81 +8559,8 @@ Cell <span class="ansi-green-fg">In[11], line 21</span>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Loops">Loops<a class="anchor-link" href="#Loops">¶</a></h2><p>And that is a good segue into loops.</p>
-<p>There two species of loops</p>
-<h3 id="Counting-Loops-(The-For-Loop)">Counting Loops (The For Loop)<a class="anchor-link" href="#Counting-Loops-(The-For-Loop)">¶</a></h3><p>Counting Loops leverage Ranges which as we saw above have that inclusive exclusive pairing.</p>
-<p>And we just did one...</p>
-<p>A few things.</p>
-<ul>
-<li>The Loops and If-Elif-Else Blocks start with : at the starter line.</li>
-<li>You must then indent (Jupyter will do it for you).</li>
-<li>When done with the indent the "cue" that you are out of the structure is simply returning to the previous indent level (or hard against the left margin).  You'll see a nested system shortly.</li>
-</ul>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################</span>
-<span class="c1">#</span>
-<span class="c1"># Range from 1 to 10</span>
-<span class="c1">#</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"i = "</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">"out of "</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-    
-<span class="nb">print</span><span class="p">()</span>
-
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"k = "</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s2">"out of "</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-
-<span class="c1">#</span>
-<span class="c1">#####################################################</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>i =  1 out of  5
-i =  2 out of  5
-i =  3 out of  5
-i =  4 out of  5
-i =  5 out of  5
-
-k =  0 out of  5
-k =  1 out of  5
-k =  2 out of  5
-k =  3 out of  5
-k =  4 out of  5
-k =  5 out of  5
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>It also works with lists</p>
+<p><img alt="Classic Mickey Mouse Club" src="http://kyrill.ias.sdsmt.edu/wjc/eduresources/Mickey_Mouse_Club_S1_Fun_With_Music_Day_Roll_Call.gif"/></p>
 </div>
 </div>
 </div>
@@ -8496,10 +8590,10 @@ k =  5 out of  5
                  <span class="s2">"Karen"</span><span class="p">,</span>
                  <span class="s2">"Doreen"</span><span class="p">]</span>
                  
-
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Roll Call!"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">mousekateer</span> <span class="ow">in</span> <span class="n">mousekateeers</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"  "</span> <span class="o">+</span> <span class="n">mousekateer</span> <span class="o">+</span> <span class="s2">"!"</span><span class="p">)</span>
+
 
 <span class="c1">#</span>
 <span class="c1">#####################################################</span>
@@ -8585,6 +8679,49 @@ We're Outahere like Vladimir
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################</span>
+<span class="c1">#</span>
+<span class="c1"># Counting Loop (using our *second* loop EVER!)</span>
+<span class="c1">#</span>
+
+<span class="c1"># You SHOULD do it this way!</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">"i+1="</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"We're Outahere like Vladimir... only faster."</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1">#####################################################</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>i+1= 3
+i+1= 5
+i+1= 7
+We're Outahere like Vladimir... only faster.
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -8592,8 +8729,9 @@ We're Outahere like Vladimir
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Decision-Blocks">Decision Blocks<a class="anchor-link" href="#Decision-Blocks">¶</a></h2><p>We often have choices to make when we program... here are the classics that come with Python.  Note that if you are used to using a "case" statement which exists in a number of languages, it's not explicitly included with Python.</p>
-<h3 id="A-Cascading-If-ElseIf-Else-Block">A Cascading If-ElseIf-Else Block<a class="anchor-link" href="#A-Cascading-If-ElseIf-Else-Block">¶</a></h3><p>This one is a redux of the vending machine problem from Lecture 2.  Remember if you know you have a dime, you don't have to ask again if it's a nickel.</p>
+<h2 id="Decision-Blocks">Decision Blocks<a class="anchor-link" href="#Decision-Blocks">¶</a></h2><p>We often have choices to make when we program... here are the classics that come with Python.  Note that if you are used to using a "case" statement that exists in several languages, it's not explicitly included with Python.</p>
+<h3 id="A-Cascading-If-ElseIf-Else-Block">A Cascading If-ElseIf-Else Block<a class="anchor-link" href="#A-Cascading-If-ElseIf-Else-Block">¶</a></h3><p>This one is a redux of the vending machine problem from Lecture 2.  Remember, if you know you have a dime, you don't have to ask again if it's a nickel.</p>
+<p><img alt="If Else Block" src="http://kyrill.ias.sdsmt.edu/wjc/eduresources/coin_loop.png"/></p>
 <p>Here Else If is compressed into a single word, "elif."</p>
 </div>
 </div>
@@ -8603,7 +8741,7 @@ We're Outahere like Vladimir
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################</span>
@@ -8653,7 +8791,13 @@ We're Outahere like Vladimir
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Single-Question-If-Statements">Single Question If Statements<a class="anchor-link" href="#Single-Question-If-Statements">¶</a></h3><p>This one is easy...  Remember after any of these questions you still have to ask the next questions</p>
+<h3 id="Single-Question-If-Statements">Single Question If Statements<a class="anchor-link" href="#Single-Question-If-Statements">¶</a></h3><p>This one is easy...  Remember, you still have to ask the next question(s) after any of these questions.</p>
+<p>Notice also that we can add multiple conditions.</p>
+<ul>
+<li>To add a condition, use "&amp;" or just "and"</li>
+<li>To do an either-or, use "|" ("capital backslash")  or just "or"</li>
+<li>To turn a true statement into a false one, use "not" (in other languages, it's a "!")</li>
+</ul>
 </div>
 </div>
 </div>
@@ -8662,7 +8806,7 @@ We're Outahere like Vladimir
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################</span>
@@ -8711,55 +8855,7 @@ We're Outahere like Vladimir
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Setup-for-Next-Week's-Playtime!">Setup for Next Week's Playtime!<a class="anchor-link" href="#Setup-for-Next-Week's-Playtime!">¶</a></h2><p>There are a couple things you can try with the skills you have now.  But this one we can use later when we plot things!</p>
-<h3 id="Our-Pi-Case.">Our Pi Case.<a class="anchor-link" href="#Our-Pi-Case.">¶</a></h3><p>You've done this before... you can do it here.</p>
-<p>Recall that we are using a Reimann Sum method to do this.</p>
-<p><img alt="Reimann Summing for Pi" src="http://kyrill.ias.sdsmt.edu/wjc/eduresources/PI_Integration_Figure.png"/></p>
-<p>Remember the base equation</p>
-<p>$$\pi =\frac{1}{N}\sum^{N}_{i=1}\frac{4}{1+x^2}$$</p>
-<p>And the pseudocode.</p>
-<p>Just enter the block below by declaring a variable n.</p>
-<pre><code>Input the value “n” 
-if n &lt; 1 then
-{
-   print an error statement
-}
-else 
-{
-   h = 1 / n
-   sum  = 0
-   repeat i from 1 to n by 1
-   {
-      x = h * (i - 0.5)
-      sum = sum + 4 / (1 + x*x)
-   }
-   pi = h * sum
-   return, pi
-}
-</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Version-Information">Version Information<a class="anchor-link" href="#Version-Information">¶</a></h2><p>There was once a very handy tool that would print version information of the Python version, operating system, and the versions of the Python packages you are running. It leveraged a "magic" command in IPython (which is what lies beneath Jupyter and JuptyerLab notebooks).</p>
-<p>The developer has moved on to other things, but the resource still has a narrow but ~militant~ ernest fan base (myself included). The original doesn't work with versions of Python above 3.7. So, a couple of us wrote some patches to fix it. You can access my version below by following these instructions.</p>
-<ul>
-<li>If you don't have GIT on your rig yet, you can fetch it via conda (you can do this on the fly in the jupyter notebook by using that leading "!"</li>
-</ul>
-<pre><code>!conda install -y -v git
-</code></pre>
-<ul>
-<li>You can install it using the following command.</li>
-</ul>
-<pre><code>!pip install git+https://github.com/wjcapehart/version_information
-</code></pre>
-<h3 id="JupyterLab-Caveat">JupyterLab Caveat<a class="anchor-link" href="#JupyterLab-Caveat">¶</a></h3><p>For people using Jupyter Lab, the interface does not play well with this "magic" function. It exports the results in the Jupyter Lab notebook as a JSON object with clicky expander arrow buttons. However, if you "Export" your notebook as an HTML or PDF file, it will look like a nice table.</p>
+<h2 id="Version-Information">Version Information<a class="anchor-link" href="#Version-Information">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8768,7 +8864,7 @@ else
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">################################################################</span>
@@ -8791,23 +8887,9 @@ else
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.11.4 64bit [Clang 15.0.7 ]</td></tr><tr><td>IPython</td><td>8.14.0</td></tr><tr><td>OS</td><td>macOS 13.5.1 arm64 arm 64bit</td></tr><tr><td>version_information</td><td>1.0.3</td></tr><tr><td colspan="2">Tue Sep 05 12:12:49 2023 MDT</td></tr></table>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.12.3 64bit [Clang 16.0.6 ]</td></tr><tr><td>IPython</td><td>8.27.0</td></tr><tr><td>OS</td><td>macOS 14.6.1 arm64 arm 64bit</td></tr><tr><td>version_information</td><td>1.0.4</td></tr><tr><td colspan="2">Mon Sep 16 12:11:02 2024 MDT</td></tr></table>
 </div>
 </div>
 </div>
