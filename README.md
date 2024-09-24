@@ -26,6 +26,7 @@ Civil & Environmental Engineering<br>
 South Dakota Mines<br>
 501 E. Saint Joseph St.<br> Rapid City, SD 57701<br>
 605.394.2439 | <a href="mailto:{{ site.email | encode_email }}" title="Contact me">Email me</a>
+
 <a href="https://orcid.org/0000-0002-4926-0992"> <sub>
 <img alt="ORCID Logo" src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" width="24" height="24"/> </sub><sup><!--- 
 0000-0002-4926-0992---></sup></a>
