@@ -21,8 +21,28 @@ For those, I tend to mostly JFGIing it or holding my breath and diving into Stac
 
 ## Contact Information
 
-[Dr. Bill Capehart](https://www.sdsmt.edu/about/directory/capehart_-william.html), Director, Atmospheric and Environmental Sciences<br>
+[Dr. Bill Capehart](https://wjcapehart.github.io/Capehart_Research_Page/), Director, Atmospheric and Environmental Sciences<br>
 Civil & Environmental Engineering<br>
 South Dakota Mines<br>
 501 E. Saint Joseph St.<br> Rapid City, SD 57701<br>
 605.394.2439 | <a href="mailto:{{ site.email | encode_email }}" title="Contact me">Email me</a>
+
+<a href="https://orcid.org/0000-0002-4926-0992"> <sub>
+<img alt="ORCID Logo" src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" width="24" height="24"/> </sub><sup><!--- 
+0000-0002-4926-0992---></sup></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.sdsmt.edu/about/directory/capehart_william.html">
+<sub><img alt="SD Mines Logo" src="images/MinesM.svg" width="24" height="24"/></sub>
+</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/william-capehart/"><i style="font-size:24px" color="#0f4fb5" class="fa">&#xf08c;</i></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/wjcapehart"><i style="font-size:24px" class="fa">&#xf09b;</i></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://bsky.app/profile/billcapehart.bsky.social">
+<sub><img alt="BlueSky Logo" src="images/bluesky.svg" width="24" height="24" color="#0f4fb5"/></sub>
+</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://x.com/Bill_Capehart"><i style="font-size:24px" class="fa">&#xf099;</i></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.facebook.com/william.capehart/"><i style="font-size:24px" class="fa">&#xf230;</i></a>

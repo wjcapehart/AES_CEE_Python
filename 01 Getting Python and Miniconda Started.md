@@ -69,13 +69,14 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
 * [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas data frames
+* [itables](https://mwouts.github.io/itables/quick_start.html) If you use Pandas in a Juptyer Notebook this is a must-have for working with large DataFrames.  It provides the same functional table rendering in RStudio.
 * [version_information](https://github.com/jrjohansson/version_information) A very handy tool by Robert Johansson for Jupyter Notebooks to record what packages and their versions were used to make your notebook.  Good for troubleshooting and documentation/replicability.
 
 In your terminal window, enter the following *one line at a time*:
 
 ```
 conda install -c conda-forge jupyterlab  
-conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray
+conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray itables
 conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr version_information
 ```
 
