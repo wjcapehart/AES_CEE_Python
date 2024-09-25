@@ -65,3 +65,7 @@ Many of these examples are still being modified to make them more navigable. Con
 ### Publication Quality WRF Domain Mapping
 
 * [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_05_WRF_Domain_Mapping/WRF_Map_Out_Namelist_WPS.html)
+
+### Remotely Accessing Data from External Data Services
+
+* [Web Page of Jupyter Notebook for USGS's NWIS Services](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_06_Science_Data_Services/USGS_DataRetrieval_Demo.html)
