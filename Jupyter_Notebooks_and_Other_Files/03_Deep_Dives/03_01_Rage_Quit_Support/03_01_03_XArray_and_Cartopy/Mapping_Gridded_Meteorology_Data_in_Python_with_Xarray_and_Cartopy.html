@@ -15110,7 +15110,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="http://kyrill.ias.sdsmt.edu/wjc/eduresources/AES_519_Masthead.png" alt="AES_519 Masthead" /></p>
+<p><img src="https://kyrill.ias.sdsmt.edu/wjc/eduresources/AES_519_Masthead.png" alt="AES_519 Masthead" /></p>
 <h1 id="Unit-Fu-and-Projection-Fu-with-XArray-and-a-little-MetPy-(MetPy-V1.0-Edition).">Unit-Fu and Projection-Fu with XArray and a little MetPy (MetPy V1.0 Edition).<a class="anchor-link" href="#Unit-Fu-and-Projection-Fu-with-XArray-and-a-little-MetPy-(MetPy-V1.0-Edition).">&#182;</a></h1><h2 id="%22You-have-to-be-THIS-tall-to-be-on-THIS-ride!%22">"You have to be THIS tall to be on THIS ride!"<a class="anchor-link" href="#%22You-have-to-be-THIS-tall-to-be-on-THIS-ride!%22">&#182;</a></h2><p>This activity presumes that you have been able to work a little with Cartopy (e.g., via the <a href="https://wjcapehart.github.io/AES_CEE_Python/03%20Rage-Quit%20Explainers%20and%20Deep%20Dives.html">Rage Quit Session</a> on <a href="https://wjcapehart.github.io/AES_CEE_Python/Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_01_Rage_Quit_Support/03_01_02_Cartopy_and_Projections/Basic_Mapping_in_Python.html">&quot;Basic_Mapping_in_Python&quot;</a>.</p>
 <p>It also presumes that you understand how to load a standard metorological in netCDF and GRIB format into Python.</p>
 <p>This will also leverage some tools from <a href="https://unidata.github.io/MetPy/latest/index.html">Unidata's MetPy software</a>.</p>
@@ -15194,7 +15194,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <h2 id="Let's-pick-a%5Bnother%5D-file!">Let's pick a[nother] file!<a class="anchor-link" href="#Let's-pick-a%5Bnother%5D-file!">&#182;</a></h2><p>OK, it didn't like our ensemble data... so let's try another one:</p>
 <p>NAM  2020-11-11 12Z 24-hr Forecast</p>
 <p>Opendap Address (SDSMT):</p>
-<pre><code>http://kyrill.ias.sdsmt.edu:8080/thredds/dodsC/CLASS_Examples/NAM_2020-11-11_12/nam_218_20201111_1200_012.grb2
+<pre><code>https://kyrill.ias.sdsmt.edu:8080/thredds/dodsC/CLASS_Examples/NAM_2020-11-11_12/nam_218_20201111_1200_012.grb2
 </code></pre>
 <p>This is a NAM Forecast and is also projected into WMO Projection <a href="https://www.nco.ncep.noaa.gov/pmb/docs/on388/tableb.html#GRID218">#218</a>.</p>
 <p>To extract the grib file either from a local file system or from a remote THREDDS/OPeNDAP service, use the <a href="https://xarray.pydata.org/en/stable/generated/xarray.open_dataset.html">xarray.open_dataset()</a> command.</p>
@@ -15217,7 +15217,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <span class="c1"># grabbing it from our THREDDS data system</span>
 
-<span class="n">nam_file</span> <span class="o">=</span> <span class="s2">&quot;http://kyrill.ias.sdsmt.edu:8080/thredds/dodsC/CLASS_Examples/NAM_2020-11-11_12/nam_218_20201111_1200_012.grb2&quot;</span>
+<span class="n">nam_file</span> <span class="o">=</span> <span class="s2">&quot;https://kyrill.ias.sdsmt.edu:8080/thredds/dodsC/CLASS_Examples/NAM_2020-11-11_12/nam_218_20201111_1200_012.grb2&quot;</span>
 
 <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nam_file</span><span class="p">)</span>
 

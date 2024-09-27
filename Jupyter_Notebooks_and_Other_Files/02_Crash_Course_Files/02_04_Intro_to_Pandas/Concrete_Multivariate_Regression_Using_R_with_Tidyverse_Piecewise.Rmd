@@ -100,7 +100,7 @@ The original data set is from a set of papers on Concrete by I-Cheng Yeh
 
 and is kept at the [UC-Irvine Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Concrete+Slump+Test).
 
-It can be found here at [http://kyrill.ias.sdsmt.edu/cee_284/Base_Concrete_Slump_Test_for_R.xlsx](http://kyrill.ias.sdsmt.edu/wjc/eduresources/Base_Concrete_Slump_Test_for_R.xlsx)
+It can be found here at [https://kyrill.ias.sdsmt.edu/cee_284/Base_Concrete_Slump_Test_for_R.xlsx](https://kyrill.ias.sdsmt.edu/wjc/eduresources/Base_Concrete_Slump_Test_for_R.xlsx)
 
 The relevant page and screenshot is below. For drama-free R import you are probably best off keeping a page on your spreadsheet file that is very simple, with numbers going down, and a single line for Row-1 with the headers of each column. If you want to get fancy on other pages that you'd turn in as tables in reports, you can do that on another spreadsheet page.
 
@@ -129,7 +129,7 @@ You can read the spreadsheet from a local drive or from a website.
   # I am keeping a copy of these spreadsheet at the URL below.  It can be downloaded automatically
   #   and then loaded.  We can also discretely delete it when done.
 
-      spreadsheet_url = "http://kyrill.ias.sdsmt.edu/wjc/eduresources/Base_Concrete_Slump_Test_for_R.xlsx"
+      spreadsheet_url = "https://kyrill.ias.sdsmt.edu/wjc/eduresources/Base_Concrete_Slump_Test_for_R.xlsx"
    
       download.file(url      =   spreadsheet_url, # URL location
                     destfile = spreadsheet_name) # local downloaded location
