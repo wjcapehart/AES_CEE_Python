@@ -15,7 +15,7 @@ Installing Python can take a while.  Much of it is spent letting the package man
 
 I am recommending that you use Miniconda for this.  Miniconda is a "slimmed down" version of the larger Anaconda package many people recommend.  My experience is that the overhead for Anaconda makes for lots of problems later. The instructions to get Miniconda installed on Windows or MacOS is here:     
 
-*  [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html).
+*  [https://www.anaconda.com/download/success#miniconda](https://www.anaconda.com/download/success#miniconda)
 
 ```note
 If you have Anaconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), for now, you are fine.  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
