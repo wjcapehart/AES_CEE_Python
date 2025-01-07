@@ -28,7 +28,7 @@ Also, I am recommending that you work mostly through the conda-forge community. 
 To enable conda-forge, you should open a terminal window.
 
 *  In Unix or MacOS, it's just a terminal window.
-*  In Windows, you can find an "Anaconda Powershell" under your "apps" from the "Start Menu" under "Miniconda3" (or "Anaconda" if you have Anaconda installed from earlier classwork).  That will launch you into a conda-friendly operating system environment.  While you are doing that, this would be a good time to "pin" the "Anaconda Powershell" to your "Start Menu."
+*  In Windows, you can find an "Anaconda Powershell" under your "apps" from the "Start Menu" under "Anaconda (miniconda3)" (or just "Anaconda" if you have Anaconda installed from earlier classwork).  That will launch you into a conda-friendly operating system environment.  While you are doing that, this would be a good time to "pin" the "Anaconda Powershell" to your "Start Menu."
 
 If your terminal or Power Shell has a "(base)" at the user prompt, you are ready to go!
 
@@ -70,13 +70,14 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
 * [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas data frames
 * [itables](https://mwouts.github.io/itables/quick_start.html) If you use Pandas in a Juptyer Notebook this is a must-have for working with large DataFrames.  It provides the same functional table rendering in RStudio.
+* [johnnydep](https://github.com/wimglenn/johnnydep): Look. I didn't name it.  But it is very useful in assessing dependancies of any given package and it comes in handy when conda-forge doesn't have a give package but you want to keep any dependancies inside of the conda-forge-verse!
 * [version_information](https://github.com/jrjohansson/version_information) A very handy tool by Robert Johansson for Jupyter Notebooks to record what packages and their versions were used to make your notebook.  Good for troubleshooting and documentation/replicability.
 
 In your terminal window, enter the following *one line at a time*:
 
 ```
 conda install -c conda-forge jupyterlab  
-conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray itables
+conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray itables johnnydep
 conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr version_information
 ```
 
