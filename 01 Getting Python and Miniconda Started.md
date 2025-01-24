@@ -77,9 +77,10 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 In your terminal window, enter the following *one line at a time*:
 
 ```
+conda install -c conda-forge numpy scipy scikit-learn
 conda install -c conda-forge jupyterlab  
-conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray itables johnnydep
-conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr version_information
+conda install -c conda-forge matplotlib sympy pandas xarray itables johnnydep
+conda install -c conda-forge seaborn openpyxl pyreadr version_information
 ```
 
 ```warning
