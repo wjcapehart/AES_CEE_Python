@@ -113,6 +113,7 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [Siphon](https://unidata.github.io/siphon/latest/) UCAR-Unidata support for accessing remote meteo data
   * [pyGrib](https://jswhit.github.io/pygrib/) NOAA-ESRL tools for WMO Gridded Binary (GRIB 1/2) support
   * [cfGrib](https://github.com/ecmwf/cfgrib) ECMWF tools for WMO Gridded Binary (GRIB 1/2) support
+  * [zarr](https://zarr.readthedocs.io/en/stable/)
   * [cftime](https://unidata.github.io/cftime/) UCAR-Unidata support for time data support (including 360-day, leap-year-free 365-day, and other quirky calendars that only a meteorologist would love because the rest of the world are monsters)
   * [cf-python](https://ncas-cms.github.io/cf-python/) an Earth science data analysis library that is built on a complete implementation of the CF data model
   * [cf-plot](http://ajheaps.github.io/cf-plot) is a set of Python routines for making the common contour, vector, and line plots that climate researchers use
@@ -131,12 +132,12 @@ If you work in any hydrology, weather & climate groups, you will also want to in
 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
-conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 
+conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 zarr
 conda install -c conda-forge siphon pygrib timezonefinder iris satpy airportsdata
 conda install -c conda-forge cftime cfdm cf_xarray cf_pandas cf-units cfgrib
 conda install -c conda-forge pytz haversine uxarray wrapt setuptools cython
-conda install -c conda-forge geocat-comp geocat-viz
-conda install -c conda-forge basemap-data basemap-data-hires
+conda install -c conda-forge geocat-comp geocat-viz 
+conda install -c conda-forge basemap-data basemap-data-hires 
 ```
 
 ```warning
