@@ -15,7 +15,7 @@ Installing Python can take a while.  Much of it is spent letting the package man
 
 I am recommending that you use Miniconda for this.  Miniconda is a "slimmed down" version of the larger Anaconda package many people recommend.  My experience is that the overhead for Anaconda makes for lots of problems later. The instructions to get Miniconda installed on Windows or MacOS is here:     
 
-*  [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html).
+*  [https://www.anaconda.com/download/success#miniconda](https://www.anaconda.com/download/success#miniconda)
 
 ```note
 If you have Anaconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), for now, you are fine.  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
@@ -28,7 +28,7 @@ Also, I am recommending that you work mostly through the conda-forge community. 
 To enable conda-forge, you should open a terminal window.
 
 *  In Unix or MacOS, it's just a terminal window.
-*  In Windows, you can find an "Anaconda Powershell" under your "apps" from the "Start Menu" under "Miniconda3" (or "Anaconda" if you have Anaconda installed from earlier classwork).  That will launch you into a conda-friendly operating system environment.  While you are doing that, this would be a good time to "pin" the "Anaconda Powershell" to your "Start Menu."
+*  In Windows, you can find an "Anaconda Powershell" under your "apps" from the "Start Menu" under "Anaconda (miniconda3)" (or just "Anaconda" if you have Anaconda installed from earlier classwork).  That will launch you into a conda-friendly operating system environment.  While you are doing that, this would be a good time to "pin" the "Anaconda Powershell" to your "Start Menu."
 
 If your terminal or Power Shell has a "(base)" at the user prompt, you are ready to go!
 
@@ -66,18 +66,21 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [Pandas](https://pandas.pydata.org) A package commonly used for working with tabular data as well as time series data
 * [SymPy](https://www.sympy.org/en/index.html) A symbolic algebraic solver engine for Python
 * [Scikit-Learn](https://scikit-learn.org/stable/) An open-source set of libraries for regressions, cluster analyses, and similar "machine-learning" activities.
+* [xarray](http://xarray.pydata.org/en/stable/) Data manipulation and archiving of multi-dimensional datasets
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
 * [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas data frames
 * [itables](https://mwouts.github.io/itables/quick_start.html) If you use Pandas in a Juptyer Notebook this is a must-have for working with large DataFrames.  It provides the same functional table rendering in RStudio.
+* [johnnydep](https://github.com/wimglenn/johnnydep): Look. I didn't name it.  But it is very useful in assessing dependancies of any given package and it comes in handy when conda-forge doesn't have a give package but you want to keep any dependancies inside of the conda-forge-verse!
 * [version_information](https://github.com/jrjohansson/version_information) A very handy tool by Robert Johansson for Jupyter Notebooks to record what packages and their versions were used to make your notebook.  Good for troubleshooting and documentation/replicability.
 
 In your terminal window, enter the following *one line at a time*:
 
 ```
+conda install -c conda-forge numpy scipy scikit-learn
 conda install -c conda-forge jupyterlab  
-conda install -c conda-forge numpy matplotlib scipy sympy pandas xarray itables
-conda install -c conda-forge scikit-learn seaborn openpyxl pyreadr version_information
+conda install -c conda-forge matplotlib sympy pandas xarray itables johnnydep
+conda install -c conda-forge seaborn openpyxl pyreadr version_information
 ```
 
 ```warning
@@ -104,13 +107,13 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [geopandas](https://geopandas.org/en/stable/) Geospatial access that leverages Pandas's Dataframe style resources
 
 * Get the following complex data and meteo data resources
-  * [xarray](http://xarray.pydata.org/en/stable/) Data manipulation and archiving of multi-dimensional datasets
   * [pint](https://pint.readthedocs.io/en/stable/) and [pint-xarray](https://pint-xarray.readthedocs.io/en/latest/) units support
   * [metpy](https://unidata.github.io/MetPy/latest/index.html) UCAR-Unidata tools for reading, viewing, and analyzing meteo data
   * [netCDF4](https://unidata.github.io/netcdf4-python/) UCAR-Unidata tools for NetCDF4 Support
   * [Siphon](https://unidata.github.io/siphon/latest/) UCAR-Unidata support for accessing remote meteo data
   * [pyGrib](https://jswhit.github.io/pygrib/) NOAA-ESRL tools for WMO Gridded Binary (GRIB 1/2) support
   * [cfGrib](https://github.com/ecmwf/cfgrib) ECMWF tools for WMO Gridded Binary (GRIB 1/2) support
+  * [zarr](https://zarr.readthedocs.io/en/stable/)
   * [cftime](https://unidata.github.io/cftime/) UCAR-Unidata support for time data support (including 360-day, leap-year-free 365-day, and other quirky calendars that only a meteorologist would love because the rest of the world are monsters)
   * [cf-python](https://ncas-cms.github.io/cf-python/) an Earth science data analysis library that is built on a complete implementation of the CF data model
   * [cf-plot](http://ajheaps.github.io/cf-plot) is a set of Python routines for making the common contour, vector, and line plots that climate researchers use
@@ -124,16 +127,17 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [geocat-comp](https://geocat-comp.readthedocs.io/en/stable/) GeoCAT-comp provides implementations of computational functions for operating on geosciences data
   * [geocat-viz](https://geocat-viz.readthedocs.io/en/latest/index.html) The GeoCAT-viz repo contains tools to help plot data, including convenience and plotting functions that are used to facilitate plotting geosciences data with Matplotlib, Cartopy, and possibly other Python ecosystem plotting packages
   * [uxarray](https://uxarray.readthedocs.io/en/latest/index.html) UXarray provides Xarray-styled functionality for working with unstructured grids built around the UGRID conventions
+  * [airportsdata](https://github.com/mborsetti/airportsdata/blob/main/README.rst) working with meteo data?  Need to look up ICAO or IATA codes, stations and locations?  This is your package (this one is new to conda-forge - you had to load it with pip in the past)
 
 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
-conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 
-conda install -c conda-forge siphon pygrib timezonefinder iris satpy
+conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 zarr
+conda install -c conda-forge siphon pygrib timezonefinder iris satpy airportsdata
 conda install -c conda-forge cftime cfdm cf_xarray cf_pandas cf-units cfgrib
 conda install -c conda-forge pytz haversine uxarray wrapt setuptools cython
-conda install -c conda-forge geocat-comp geocat-viz
-conda install -c conda-forge basemap-data basemap-data-hires
+conda install -c conda-forge geocat-comp geocat-viz 
+conda install -c conda-forge basemap-data basemap-data-hires 
 ```
 
 ```warning

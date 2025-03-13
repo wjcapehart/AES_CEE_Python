@@ -69,3 +69,4 @@ Many of these examples are still being modified to make them more navigable. Con
 ### Remotely Accessing Data from External Data Services
 
 * [Web Page of Jupyter Notebook for USGS's NWIS Services](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_06_Science_Data_Services/USGS_DataRetrieval_Demo.html)
+* [Web Page of Jupyter Notebook for NOAA-NCEI Climate Data Online Services](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_06_Science_Data_Services/NCEI_PYNCEI_Demo.html)
