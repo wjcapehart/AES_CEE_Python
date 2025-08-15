@@ -10,16 +10,17 @@ Looking for Mathcad Prime Instructions?  Click [here](https://support.sdsmt.edu/
 Installing Python can take a while.  Much of it is spent letting the package manager search for available package versions that will not conflict with other installed packages.  Be Patient.
 ```
 
-## 1 Installing ~Miniconda~ Minforge
+## 1 Installing Miniforge/Miniconda
 
+```note
+If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), you are probably fine and can move on to the next steps.  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
+```
 
-I am recommending that you use "Miniforge" for this.  Miniforge is a "slimmed down" version of the larger Anaconda package many people recommend. My experience is that the overhead for Anaconda makes for lots of problems later. The landing page to get Miniconda installed on Windows or MacOS is here:     
+I am recommending that you use "Miniforge" for this step.  Miniforge is a "slimmed down" version of the larger Anaconda package many people recommend. My experience is that the overhead for Anaconda makes for lots of problems later. The landing page to get Miniforge installed on Windows or MacOS is here:     
 
 *  [https://conda-forge.org/download/](https://conda-forge.org/download/)
 
-```note
-If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), for now, you are fine.  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
-```
+
 
 ## 2 Adding and Locking-down Conda-Forge as your designated channel
 
