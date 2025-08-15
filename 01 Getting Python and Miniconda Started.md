@@ -10,35 +10,53 @@ Looking for Mathcad Prime Instructions?  Click [here](https://support.sdsmt.edu/
 Installing Python can take a while.  Much of it is spent letting the package manager search for available package versions that will not conflict with other installed packages.  Be Patient.
 ```
 
-## 1 Installing Miniconda
+## 1 Installing ~Miniconda~ Minforge
 
 
-I am recommending that you use Miniconda for this.  Miniconda is a "slimmed down" version of the larger Anaconda package many people recommend.  My experience is that the overhead for Anaconda makes for lots of problems later. The instructions to get Miniconda installed on Windows or MacOS is here:     
+I am recommending that you use "Miniforge" for this.  Miniforge is a "slimmed down" version of the larger Anaconda package many people recommend. My experience is that the overhead for Anaconda makes for lots of problems later. The landing page to get Miniconda installed on Windows or MacOS is here:     
 
-*  [https://www.anaconda.com/download/success#miniconda](https://www.anaconda.com/download/success#miniconda)
+*  [https://conda-forge.org/download/](https://conda-forge.org/download/)
 
 ```note
-If you have Anaconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), for now, you are fine.  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
+If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), for now, you are fine.  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
 ```
 
 ## 2 Adding and Locking-down Conda-Forge as your designated channel
 
 Also, I am recommending that you work mostly through the conda-forge community.  Again, this provides more consistency in many of the packages you'll be working with. There are scores of repository areas (or "channels" in the conda community). Consequently, it is easy to accidentally get a package that was written by Frank that relies on a package written by Susan, which (naturally) is reliant on one developed by Pat.  The result can be a web of dependencies that may eventually conflict once you install "that one package."  Therefore we will stick with conda-forge as the "go-to" channel to get your packages.  From my experience, it's provided the least amount of misery.  
 
-To enable conda-forge, you should open a terminal window.
+TL;DR: Pick a butchershop you can trust, and stick with 'em.  
 
-*  In Unix or MacOS, it's just a terminal window.
-*  In Windows, you can find an "Anaconda Powershell" under your "apps" from the "Start Menu" under "Anaconda (miniconda3)" (or just "Anaconda" if you have Anaconda installed from earlier classwork).  That will launch you into a conda-friendly operating system environment.  While you are doing that, this would be a good time to "pin" the "Anaconda Powershell" to your "Start Menu."
 
-If your terminal or Power Shell has a "(base)" at the user prompt, you are ready to go!
+```warning
+We are now recommending that you use Miniforge over Miniconda or Anaconda.  
 
-Once you have an open working terminal, enter the following commands one line at a time.  **You will be prompted to proceed on each step so don't drop the entire command blocks shown below.**
+There is one noticable user difference between the three: the "Console" that you will need to use if you are on a Windows machine.  
+
+Miniconda/Anaconda will have their "Anaconda/Miniconda prompt [or console or shell]" under the Window's Start Menu in the "Anaconda" or "Anaconda (miniconda 3)" window.  In the instructions below when you are asked to open a "console" use that.
+
+Likewise there is a seperate console for Miniforge under the "Ms" iseparate console for Miniforge under the "M's" in the Start Menu called "Minoforge prompt."  This will be *your* "console."
+
+Any of these options will have the same functionality.
+```
+
+To enable conda-forge, you should open a "Console" "shell".
+
+*  In Unix or MacOS, it's just a Terminal window.
+*  In Windows, you can find an "Console" under your "apps" from the "Start Menu."  That will launch you into a conda-friendly (but Spartan) operating system environment.  While you are doing that, this would be a good time to "pin" which Console you are using to the Start Menu with the traditional windows right-click.
+
+If your Console has a "(base)" at the user prompt, you are ready to go!
+
+Once you have an open working Console, enter the following commands one line at a time.  **You will be prompted to proceed on each step so don't drop the entire command blocks shown below.**
+
+Just copy and paste each line one at a time.  Don't copy/paste multiple lines at once.
+
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
-With this, you should have your "channel" locked in.
+With this, you should have your "channel" locked in.  ("Miniforge" does this automatically but do the commands anyway.)
 
 Now run an update to set this channel's packages as *your* packages.  There will be a LOT of them.  Approve these changes.  This will create a consistent distribution of packages that should be less likely to conflict with one another.
 
@@ -71,10 +89,10 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
 * [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas data frames
 * [itables](https://mwouts.github.io/itables/quick_start.html) If you use Pandas in a Juptyer Notebook this is a must-have for working with large DataFrames.  It provides the same functional table rendering in RStudio.
-* [johnnydep](https://github.com/wimglenn/johnnydep): Look. I didn't name it.  But it is very useful in assessing dependancies of any given package and it comes in handy when conda-forge doesn't have a give package but you want to keep any dependancies inside of the conda-forge-verse!
+* [johnnydep](https://github.com/wimglenn/johnnydep): Look. I didn't name it.  But it is very useful in assessing dependancies of any given package and it comes in handy when conda-forge doesn't have a give package but you want to keep any dependancies inside of the conda-forge-verse!  ["johnny" is a scripting language & "dep" stands for dependancies] 
 * [version_information](https://github.com/jrjohansson/version_information) A very handy tool by Robert Johansson for Jupyter Notebooks to record what packages and their versions were used to make your notebook.  Good for troubleshooting and documentation/replicability.
 
-In your terminal window, enter the following *one line at a time*:
+In your Console window, enter the following *one line at a time*:
 
 ```
 conda install -c conda-forge numpy scipy scikit-learn
@@ -152,9 +170,9 @@ conda install -c conda-forge wrf-python
 
 ## 4 "Let's Light This Candle!"
 
-How we are ready to go.  To launch Jupyter, I recommend that you again open the Anaconda Powershell Prompt from the start menu if it's not open already. You can also "Pin" it to your "Start" for easy access along with Excel and Mathcad.)
+How we are ready to go.  To launch Jupyter, I recommend that you again open your Python "Console" from the start menu if it's not open already. Again, you can also "Pin" it to your "Start" for easy access along with Excel, Mathcad, etc.)
 
-At the shell prompt, enter. 
+At the Console prompt, enter. 
 
 ```
 jupyter lab
