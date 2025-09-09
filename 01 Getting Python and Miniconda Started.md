@@ -147,7 +147,7 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [geocat-viz](https://geocat-viz.readthedocs.io/en/latest/index.html) The GeoCAT-viz repo contains tools to help plot data, including convenience and plotting functions that are used to facilitate plotting geosciences data with Matplotlib, Cartopy, and possibly other Python ecosystem plotting packages
   * [uxarray](https://uxarray.readthedocs.io/en/latest/index.html) UXarray provides Xarray-styled functionality for working with unstructured grids built around the UGRID conventions
   * [airportsdata](https://github.com/mborsetti/airportsdata/blob/main/README.rst) working with meteo data?  Need to look up ICAO or IATA codes, stations and locations?  This is your package (this one is new to conda-forge - you had to load it with pip in the past) 
-
+  * [arm_pyart](https://arm-doe.github.io/pyart/) The Python ARM Radar Toolkit, Py-ART, is a Python module containing a collection of weather radar algorithms and utilities.
 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
@@ -155,7 +155,7 @@ conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 zarr
 conda install -c conda-forge siphon pygrib timezonefinder iris satpy airportsdata
 conda install -c conda-forge cftime cfdm cf_xarray cf_pandas cf-units cfgrib
 conda install -c conda-forge pytz haversine uxarray wrapt setuptools cython
-conda install -c conda-forge geocat-comp geocat-viz 
+conda install -c conda-forge geocat-comp geocat-viz arm_pyart
 conda install -c conda-forge basemap-data basemap-data-hires 
 ```
 
