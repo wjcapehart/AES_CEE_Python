@@ -7,7 +7,7 @@ output:
 
 **THIS NOTEBOOK CUTS OUT ALL THE BASIC STATS AND CUTS TO THE CHASE WITH MULTIVARIATE REGRESSON AND INCLUDES A SECTION ON PIECEWISE REGRESSION**
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+This is an [R Markdown](https://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
 
 These notebooks are typically this is designed to create a pleasing viewing environment of data analysis that allows you to include figures, text, links, etc. so that your work is better understood and can be reproduced and used with confidence.
 
@@ -19,7 +19,7 @@ If viewing the source code in R Studio, try executing each R "chunk" by clicking
 
 # 1. Introduction
 
-When you're in [MATH 381 (Intro to Probability and Stats)](http://ecatalog.sdsmt.edu/preview_course_nopop.php?catoid=17&coid=26571) you'll get a taste of R. R is an open-source statistical package build off of an earlier generation of commercial.
+When you're in [MATH 381 (Intro to Probability and Stats)](https://ecatalog.sdsmt.edu/preview_course_nopop.php?catoid=17&coid=26571) you'll get a taste of R. R is an open-source statistical package build off of an earlier generation of commercial.
 
 The goal here is to demonstrate cracking open an excel spreadsheet in R and calculate some basic stats, create various plots to view the statistics, and finally, do some linear and multivariate regression
 
@@ -35,7 +35,7 @@ To work with R we will first have to load some libraries. This is like in C wher
 
 Some of these libraries or "packages" come with R. Others will have to be installed. Here are the ones we are using for this exercise.
 
-Also in this exercise, we're going to use the [tidyverse](https://www.tidyverse.org) set of packages. Tidyverse is a set of co-developed tools for data science in R. This is the new big thing in R and is widely used so we are just going to jump in here. SD Mines has a course beyond Engineering Stats, [MATH 443/543 (Data Analysis)](http://ecatalog.sdsmt.edu/preview_course_nopop.php?catoid=17&coid=26973) that leverages this set of packages.
+Also in this exercise, we're going to use the [tidyverse](https://www.tidyverse.org) set of packages. Tidyverse is a set of co-developed tools for data science in R. This is the new big thing in R and is widely used so we are just going to jump in here. SD Mines has a course beyond Engineering Stats, [MATH 443/543 (Data Analysis)](https://ecatalog.sdsmt.edu/preview_course_nopop.php?catoid=17&coid=26973) that leverages this set of packages.
 
 -   Install Us First
     -   [tidyverse](https://www.tidyverse.org) : Set of commonly-used Data Science packages for R that it can install and load all at once. In the long-run you probably also want to install the tidyverse package suite anyway. For this exercise this will include...
@@ -88,11 +88,11 @@ The spreadsheet example below is a more complicated than what you hopefully have
 
 The original data set is from a set of papers on Concrete by I-Cheng Yeh
 
--   [Yeh, I-Cheng, "Modeling slump of concrete with fly ash and superplasticizer," *Computers and Concrete*, **5**(6), 559-572, 2008. doi: 10.12989/cac.2008.5.6.559.](http://www.techno-press.org/content/?page=article&journal=cac&volume=5&num=6&ordernum=4)
+-   [Yeh, I-Cheng, "Modeling slump of concrete with fly ash and superplasticizer," *Computers and Concrete*, **5**(6), 559-572, 2008. doi: 10.12989/cac.2008.5.6.559.](https://www.techno-press.org/content/?page=article&journal=cac&volume=5&num=6&ordernum=4)
 
 -   [Yeh, I-Cheng, "Simulation of concrete slump using neural networks," *Construction Materials*, **162**(1), 11-18, 2009. doi: 10.1680/coma.2009.162.1.11](https://www.icevirtuallibrary.com/doi/10.1680/coma.2009.162.1.11)
 
--   [Yeh, I-Cheng, "Prediction of workability of concrete using design of experiments for mixtures," *Computers and Concrete*, **5**(1), 1-20, 2008. doi: 10.12989/cac.2008.5.1.001](http://www.techno-press.org/content/?page=article&journal=cac&volume=5&num=1&ordernum=1)
+-   [Yeh, I-Cheng, "Prediction of workability of concrete using design of experiments for mixtures," *Computers and Concrete*, **5**(1), 1-20, 2008. doi: 10.12989/cac.2008.5.1.001](https://www.techno-press.org/content/?page=article&journal=cac&volume=5&num=1&ordernum=1)
 
 -   [Yeh, I-Cheng, "Modeling slump flow of concrete using second-order regressions and artificial neural networks," *Cement and Concrete Composites*, **29**(6), 474-480, 2007. doi: 10.1016/j.cemconcomp.2007.02.001](https://www.sciencedirect.com/science/article/pii/S0958946507000261?via%3Dihub)
 
