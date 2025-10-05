@@ -13,7 +13,7 @@ Installing Python can take a while.  Much of it is spent letting the package man
 ## 1 Installing Miniforge/Miniconda
 
 ```note
-If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), you are probably fine and can move on to the next steps.  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniconda.  Consult with your professor for proper guidance.
+If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), you are probably fine and can move on to the next steps where you installing packages  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniforge.  Consult with your professor for proper guidance.
 ```
 
 I am recommending that you use "Miniforge" for this step.  Miniforge is a "slimmed down" version of the larger Anaconda package many people recommend. My experience is that the overhead for Anaconda makes for lots of problems later. The landing page to get Miniforge installed on Windows or MacOS is here:     
@@ -146,8 +146,8 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [geocat-comp](https://geocat-comp.readthedocs.io/en/stable/) GeoCAT-comp provides implementations of computational functions for operating on geosciences data
   * [geocat-viz](https://geocat-viz.readthedocs.io/en/latest/index.html) The GeoCAT-viz repo contains tools to help plot data, including convenience and plotting functions that are used to facilitate plotting geosciences data with Matplotlib, Cartopy, and possibly other Python ecosystem plotting packages
   * [uxarray](https://uxarray.readthedocs.io/en/latest/index.html) UXarray provides Xarray-styled functionality for working with unstructured grids built around the UGRID conventions
-  * [airportsdata](https://github.com/mborsetti/airportsdata/blob/main/README.rst) working with meteo data?  Need to look up ICAO or IATA codes, stations and locations?  This is your package (this one is new to conda-forge - you had to load it with pip in the past)
-
+  * [airportsdata](https://github.com/mborsetti/airportsdata/blob/main/README.rst) working with meteo data?  Need to look up ICAO or IATA codes, stations and locations?  This is your package (this one is new to conda-forge - you had to load it with pip in the past) 
+  * [arm_pyart](https://arm-doe.github.io/pyart/) The Python ARM Radar Toolkit, Py-ART, is a Python module containing a collection of weather radar algorithms and utilities.
 
 ```
 conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
@@ -155,7 +155,7 @@ conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 zarr
 conda install -c conda-forge siphon pygrib timezonefinder iris satpy airportsdata
 conda install -c conda-forge cftime cfdm cf_xarray cf_pandas cf-units cfgrib
 conda install -c conda-forge pytz haversine uxarray wrapt setuptools cython
-conda install -c conda-forge geocat-comp geocat-viz 
+conda install -c conda-forge geocat-comp geocat-viz arm_pyart
 conda install -c conda-forge basemap-data basemap-data-hires 
 ```
 
