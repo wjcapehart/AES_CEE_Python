@@ -85,7 +85,7 @@ Then you can install (or reinstall) the following basic "must-have" packages for
 * [Pandas](https://pandas.pydata.org) A package commonly used for working with tabular data as well as time series data
 * [SymPy](https://www.sympy.org/en/index.html) A symbolic algebraic solver engine for Python
 * [Scikit-Learn](https://scikit-learn.org/stable/) An open-source set of libraries for regressions, cluster analyses, and similar "machine-learning" activities.
-* [xarray](http://xarray.pydata.org/en/stable/) Data manipulation and archiving of multi-dimensional datasets
+* [xarray](https:///xarray.pydata.org/en/stable/) Data manipulation and archiving of multi-dimensional datasets
 * [seaborn](https://seaborn.pydata.org) An extension to Matplotlib for graph customization and more fancy graphics (often tied to statistical-type graphs.
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/) A Python library to read/write Excel 2010 xlsx/xlsm files
 * [pyreadr](https://github.com/ofajardo/pyreadr#pyreadr) A Package to read and write R RData and Rds files into/from pandas data frames
@@ -135,11 +135,11 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [zarr](https://zarr.readthedocs.io/en/stable/)
   * [cftime](https://unidata.github.io/cftime/) UCAR-Unidata support for time data support (including 360-day, leap-year-free 365-day, and other quirky calendars that only a meteorologist would love because the rest of the world are monsters)
   * [cf-python](https://ncas-cms.github.io/cf-python/) an Earth science data analysis library that is built on a complete implementation of the CF data model
-  * [cf-plot](http://ajheaps.github.io/cf-plot) is a set of Python routines for making the common contour, vector, and line plots that climate researchers use
+  * [cf-plot](https:///ajheaps.github.io/cf-plot) is a set of Python routines for making the common contour, vector, and line plots that climate researchers use
   * [cf-units](https://cf-units.readthedocs.io/en/latest/) Provision of a wrapper class to support Unidata/UCAR UDUNITS-2, and the cftime calendar functionality
   * [cf_xarray](https://cf-xarray.readthedocs.io/en/latest/) cf_xarray mainly provides an accessor that allows you to interpret Climate and Forecast metadata convention attributes present on xarray object
   * [timezonefinder](https://timezonefinder.readthedocs.io/en/latest/) useful for converting from civilized UTC time to more vulgar local times (including "daylight-'savings'" time).
-  * [pytz](http://pytz.sourceforge.net) further support for time zones
+  * [pytz](https:///pytz.sourceforge.net) further support for time zones
   * [haversine](https://github.com/mapado/haversine) Calculate the distance (in various units) between two points on Earth using their latitude and longitude.
   * [wrf-python](https://wrf-python.readthedocs.io/en/latest/) A collection of diagnostic and interpolation routines for use with output from the Weather Research and Forecasting (WRF-ARW) Model.
   * [iris](https://scitools-iris.readthedocs.io/en/stable/) A powerful, format-agnostic, community-driven Python package for analyzing and visualizing Earth science data
