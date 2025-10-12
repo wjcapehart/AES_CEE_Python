@@ -20,7 +20,6 @@ Looking for Mathcad Prime Instructions?  Click <a href="https://support.sdsmt.ed
 
 {: .note }
 If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), you are probably fine and can move on to the next steps where you install packages.  If you are in an Atmospheric Sci class or upper-level science class, you may want to remove Anaconda for Miniforge.  Could you consult with your professor for proper guidance?
-```
 
 I am recommending that you use "Miniforge" for this step.  Miniforge is a "slimmed down" version of the larger Anaconda package many people recommend. My experience is that the overhead for Anaconda makes for lots of problems later. The landing page to get Miniforge installed on Windows or MacOS is here:     
 
@@ -35,17 +34,17 @@ Also, I am recommending that you work mostly through the conda-forge community. 
 TL;DR: Pick a butchershop you can trust, and stick with 'em.  
 
 
-```warning
+{: .warning }
 We are now recommending that you use Miniforge over Miniconda or Anaconda.  
 
-There is one noticable user difference between the three: the "Console" that you will need to use if you are on a Windows machine.  
+There is one noticeable user difference between the three: the "Console" that you will need to use if you are on a Windows machine.  
 
-Miniconda/Anaconda will have their "Anaconda/Miniconda prompt [or console or shell]" under the Window's Start Menu in the "Anaconda" or "Anaconda (miniconda 3)" window.  In the instructions below when you are asked to open a "console" use that.
+Miniconda/Anaconda will have their "Anaconda/Miniconda prompt [or console or shell]" under the Windows Start Menu in the "Anaconda" or "Anaconda (miniconda 3)" window.  In the instructions below, when you are asked to open a "console," use that.
 
-Likewise there is a seperate console for Miniforge under the "Ms" iseparate console for Miniforge under the "M's" in the Start Menu called "Minoforge prompt."  This will be *your* "console."
+Likewise, there is a separate console for Miniforge under the "Ms" in the Start Menu called "Miniforge prompt."  This will be *your* "console."
 
 Any of these options will have the same functionality.
-```
+
 
 To enable conda-forge, you should open a "Console" "shell".
 
@@ -108,13 +107,13 @@ conda install -c conda-forge matplotlib sympy pandas xarray itables johnnydep
 conda install -c conda-forge seaborn openpyxl pyreadr version_information
 ```
 
-```warning
+{: .warning }
 When installing with *conda* it will first try to reconcile all the packages so any given package doesn't have components that may "break" other packages.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.
-
+{: .warning }
 You may also experience a few iterations of "Solving Environment," as shown below.  The busier your distribution, the more likely this will happen.  At that point, it is also best to only install one package at a time rather than a bunch in one single command.
 
 ![Conda Struggling to Reconcile Packages](images/Conda_Struggling_to_Reconcile_Packages.png) 
-```
+
 
 
 
