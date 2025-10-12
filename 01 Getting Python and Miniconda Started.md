@@ -6,8 +6,9 @@
 Looking for Mathcad Prime Instructions?  Click [here](https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58)!  Regardless of what the instructions say, always install the latest edition.
 ```
 
-```warning
-Installing Python can take a while.  Much of it is spent letting the package manager search for available package versions that will not conflict with other installed packages.  Be Patient.
+```markdown
+{: .warning }
+Installing Python can take a while.  Much of the time is spent allowing the package manager to search for available package versions that will not conflict with other installed packages.  Be Patient.
 ```
 
 ## 1 Installing Miniforge/Miniconda
