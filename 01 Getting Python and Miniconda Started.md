@@ -2,16 +2,17 @@
 
 
 
-```note
-Looking for Mathcad Prime Instructions?  Click [here](https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58)!  Regardless of what the instructions say, always install the latest edition.
-```
 
-```markdown
-{: .warning }
-Installing Python can take a while.  Much of the time is spent allowing the package manager to search for available package versions that will not conflict with other installed packages.  Be Patient.
-```
 
-{% include note.html content="This is my note. All the content I type here is treated as a single paragraph. <br/><br/> Now I'm typing on a  new line." %}
+<div class="alert alert-info" role="alert">
+  Looking for Mathcad Prime Instructions?  Click <a href="https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58">here</a>.  Regardless of what the instructions say, always install the latest edition.
+</div>
+
+
+<div class="alert alert-warning" role="alert">
+  Installing Python can take a while.  Much of the time is spent allowing the package manager to search for available package versions that will not conflict with other installed packages.  Be Patient.
+</div>
+
 
 
 ## 1 Installing Miniforge/Miniconda
