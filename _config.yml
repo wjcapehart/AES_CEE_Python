@@ -21,6 +21,8 @@
 # Build settings
 ## remote_theme: clearpathrobotics/jekyll-rtd-theme
 remote_theme: just-the-docs/just-the-docs
+color_scheme: sdmines
+
 title: Dr C's Python Support Pages
 email: William.Capehart@sdsmt.edu
 description: Dr Capehart's Support Page for Python @ SD Mines
@@ -83,7 +85,7 @@ callouts:
     color: purple
   caution:
     title: Caution
-    color: yellow
+    color: orange
   warning:
     title: Warning
     color: red
