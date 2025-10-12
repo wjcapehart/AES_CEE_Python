@@ -1,13 +1,6 @@
 # Getting the Stuff to Get Started
 
 
-
-
-
-<div class="alert alert-info" role="alert">
-  
-</div>
-
 {: .note }
 Looking for Mathcad Prime Instructions?  Click <a href="https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58">here</a>.  Regardless of what the instructions say, always install the latest edition.
 
@@ -19,7 +12,8 @@ Looking for Mathcad Prime Instructions?  Click <a href="https://support.sdsmt.ed
 ## 1 Installing Miniforge/Miniconda
 
 {: .note }
-If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), you are probably fine and can move on to the next steps where you install packages.  If you are in an Atmospheric Sci class or upper-level science class, you may want to remove Anaconda for Miniforge.  Could you consult with your professor for proper guidance?
+If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), you are probably fine and can move on to the next steps, where you install packages.  If you are in an Atmospheric Sci class or upper-level science class, you may want to remove Anaconda for Miniforge.  Consult with your professor for proper guidance.
+
 
 I am recommending that you use "Miniforge" for this step.  Miniforge is a "slimmed down" version of the larger Anaconda package many people recommend. My experience is that the overhead for Anaconda makes for lots of problems later. The landing page to get Miniforge installed on Windows or MacOS is here:     
 
@@ -29,13 +23,11 @@ I am recommending that you use "Miniforge" for this step.  Miniforge is a "slimm
 
 ## 2 Adding and Locking-down Conda-Forge as your designated channel
 
-Also, I am recommending that you work mostly through the conda-forge community.  Again, this provides more consistency in many of the packages you'll be working with. There are scores of repository areas (or "channels" in the conda community). Consequently, it is easy to accidentally get a package that was written by Frank that relies on a package written by Susan, which (naturally) is reliant on one developed by Pat.  The result can be a web of dependencies that may eventually conflict once you install "that one package."  Therefore we will stick with conda-forge as the "go-to" channel to get your packages.  From my experience, it's provided the least amount of misery.  
+Also, I am recommending that you work mostly through the conda-forge community.  Again, this provides more consistency in many of the packages you'll be working with. There are scores of repository areas (or "channels" in the conda community). Consequently, it is easy to accidentally get a package that was written by Frank that relies on a package written by Susan, which (naturally) is reliant on one developed by Pat.  The result can be a web of dependencies that may eventually conflict once you install "that one package."  Therefore, we will stick with conda-forge as the "go-to" channel to get your packages.  From my experience, it's provided the least amount of misery.  
 
 TL;DR: Pick a butchershop you can trust, and stick with 'em.  
 
 
-{: .warning }
-We are now recommending that you use Miniforge over Miniconda or Anaconda.  
 
 There is one noticeable user difference between the three: the "Console" that you will need to use if you are on a Windows machine.  
 
@@ -107,9 +99,10 @@ conda install -c conda-forge matplotlib sympy pandas xarray itables johnnydep
 conda install -c conda-forge seaborn openpyxl pyreadr version_information
 ```
 
-{: .warning }
-When installing with *conda* it will first try to reconcile all the packages so any given package doesn't have components that may "break" other packages.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.
-{: .warning }
+
+When installing with *conda*, it will first try to reconcile all the packages so any given package doesn't have components that may "break" other packages.  This you may get a warning saying that the "solving environment" has failed and it's trying another set of requirements.
+
+
 You may also experience a few iterations of "Solving Environment," as shown below.  The busier your distribution, the more likely this will happen.  At that point, it is also best to only install one package at a time rather than a bunch in one single command.
 
 ![Conda Struggling to Reconcile Packages](images/Conda_Struggling_to_Reconcile_Packages.png) 
@@ -166,7 +159,6 @@ conda install -c conda-forge basemap-data basemap-data-hires
 
 ```warning
 WRF-Python will require additional steps to get it running in most environments until the package is updated for more recent versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237).  The biggest one at present is that you will need a new conda environment based on an older version of Python-3 ([Hat tip to Eric Salathé @ U. Washington](https://groups.google.com/a/ucar.edu/g/wrfpython-talk/c/QfZ_eEfTbDI)}.  If you need WRF-Python, see Dr. Capehart or Dr. French in person for guidance.
-```
 
 ```
 conda install -c conda-forge wrf-python 
