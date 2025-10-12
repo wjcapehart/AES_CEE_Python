@@ -11,6 +11,9 @@ Looking for Mathcad Prime Instructions?  Click [here](https://support.sdsmt.edu/
 Installing Python can take a while.  Much of the time is spent allowing the package manager to search for available package versions that will not conflict with other installed packages.  Be Patient.
 ```
 
+{% include note.html content="This is my note. All the content I type here is treated as a single paragraph. <br/><br/> Now I'm typing on a  new line." %}
+
+
 ## 1 Installing Miniforge/Miniconda
 
 ```note
