@@ -4,7 +4,7 @@
 {: .note }
 Looking for Mathcad Prime Instructions?  Click <a href="https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58">here</a>.  Regardless of what the instructions say, always install the latest edition.
 
-{: .highlight }
+{: .caution }
   Installing Python can take a while.  Much of the time is spent allowing the package manager to search for available package versions that will not conflict with other installed packages.  Be Patient.
 
 
@@ -54,6 +54,7 @@ Just copy and paste each line one at a time.  Don't copy/paste multiple lines at
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
+
 With this, you should have your "channel" locked in.  ("Miniforge" does this automatically but do the commands anyway.)
 
 Now run an update to set this channel's packages as *your* packages.  There will be a LOT of them.  Approve these changes.  This will create a consistent distribution of packages that should be less likely to conflict with one another.
@@ -157,7 +158,7 @@ conda install -c conda-forge geocat-comp geocat-viz arm_pyart
 conda install -c conda-forge basemap-data basemap-data-hires 
 ```
 
-```warning
+{: .warning }
 WRF-Python will require additional steps to get it running in most environments until the package is updated for more recent versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237).  The biggest one at present is that you will need a new conda environment based on an older version of Python-3 ([Hat tip to Eric Salathé @ U. Washington](https://groups.google.com/a/ucar.edu/g/wrfpython-talk/c/QfZ_eEfTbDI)}.  If you need WRF-Python, see Dr. Capehart or Dr. French in person for guidance.
 
 ```
@@ -168,7 +169,7 @@ conda install -c conda-forge wrf-python
 
 ## 4 "Let's Light This Candle!"
 
-How we are ready to go.  To launch Jupyter, I recommend that you again open your Python "Console" from the start menu if it's not open already. Again, you can also "Pin" it to your "Start" for easy access along with Excel, Mathcad, etc.)
+Now we are ready to go.  To launch Jupyter, I recommend that you again open your Python "Console" from the start menu if it's not open already. Again, you can also "Pin" it to your "Start" for easy access, along with Excel, Mathcad, etc.)
 
 At the Console prompt, enter. 
 
