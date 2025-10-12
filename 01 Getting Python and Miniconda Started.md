@@ -5,20 +5,21 @@
 
 
 <div class="alert alert-info" role="alert">
-  Looking for Mathcad Prime Instructions?  Click <a href="https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58">here</a>.  Regardless of what the instructions say, always install the latest edition.
+  
 </div>
 
+{: .note }
+Looking for Mathcad Prime Instructions?  Click <a href="https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58">here</a>.  Regardless of what the instructions say, always install the latest edition.
 
-<div class="alert alert-warning" role="alert">
+{: .highlight }
   Installing Python can take a while.  Much of the time is spent allowing the package manager to search for available package versions that will not conflict with other installed packages.  Be Patient.
-</div>
 
 
 
 ## 1 Installing Miniforge/Miniconda
 
-```note
-If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), you are probably fine and can move on to the next steps where you installing packages  If you are in an Atmospheric Sci class or upper-level science class you may want to remove Anaconda for Miniforge.  Consult with your professor for proper guidance.
+{: .note }
+If you have Anaconda or Miniconda already installed from other classwork and aren't going to put much on it (i.e., if you are in CEE 284), you are probably fine and can move on to the next steps where you install packages.  If you are in an Atmospheric Sci class or upper-level science class, you may want to remove Anaconda for Miniforge.  Could you consult with your professor for proper guidance?
 ```
 
 I am recommending that you use "Miniforge" for this step.  Miniforge is a "slimmed down" version of the larger Anaconda package many people recommend. My experience is that the overhead for Anaconda makes for lots of problems later. The landing page to get Miniforge installed on Windows or MacOS is here:     
