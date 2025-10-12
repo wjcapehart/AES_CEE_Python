@@ -85,7 +85,7 @@ callouts:
     color: purple
   caution:
     title: Caution
-    color: yellow-300
+    color: yellow
   warning:
     title: Warning
     color: red
