@@ -73,16 +73,20 @@ plugins:
 callouts_level: quiet # or loud
 callouts:
   highlight:
+    title: Information
     color: yellow
   important:
     title: Important
     color: blue
   new:
-    title: New
+    title: Comment
     color: green
   note:
     title: Note
     color: purple
+  caution:
+    title: Warning
+    color: orange
   warning:
     title: Warning
     color: red
