@@ -1,5 +1,6 @@
 # Getting the Stuff to Get Started
-
+> [!TIP] My own title
+> Fancy!
 
 {: .note }
 Looking for Mathcad Prime Instructions?  Click <a href="https://support.sdsmt.edu/TDClient/30/Portal/KB/ArticleDet?ID=58">here</a>.  Regardless of what the instructions say, always install the latest edition.
