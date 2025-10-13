@@ -50,6 +50,10 @@ plugins:
   - jekyll-feed
   - jekyll-email-protect
   - jekyll-remote-theme
+  - jekyll-gfm-admonitions
+  - jekyll-optional-front-matter
+
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
