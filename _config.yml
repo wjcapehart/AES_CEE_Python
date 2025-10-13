@@ -22,11 +22,11 @@
 remote_theme: just-the-docs/just-the-docs
 
 color_scheme: sdmines
+logo: images/Department_Lockups_AES_CEE_blue_trans.png
 
 title: Dr C's Python Support Pages
 email: William.Capehart@sdsmt.edu
 description: Dr Capehart's Support Page for Python @ SD Mines
-# logo: images/Department_Lockups_AES_CEE_blue_trans.png
 sdmines_directory_homepage: https://www.sdsmt.edu/about/directory/capehart_-william.html
 orcid_number: 0000-0002-4926-0992
 linkin_username: william-capehart/
