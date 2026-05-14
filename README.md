@@ -29,7 +29,7 @@ South Dakota Mines<br>
 
 <a href="https://orcid.org/0000-0002-4926-0992"><sub><img alt="ORCID Logo" src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" width="24" height="24"/></sub></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.sdsmt.edu/about/directory/capehart_william.html"><sub><img alt="SD Mines Logo" src="https://kyrill.ias.sdsmt.edu/wjc/web_graphics/MinesM.svg" height="24"/></sub></a>
+<a href="https://www.sdsmt.edu/about/directory/capehart_william.html"><img alt="SD Mines Logo" src="https://kyrill.ias.sdsmt.edu/wjc/web_graphics/MinesM.svg" width="24" height="24"/></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://www.linkedin.com/in/william-capehart/"><sub><img alt="LinkedIn Logo" src="https://kyrill.ias.sdsmt.edu/wjc/web_graphics/linkedin.svg" width="24" height="24" color="#0f4fb5"/></sub></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
