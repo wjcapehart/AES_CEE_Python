@@ -40,11 +40,10 @@ Many of these examples are still being modified to make them more navigable. Con
 
 ### Forward-in-Time Modeling and ODE Equation Solving (the infamous Disease Modeling Case from the CEE 284 MATLAB days)
 
-* [Web Page of Jupyter Notebook for ODE Equation Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_ODE_Functions_in_Python.html)
-  * [Kickstarter Jupyter Notebook for ODE Equation Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_ODE_Functions_in_Python%20Starter-Pack.ipynb)
+* [Web Page of Jupyter Notebook for ODE Equation Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_ODE_Functions_in_Python_Final.html)
 
 * [Web Page of Jupyter Notebook for Finite-Difference Euler's Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_Eulers_Method_in_Python.html)
-  * [Kickstarter Jupyter Notebook for Finite-Difference Euler's Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_Eulers_Method_in_Python%20Starter-Pack.ipynb)
+  * [Kickstarter Jupyter Notebook for Finite-Difference Euler's Method](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_01_SIR_Modeling/Disease_Modeling_with_Eulers_Method_in_Python_Starter-Pack.ipynb)
 
 
 ### Modeling Transport in both Time and Space (features animations)
@@ -64,7 +63,11 @@ Many of these examples are still being modified to make them more navigable. Con
 
 ### Publication Quality WRF Domain Mapping
 
-* [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_05_WRF_Domain_Mapping/WRF_Map_Out_Namelist_WPS.html)
+* [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_05_WRF_and_MPAS_Domain_Mapping/WRF_Map_Out_Namelist_WPS.html)
+
+### Processing MPAS Voronoi Polygons using GeoPandas
+
+* [Web Page of Jupyter Notebook](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_05_WRF_and_MPAS_Domain_Mapping/nD_MPAS_GeoPandas.html)
 
 ### Remotely Accessing Data from External Data Services
 
