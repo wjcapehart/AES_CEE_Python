@@ -44,7 +44,8 @@ url: https://github.com/wjcapehart/AES_CEE_Python/
 sass:
    sass_dir: _sass
 
-
+include:
+  - assets/images/
 
 plugins:
   - jekyll-feed
