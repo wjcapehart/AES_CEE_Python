@@ -52,7 +52,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-gfm-admonitions
   - jekyll-optional-front-matter
-
+  - jekyll-include-cache
 
 
 # Exclude from processing.
