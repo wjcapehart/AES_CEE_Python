@@ -28,6 +28,10 @@ This deep dive tries to work through the confusion that can emerge when a plot r
 
 *  [Gridded Meteo Data_Mapping_in_Python](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_01_Rage_Quit_Support/03_01_03_XArray_and_Cartopy/Mapping_Gridded_Meteorology_Data_in_Python_with_Xarray_and_Cartopy.html)
 
+### Accessing Local and Remote R RData Formatted Files for Pandas
+
+*  [Fast Tutorial: Reading RData Files in Python](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_01_Rage_Quit_Support/03_01_03_XArray_and_Cartopy/Fast_Vingnette_Reading_RData_Files_in_Python.html)
+
 ### Time, Funky Calendars, Time Zones, and other Date Time Headaches
 
 *  Coming Soon
