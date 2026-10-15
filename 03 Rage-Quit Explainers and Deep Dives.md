@@ -75,7 +75,8 @@ Many of these examples are still being modified to make them more navigable. Con
 
 ### Remotely Accessing Data from External Data Services
 
-* [Web Page of Jupyter Notebook for USGS's NWIS Services (updated for NWIS retirement)](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_06_Science_Data_Services/IPYNB_Python_USGS_DataRetrieval_WaterData_Demo_PUBLIC_MUNGED_KEY.html)
+* [Web Page of Jupyter Notebook for USGS's NWIS Services for Multiple Stations (updated for NWIS retirement)](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_06_Science_Data_Services/IPYNB_Python_USGS_DataRetrieval_WaterData_Demo_PUBLIC_MUNGED_KEY.html)
+* [Web Page of Jupyter Notebook for USGS's NWIS Services for a Single Station with Watershed National Hydrography Dataset Mapping (Also updated for NWIS retirement.  From our NSF-Aquaclime Hackathon)](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_06_Science_Data_Services/IPYNB_Python_USGS_DataRetrieval_WaterData_Demo_Single_Station.html)
 * [Web Page of Jupyter Notebook for NOAA-NCEI Climate Data Online Services](Jupyter_Notebooks_and_Other_Files/03_Deep_Dives/03_02_Applications/03_02_06_Science_Data_Services/NCEI_PYNCEI_Demo.html)
 
 ### Special Statistical Support Functions
