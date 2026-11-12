@@ -149,20 +149,13 @@ If you work in any hydrology, weather & climate groups, you will also want to in
   * [arm_pyart](https://arm-doe.github.io/pyart/) The Python ARM Radar Toolkit, Py-ART, is a Python module containing a collection of weather radar algorithms and utilities.
 
 ```
-conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas
-conda install -c conda-forge pint pint-xarray pint-pandas metpy netCDF4 zarr
+conda install -c conda-forge shapely cartopy OWSLib pyproj geopandas pint
+conda install -c conda-forge xarray uxarray pint-xarray pint-pandas metpy netCDF4 zarr
 conda install -c conda-forge siphon pygrib timezonefinder iris satpy airportsdata
 conda install -c conda-forge cftime cfdm cf_xarray cf_pandas cf-units cfgrib
-conda install -c conda-forge pytz haversine uxarray wrapt setuptools cython
+conda install -c conda-forge pytz haversine  wrapt setuptools cython
 conda install -c conda-forge geocat-comp geocat-viz arm_pyart
-conda install -c conda-forge basemap-data basemap-data-hires 
-```
-
-{: .warning }
-WRF-Python will require additional steps to get it running in most environments until the package is updated for more recent versions of [python/numpy](https://github.com/NCAR/wrf-python/issues/237).  The biggest one at present is that you will need a new conda environment based on an older version of Python-3 ([Hat tip to Eric Salathé @ U. Washington](https://groups.google.com/a/ucar.edu/g/wrfpython-talk/c/QfZ_eEfTbDI)}.  If you need WRF-Python, see Dr. Capehart or Dr. French in person for guidance.
-
-```
-conda install -c conda-forge wrf-python 
+conda install -c conda-forge wrf-python xwrf
 ```
 
 
